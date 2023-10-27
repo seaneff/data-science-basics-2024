@@ -14,6 +14,9 @@ format:
     df-print: paged
 ---
 
+[comment]: <> (to generate PDF for sharing, run final doc with title: "Data Science Basics in R, Day 1"
+subtitle: "Intro to statistical programming" from: revealjs format: pdf above (with appropriate spacing))
+
 ## Introductions
 ::: {.incremental}
 - Your name

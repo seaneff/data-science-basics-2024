@@ -50,3 +50,6 @@ rsconnect/
 
 # Other
 .DS_Store
+/.quarto/
+/_site/
+day1_files/libs/
