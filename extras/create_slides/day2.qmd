@@ -1,0 +1,134 @@
+---
+title: "Data Science Basics in R, Day 2"
+subtitle: "Data management and version control"
+from: revealjs
+format:
+  revealjs: 
+    transition: none
+    auto-stretch: true
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    theme: seaneffquarto.scss
+    df-print: paged
+---
+
+
+## Learning by doing
+
+## Goals for today
+
+# What is data management?
+
+## Data management
+
+## What does data management involve?
+
+# Some useful and interesting sources of data
+
+## WHO Global Health Observatory
+
+## OECD Health Data Repository
+
+## OCHA Humanitarian Data Exchange
+
+## Demographic and Health Surveys
+
+## UN SDG Global Database
+
+## Let's chat
+
+What other datasets have you used for work or school? 
+
+# Data cleaning demo
+
+# Loading datasets in R
+
+## Raw data files
+
+## Functions to load data
+
+## A note on Excel files
+
+## Loading data with RStudio
+
+## Workshop dataset
+
+## Your turn
+
+# Data structures in R
+
+## Data structures in R
+
+## Vectors
+
+## Dataframe
+
+## Now you try!
+
+## Print the top rows of a dataset
+
+## See your entire dataset in RStudio
+
+## Make basic tables
+
+## Dimensions and field names
+
+## Accessing subsets of data
+
+## Ask questions of your data
+
+## Now you try!
+
+# Documenting your data, code, and results
+
+## Documentation
+
+## Documentation
+
+## Documenting data: Data dictionaries
+
+## Documening code: comments
+
+## Documening code: README files
+
+## Reproducable code: R Markdown
+
+## Reproducable code: github
+
+# Github
+
+## Github
+
+## Github for poets
+
+## Your turn!
+
+Create a github account
+
+## Github repositories
+
+## Your turn!
+
+Create a github repo for your work in this class
+
+## Forking a repository
+
+## Watching or starring a repository
+
+## Following a user
+
+
+
+
+
+
+
+
+
+
+
+
+
+

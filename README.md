@@ -25,7 +25,7 @@ If you have questions, feel free to reach out at sde31@georgetown.edu.
 
 ---
 
-### Day 2: Data management
+### Day 2: Data management and version control
 -   Data types and structures in R
 -   Reading in a new dataset
 -   Data cleaning

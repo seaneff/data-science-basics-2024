@@ -1,0 +1,344 @@
+---
+title: "Data Science Basics in R, Day 4"
+subtitle: "Visualizing and communicating about data"
+from: revealjs
+format:
+  revealjs: 
+    transition: none
+    auto-stretch: true
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    theme: seaneffquarto.scss
+    df-print: paged
+---
+
+## Goals for today
+
+- How to create data visualizations
+- Plan
+- Design
+- Build
+
+# Creating a data visualization
+
+## Steps:
+- Plan
+- Design
+- Build
+- Refine
+
+# Planning
+
+- Who
+- What
+- When
+- Where
+- Why
+
+[Concept from Graphics Principles](https://graphicsprinciples.github.io/initiative.html)
+
+## Why: What are your goals?
+
+- Identify the purpose of the graph
+  - deliver a message?
+  - explore a topic?
+  - support a decision?
+
+## What: What are the data and evidence?
+
+- Understand your data
+  - type of data
+  - volume of data
+- Understand the evidence
+  - what do the data say?
+
+## Who: Who is the audience
+
+specialists? non-specialists?
+
+## Where:
+ 
+Adapt the design to space or formatting constraints
+- clinical report?
+- poster?
+- slide deck?
+- publication?
+- dashboard?
+
+## When: How much time do you want to invest?
+
+
+# Designing
+
+## Choosing a plot type
+
+
+## Visual elements
+
+## Cleveland McGill Scale
+
+::: {layout-ncol=2}
+
+  - In 1985 study of how humans understand plots
+
+![](images/ClevelandMcGill.jpg)
+
+::: 
+
+
+## Cleveland McGill Scale
+
+::: {layout-ncol=2}
+  - In 1985 study of how humans understand plots
+  - How accurately are people were able to interpret data?
+
+![](images/ClevelandMcGill.jpg)
+
+::: 
+
+## Cleveland McGill Scale
+
+::: {layout-ncol=2}
+  - In 1985 study of how humans understand plots
+  - How accurately are people were able to interpret data?
+    - Experimented: asked subjects to guess data from graphics
+
+![](images/ClevelandMcGill.jpg)
+
+::: 
+
+## Cleveland McGill Scale
+
+::: {layout-ncol=2}
+  - In 1985 study of how humans understand plots
+  - How accurately are people were able to interpret data?
+    - Experimented: asked subjects to guess data from graphics
+    - Varied plot design and details: position, shape, size, symbols, color
+
+![](images/ClevelandMcGill.jpg)
+
+::: 
+
+## Cleveland McGill Scale
+
+::: {layout-ncol=2}
+  - In 1985 study of how humans understand plots
+  - How accurately are people were able to interpret data?
+    - Experimented: asked subjects to guess data from graphics
+    - Varied plot design and details: position, shape, size, symbols, color
+    - Ranked most-to-least interpretable visual elements
+
+![](images/ClevelandMcGill.jpg)
+
+::: 
+
+
+## Cleveland McGill Scale Ranking
+
+
+::: {.incremental}
+  - **#1** Position
+  - **#2** Length
+  - **#3** Angle and slope
+  - **#4** Color saturation
+  - **#5** Color hue
+  - For more information and complete rankings, see original publication
+::: 
+
+
+
+
+## Bouba/kiki effect
+
+Which is kiki, and which is bouba?
+
+## Bouba/kiki effect
+
+::: {.incremental}
+  - First observed in 1924 by a Georgian psychologist
+  - How do people understand and interpret shapes, sounds, and words?
+    - Participants given a list with nonsense words to match with shapes
+    - Users consistently grouped certains words and shapes together
+::: 
+
+## Bouba/kiki effect
+
+![](images/larger_kiki_bouba.png)
+
+::: footer
+[Król ME, Ferenc K. Silent shapes and shapeless sounds: the robustness of the diminished crossmodal correspondences effect in autism spectrum conditions. Psychological Research. 2020 Sep 1;84(6):1507–16. ](https://link.springer.com/article/10.1007/s00426-019-01163-9)
+:::
+
+
+
+## Position
+- Do not plot log-normally distributed variables on a linear scale 
+
+## Shape
+- Use position for comparisons rather than length (e.g., dots instead of bars), especially for non-linear scales
+
+## Color
+
+- Use color intentionally
+  - existing or branded color palettes
+
+
+# Building
+
+# Refining
+
+## Refining a data visualization
+
+## Three principles
+- **Purpose**: Have a well-defined purpose
+- **Clarity**: Show the data clearly
+- **Message**: Make the message obvious
+
+[Concept from Graphics Principles](https://graphicsprinciples.github.io/initiative.html)
+
+## Simplify
+
+- Simplify where possible
+- Use less ink and more white space
+- Avoid unnecessary clutter (like unnecessary gridlines)
+
+## Meaningful tiles and labels
+
+- Chose a meaningful title
+
+## Minimize eye movement
+  - place labels next to data
+  - draw attention to the main points
+  
+## Make comparisons easy
+  
+- Make comparisons easy
+  - use visual grouping (common shapes, colors, regions)
+  - order values in a meaningful way
+  - judgements are easier to make on a horizontal (vs. vertical) scale -- need citation
+  - consider reference lines
+  
+## Understand existing conventions
+
+These may vary from field to field
+- Cause on x-axis, effect on y-axis
+
+
+::: footer
+[Concept from Graphics Principles](https://graphicsprinciples.github.io/initiative.html)
+:::
+
+## Technical details
+
+## Choosing a plot type
+
+## Selecting colors
+
+## Playing with fonts
+
+# Dashboards
+
+## What is a dashboard?
+
+A dashboard is a **visual display** of **the most important information** needed to achieve one or more objectives which fits entirely on a single computer screen, so it can be **monitored at a glance**.
+
+::: footer
+[Definition from: Information Dashboard Design, Stephen Few](https://dl.acm.org/doi/10.5555/1206491)<br>
+::: 
+
+## A brief history
+- **1980s** early **'executive information systems'** developed by vendors
+- **1990s** focus on **key performance indicators** (KPIs) in business
+- **2000s** over **half of surveyed companies** use dashboards
+
+::: footer
+[Information Dashboard Design, Stephen Few](https://dl.acm.org/doi/10.5555/1206491)<br>
+[The Balanced Scorecard, Kaplan and Norton](https://hbr.org/1992/01/the-balanced-scorecard-measures-that-drive-performance-2)<br>
+[Dashboard Democracy](https://www.computerworld.com/article/2570516/dashboard-democracy.html)
+:::
+
+## Types of dashboards
+
+![](images/types_of_dashboards_few.jpg)
+
+[Information Dashboard Design, Stephen Few](https://dl.acm.org/doi/10.5555/1206491)<br>
+
+## Purpose of dashboards
+
+- **strategic**: provide a quick overview that decision-makers need to monitor the performance of an organization and to inform long-term strategic direction
+  - simple display mechanisms 
+  - data often daily, weekly, or monthly (vs. real-time)
+
+-**dashboards for analytical purposes**
+
+-**dashboards for operational purposes**
+
+[Information Dashboard Design, Stephen Few on page 41](https://dl.acm.org/doi/10.5555/1206491)<br>
+
+## Common dashboard tools
+
+
+# Where to learn more
+
+## R Basics
+
+## Data visualization
+
+**Open access books**
+- [Data Visualization: A practical introduction](https://socviz.co/)
+- [Hands on Data Vizualization](https://handsondataviz.org/)
+- [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)
+- [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/)
+
+**Other readings or videos**
+- [Journal of the Data Vizualization Society](https://nightingaledvs.com/)
+- [Multiple Views on Medium](https://medium.com/multiple-views-visualization-research-explained)
+- [How Humans See Data](https://www.youtube.com/watch?v=fSgEeI2Xpdc)
+
+**Examples**
+- [Our World in Data](https://ourworldindata.org/latest)
+- [R Graph Gallery](https://r-graph-gallery.com/index.html)
+- [Portfolios: Cedtric Scherer](https://www.cedricscherer.com/top/dataviz/)
+
+## Colors
+
+**Other readings or videos**
+- [Your Friendly Guide to Colors in Data Visualisation](https://blog.datawrapper.de/colorguide/)
+- [What to consider when choosing colors for data visualization](https://blog.datawrapper.de/colors/)
+
+**Choosing your color palette**
+- [Color palettes in R](https://github.com/EmilHvitfeldt/r-color-palettes/)
+
+## Data science
+
+**Open access books**
+- [R for Data Science](https://r4ds.had.co.nz/)
+
+
+**Other readings or videos**
+
+
+## Statistical Learning/Machine learning
+
+**Open access books**
+
+**Other readings or videos**
+
+
+## Python
+
+**Open access books**
+
+**Other readings or videos**
+
+
+## SQL
+
+**Open access books**
+
+**Other readings or videos**
+
+
+## Thank you!

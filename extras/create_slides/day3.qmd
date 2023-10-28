@@ -1,0 +1,90 @@
+---
+title: "Data Science Basics in R, Day 3"
+subtitle: "Exploratory data analysis"
+from: revealjs
+format:
+  revealjs: 
+    transition: none
+    auto-stretch: true
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    theme: seaneffquarto.scss
+    df-print: paged
+---
+
+
+## Goals for today
+
+# Exploratory data analysis
+
+## Exploratory data analysis
+
+## Start with a question
+
+## Data analysis is a multi-step process
+
+# Descriptive statistics
+
+## Descriptive statistics
+
+## Our workshop dataset
+
+## Building a data visualization
+
+# Plots in base R
+
+## Scatterplots
+
+## Histograms
+
+## Barcharts
+
+## Boxplots
+
+## Pie charts
+
+# Fun with ggplot2
+
+## Histograms
+
+## Barcharts
+
+## Stacked barcharts
+
+## Scatterplots
+
+## Boxplots
+
+## Line charts
+
+## World map
+
+# Aesthetics in ggplot
+
+## The grammer of graphics
+
+## Aesthetics in ggplot
+
+## Size as a dimension
+
+## Color as a dimension
+
+## Transparency as a dimension
+
+# Getting fancy
+
+## Cleveland dot plot
+
+# Exporing plots
+
+## Exporting plots from RStudio
+
+## Saving plots within your code
+
+## Your turn!
+
+## Save your code to git
+
+
