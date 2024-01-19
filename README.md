@@ -43,7 +43,13 @@ If you have questions, feel free to reach out at sde31@georgetown.edu.
 
 ### Day 4: Visualizing and communicating about data
 -   Designing data visualizations
--   Hands on portfolio work
+-   Colors, labels, fonts, and more
+
+---
+
+### Day 5: Build an online portfolio
+-   Hands-on work designing your own data visualization
+-   Create a github repository to showcase your work
 -   Where and how to learn more
 
 ---

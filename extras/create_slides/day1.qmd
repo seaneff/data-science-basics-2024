@@ -25,6 +25,16 @@ subtitle: "Intro to statistical programming" from: revealjs format: pdf above (w
 - Have you ever used R before?
 :::
 
+## Introductions
+
+::: {layout-ncol=2}
+
+![](images/childhood_graphic.png){fig-align="center"}
+
+![](images/steph_rosie.png){fig-align="center"}
+
+::: 
+
 ## Housekeeping notes
 
 ::: {.incremental}
@@ -36,10 +46,13 @@ subtitle: "Intro to statistical programming" from: revealjs format: pdf above (w
 :::
 
 ## Housekeeping notes
-
+<br>
+<br>
+<br>
 <center>
-All course materials are on github, 
-we’ll talk more about github starting tomorrow
+All course materials are on github. 
+
+We’ll talk more about github starting tomorrow.
 
 <https://github.com/seaneff/data-science-basics-2024>
 
@@ -56,16 +69,17 @@ we’ll talk more about github starting tomorrow
 ## What to expect: The next 4 days
 
 ::: {.incremental}
-- We’ll balance slides/demos with hands-on exercises
-- You decide how you learn best
+- We’ll balance slides/demos with hands-on exercises.
+- You decide how you learn best...
   - listening with your computer away
   - laptop out and typing along
   - taking notes with paper/pen
-- All of these slides, course notes, and other materials are publicly accessible on github
+- All of these slides, course notes, and other materials are publicly accessible on github.
 ::: 
 
 ## Workshop goals
-
+<br>
+<br>
 <center>
 This workshop will build literacy and basic proficiency in statistical programming, with a focus on the skills needed to conduct data analyses in professional healthcare and public health workplaces. 
 <br><br>
@@ -386,7 +400,7 @@ my_first_object*my_second_object
 ::: {.incremental}
 - **numeric:** a number (e.g., -1, 0, 893243.343)
 - **logical:** TRUE or FALSE (no quotations)
-- **character:** letters and words (tricky – or a number stored as a string)
+- **character:** letters and words
 
 ::: 
 
@@ -394,7 +408,7 @@ my_first_object*my_second_object
 
 - **numeric:** a number (e.g., -1, 0, 893243.343)
 - **logical:** TRUE or FALSE (no quotations)
-- **character:** letters and words (tricky – or a number stored as a string)
+- **character:** letters and words
 - the function `is()` will help us learn the data type of a given object
 
 ```{r}
@@ -402,81 +416,8 @@ my_first_object*my_second_object
 #| echo: true
 is(3.14)
 is(TRUE)
-is("Steph")
+is("International Health Regulations (IHR)")
 ```
-
-## Numeric data
-
-```{r}
-#| label: numeric-data
-#| echo: true
-my_first_object
-```
-
-## Numeric data
-
-```{r}
-#| label: numeric-data-2
-#| echo: true
-my_first_object
-```
-
-```{r}
-#| label: numeric-data-3
-#| echo: true
-is(my_first_object)
-```
-
-## Character data
-
-```{r}
-#| label: character-data
-#| echo: true
-
-policy <- "International Health Regulations (IHR)"
-```
-
-## Character data
-
-```{r}
-#| label: character-data-2
-#| echo: true
-
-policy <- "International Health Regulations (IHR)"
-policy
-```
-
-```{r}
-#| label: character-data-3
-#| echo: true
-is(policy)
-```
-
-## Logical data
-
-```{r}
-#| label: logical_data
-#| echo: true
-
-logical_example <- TRUE
-```
-
-## Logical data
-
-```{r}
-#| label: logical_data-2
-#| echo: true
-
-logical_example <- TRUE
-logical_example
-```
-
-```{r}
-#| label: logical_data-3
-#| echo: true
-is(logical_example)
-```
-
 
 ## Check your understanding
 ```{r}
@@ -539,7 +480,6 @@ is(FALSE)
 is("What is this?")
 ```
 
-
 ## Check your understanding
 
 ```{r}
@@ -559,8 +499,9 @@ is("What is this?")
 
 ## Rules for naming objects
 
-- General naming requirement: a variable name can’t start with a number or a dot (.)
-- R is case sensitive (‘A’ is different than ‘a’)
+- General naming requirements: 
+  - a variable name can’t start with a number or a dot (.)
+  - R is case sensitive (‘A’ is different than ‘a’)
 - General rules of thumb: aim for consistency
   - snake_case
   - camelCase
@@ -586,7 +527,7 @@ is("What is this?")
 ## Now you try!
 
 - Create three new objects, with any allowable names you want. Try to use a consistent naming style.
-  - Numeric (we already did this, but practice is good)
+  - Numeric
   - Character
   - Logical
   
@@ -771,28 +712,16 @@ c(1,2,3,4,5) + c(8,0)
 
 - Pay attention to these warnings
 - This is called *vector recycling* and it can cause major errors
+- We won't go into the details in this workshop, but you can learn more [here](https://r4ds.had.co.nz/vectors.html) if you run into this type of error message
 
 ## Functions
 
 ::: {.incremental}
   - Functions are instructions to perform a task
-  - They are algorithms, or consistent set of rules
+  - They are algorithms, or consistent sets of rules
   - R has built-in functions for many basic things
   - Functions generally look like this: `function(object)`
-  - We can also “add on” extra functions by loading new libraries (we’ll get to this later), or we can write our own functions to do whatever we want
-  
-:::
-
-## Functions
-
-::: {.incremental}
-  - Most functions in R are vectorized
-    - This means they act on all items in a vector
-  - Why does this matter?
-    - If you misunderstand it, your math will be wrong
-    - It’s useful for basic calculations and analysis:
-      - divide all numbers by 100 to calculate a %
-      - multiply per-capita rates by total population
+  - We can also “add on” extra functions by loading new libraries (we’ll get to this later), or we can write our own functions
   
 :::
 
@@ -836,8 +765,9 @@ summary(c(1,2,3,4,5))
 
 ::: {layout-ncol=2}
 
-- Use `?summary` or `help(summary)` to learn more about functions
-- Results will show in "help" section of RStudio
+- Use `?function-name` or `help(function-name)` to learn more about functions
+  - example: `?mean` or `help(mean)` 
+  - Results will show in "help" section of RStudio
 
 ![](images/summary-r-studio.jpg){fig-align="center"}
 
@@ -864,19 +794,29 @@ summary(c(1,2,3,4,5))
 
 ::: {.incremental}
 - Have you ever saved a bunch of versions of a paper on your computer with different file names at different dates or times of day?
-- Backups are useful to save progress, understand what we’ve done before, and look into problems/bugs
+- Backups are useful to save progress, understand what we’ve done before, look into problems/bugs, and share our work in progress
 - Github is a tool do help do this with code
 ::: 
 
 ## What is github?
 
 <center>
-
-We’ll talk more about github later in this workshop. For now, I’d like you to be able to use it to access course materials any time you’d like to.
+We’ll talk more about github later in this workshop. For now, I’d like you to be able to use it to access course materials.
 <br><br><br>
 <https://github.com/seaneff/data-science-basics-2024>
 </center>
 
-## Todo: add graphics
-See 2023 powerpoint
+## Now you try!
+<center>
+<br><br><br>
+<https://github.com/seaneff/data-science-basics-2024>
+</center>
+
+## Thank you!
+<center>
+<br><br><br>
+See you tomorrow.
+
+_Please come with a fully charged laptop._
+</center>
 

@@ -15,68 +15,187 @@ format:
 ---
 
 ## Goals for today
+::: {.incremental}
+- **Learn** a step-by-step process for creating great data visualizations
+- **Understand** your audience and your goals when visualizing data
+- **Design** some fun and beautiful data visualizations
+- **Get creative** and explore some new skills in R
+:::
 
-- How to create data visualizations
-- Plan
-- Design
-- Build
+## Goals for today
 
-# Creating a data visualization
+- **Learn** a step-by-step process for creating great data visualizations
+- <span style="color:#DBDBDB;">**Understand** your audience and your goals when visualizing data</span>
+- <span style="color:#DBDBDB;">**Design** some fun and beautiful data visualizations</span>
+- <span style="color:#DBDBDB;">**Get creative** and explore some new skills in R</span>
 
-## Steps:
-- Plan
-- Design
-- Build
-- Refine
 
-# Planning
+## Stages of creating a data visualization
+::: {.incremental}
+- **Plan:** define your goals and your audience
+- **Design:** brainstorm and sketch out some ideas
+- **Build:** create your data visualization
+- **Refine:** review, update, and clarify your visualization
+:::
 
-- Who
-- What
-- When
-- Where
-- Why
+## Stages of creating a data visualization
+- **Plan:** define your goals and your audience
+- <span style="color:#DBDBDB;">**Design:** brainstorm and sketch out some ideas</span>
+- <span style="color:#DBDBDB;">**Build:** create your data visualization</span>
+- <span style="color:#DBDBDB;">**Refine:** review, update, and clarify your visualization</span>
 
-[Concept from Graphics Principles](https://graphicsprinciples.github.io/initiative.html)
+## Step 1: Plan
+::: {.incremental}
+- **Why** are you doing this in the first place?
+- **Who** is your audience?
+- **What** are you trying to communicate?
+- **Where** are you going to share the graphic?
+::: 
 
-## Why: What are your goals?
+## Why are you doing this in the first place?
 
-- Identify the purpose of the graph
-  - deliver a message?
+::: {layout-ncol=2}
+
+::: {.incremental}
+- **What are your goals?**
+  - understand your data?
   - explore a topic?
+  - deliver a message?
   - support a decision?
+  - teach a new topic?
+::: 
 
-## What: What are the data and evidence?
+::: {.incremental}
+-  **Why does this matter? **
+  - Degree of effort
+  - Level of complexity
+  - Types of text
 
-- Understand your data
-  - type of data
-  - volume of data
-- Understand the evidence
-  - what do the data say?
+::: 
 
-## Who: Who is the audience
+::: 
 
-specialists? non-specialists?
+## Who is your audience?
 
-## Where:
- 
-Adapt the design to space or formatting constraints
-- clinical report?
-- poster?
-- slide deck?
-- publication?
-- dashboard?
+::: {layout-ncol=2}
 
-## When: How much time do you want to invest?
+::: {.incremental}
+-  **Who are they? **
+- What are their expectations?
+- How much background knowledge do they have?
+- How interested are they?
+::: 
 
+::: {.incremental}
+-  **Why does this matter? **
+  - Context (types of data shown)
+  - Style (specific styles or colors)
+  - Level of detail (footnotes, etc)
+::: 
 
-# Designing
+::: 
 
-## Choosing a plot type
+## What are you trying to communicate?
 
+::: {layout-ncol=2}
+
+::: {.incremental}
+-  **What's the point? **
+  - today's status
+  - change over time
+  - comparing groups
+  - highlight extremes
+::: 
+
+::: {.incremental}
+-  **Why does this matter? **
+  - Plot type 
+  - Emphasis (color, text)
+  
+::: 
+
+::: 
+
+## Where are you doing to share the graphic?
+
+::: {layout-ncol=2}
+
+::: {.incremental}
+-  **Where will this go? **
+  - peer-reviewed publication
+  - poster
+  - dashboard
+  - slide deck
+    - "ballroom vs boardroom"
+::: 
+
+::: {.incremental}
+-  **Why does this matter? **
+-  Sizing and alignment
+- Level of complexity
+- Formatting constraints
+  - color
+  - font
+
+::: 
+
+::: 
+
+## Your turn
+
+Grab a piece of blank paper.
+
+## Your turn
+
+Imagine you have two weeks, access to any data you want, and the help of a big team of graphic designers, statistical programmers, and researchers. What would you work on with them? You have 5 minutes.
+
+- **Why** are you doing this in the first place?
+- **Who** is your audience?
+- **What** are you trying to communicate?
+- **Where** are you going to share the graphic?
+
+## My turn
+
+For today, we're going go work with a dataset on global refugee populations, based on data from the UN Refugee Agency (UNHCR).
+
+- **Why:** to learn more about the status of global refugee populations
+- **Who:** ourselves
+- **What:** general information about refugee populations
+- **Where:** in class and maybe on our github repos
+
+## Explore a new dataset
+
+[UNHCR Refugee data in R](https://www.unhcr.org/refugee-statistics/insights/explainers/refugees-r-package.html)
+
+## Stages of creating a data visualization
+- **Plan:** define your goals and your audience
+- <span style="color:#DBDBDB;">**Design:** brainstorm and sketch out some ideas</span>
+- <span style="color:#DBDBDB;">**Build:** create your data visualization</span>
+- <span style="color:#DBDBDB;">**Refine:** review, update, and clarify your visualization</span>
+
+## Stages of creating a data visualization
+- **Plan:** define your goals and your audience
+- **Design:** brainstorm and sketch out some ideas
+- <span style="color:#DBDBDB;">**Build:** create your data visualization</span>
+- <span style="color:#DBDBDB;">**Refine:** review, update, and clarify your visualization</span>
+
+## Step 2: Design
+::: {.incremental}
+- Visual elements
+- Choosing a plot type
+- Colors
+- Text
+- Trial and error
+::: 
 
 ## Visual elements
 
+![](images/jhu_encodings.jpg)
+
+::: footer
+[Image from JHU Library](https://guides.library.jhu.edu/datavisualization/design)
+:::
+
 ## Cleveland McGill Scale
 
 ::: {layout-ncol=2}
@@ -127,7 +246,7 @@ Adapt the design to space or formatting constraints
   - In 1985 study of how humans understand plots
   - How accurately are people were able to interpret data?
     - Experimented: asked subjects to guess data from graphics
-    - Varied plot design and details: position, shape, size, symbols, color
+    - Varied plot design and details: position, shape, size, symbols
     - Ranked most-to-least interpretable visual elements
 
 ![](images/ClevelandMcGill.jpg)
@@ -135,59 +254,84 @@ Adapt the design to space or formatting constraints
 ::: 
 
 
-## Cleveland McGill Scale Ranking
+## Perception of visual elements
 
-
-::: {.incremental}
-  - **#1** Position
-  - **#2** Length
-  - **#3** Angle and slope
-  - **#4** Color saturation
-  - **#5** Color hue
-  - For more information and complete rankings, see original publication
-::: 
-
-
-
-
-## Bouba/kiki effect
-
-Which is kiki, and which is bouba?
-
-## Bouba/kiki effect
-
-::: {.incremental}
-  - First observed in 1924 by a Georgian psychologist
-  - How do people understand and interpret shapes, sounds, and words?
-    - Participants given a list with nonsense words to match with shapes
-    - Users consistently grouped certains words and shapes together
-::: 
-
-## Bouba/kiki effect
-
-![](images/larger_kiki_bouba.png)
+![](images/jhu_rankings.jpg)
 
 ::: footer
-[Król ME, Ferenc K. Silent shapes and shapeless sounds: the robustness of the diminished crossmodal correspondences effect in autism spectrum conditions. Psychological Research. 2020 Sep 1;84(6):1507–16. ](https://link.springer.com/article/10.1007/s00426-019-01163-9)
+[Image from JHU Library](https://guides.library.jhu.edu/datavisualization/design)
 :::
 
+## Bouba/kiki effect
 
+Which is bouba, and which is kiki?
 
-## Position
-- Do not plot log-normally distributed variables on a linear scale 
+![](images/2560px-Booba-Kiki.png)
 
-## Shape
-- Use position for comparisons rather than length (e.g., dots instead of bars), especially for non-linear scales
+## Bouba/kiki effect
 
-## Color
+[Video break](https://www.youtube.com/watch?v=rQX1ax96l7Y)
 
-- Use color intentionally
-  - existing or branded color palettes
+## Choosing a plot type
 
+![](images/chart-chooser-2020.png)
 
-# Building
+## Choosing a plot type
 
-# Refining
+![](images/datatovizscreenshot.png)
+## Barcharts
+
+```{r}
+library(tidyverse)
+library(refugees)
+test <- read.csv("data/populations_unhcr.csv")
+```
+
+```{r}
+head(test)
+```
+
+## Choosing a plot type
+
+Over time, you'll develop a sense of **informed intuition** for selecting plot types. 
+
+At first, play around and see what works well! 
+
+And consult flowcharts and examples, if it's helpful.
+
+::: footer
+Creative Confidence by Tom Kelley and David Kelley, page 48 ("informed intuitition")
+:::
+
+## Choosing a plot type
+
+[Data to Viz](https://www.data-to-viz.com/)
+
+## Your turn
+
+"If you want a good idea, start with a lot of ideas" - Linus Pauling
+
+::: footer
+Creative Confidence by Tom Kelley and David Kelley, page 48 ("informed intuitition")
+:::
+
+## Stages of creating a data visualization
+- **Plan:** define your goals and your audience
+- **Design:** brainstorm and sketch out some ideas
+- <span style="color:#DBDBDB;">**Build:** create your data visualization</span>
+- <span style="color:#DBDBDB;">**Refine:** review, update, and clarify your visualization</span>
+
+## Stages of creating a data visualization
+- **Plan:** define your goals and your audience
+- **Design:** brainstorm and sketch out some ideas
+- **Build:** create your data visualization
+- <span style="color:#DBDBDB;">**Refine:** review, update, and clarify your visualization</span>
+
+## Stages of creating a data visualization
+- **Plan:** define your goals and your audience
+- **Design:** brainstorm and sketch out some ideas
+- **Build:** create your data visualization
+- **Refine:** review, update, and clarify your visualization
 
 ## Refining a data visualization
 
@@ -237,6 +381,8 @@ These may vary from field to field
 ## Selecting colors
 
 ## Playing with fonts
+
+# Appendix
 
 # Dashboards
 
@@ -292,32 +438,38 @@ A dashboard is a **visual display** of **the most important information** needed
 - [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)
 - [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/)
 
-**Other readings or videos**
+**Other readings, courses, or videos**
 - [Journal of the Data Vizualization Society](https://nightingaledvs.com/)
 - [Multiple Views on Medium](https://medium.com/multiple-views-visualization-research-explained)
 - [How Humans See Data](https://www.youtube.com/watch?v=fSgEeI2Xpdc)
+- [Data to Viz](https://www.data-to-viz.com/)
+- [Chart Chooser](https://extremepresentation.typepad.com/blog/2006/09/choosing_a_good.html)
 
 **Examples**
 - [Our World in Data](https://ourworldindata.org/latest)
 - [R Graph Gallery](https://r-graph-gallery.com/index.html)
-- [Portfolios: Cedtric Scherer](https://www.cedricscherer.com/top/dataviz/)
+- [Portfolios: Cedric Scherer](https://www.cedricscherer.com/top/dataviz/)
+- [Online course](https://cedricscherer.netlify.app/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/)
 
 ## Colors
 
-**Other readings or videos**
+**Other readings, courses, or videos**
 - [Your Friendly Guide to Colors in Data Visualisation](https://blog.datawrapper.de/colorguide/)
 - [What to consider when choosing colors for data visualization](https://blog.datawrapper.de/colors/)
 
 **Choosing your color palette**
 - [Color palettes in R](https://github.com/EmilHvitfeldt/r-color-palettes/)
 
+## Shapes, text, and other visual elements
+- [The Bouba-Kiki Effect, SciFri](https://www.youtube.com/watch?v=rQX1ax96l7Y)
+
 ## Data science
 
 **Open access books**
 - [R for Data Science](https://r4ds.had.co.nz/)
 
-
-**Other readings or videos**
+**Other readings, courses, or videos**
+- [Data Science in a Box](https://datasciencebox.org/)
 
 
 ## Statistical Learning/Machine learning
@@ -326,13 +478,23 @@ A dashboard is a **visual display** of **the most important information** needed
 
 **Other readings or videos**
 
+## Working with specific data types
+
+**Geospatial data**
+- [ Introduction to R for Geospatial Data](https://datacarpentry.org/r-intro-geospatial/01-rstudio-intro.html#introduction-to-rstudio)
+
 
 ## Python
 
 **Open access books**
 
+[Pandas for Data Analysis](https://wesmckinney.com/book/)
+[Official Python Tutorial](https://docs.python.org/3/tutorial/index.html)
+
 **Other readings or videos**
 
+[R/Python Conversion Sheets](https://www.mit.edu/~amidi/teaching/data-science-tools/conversion-guide/r-python-data-manipulation/)
+[Software carpentry course](https://swcarpentry.github.io/python-novice-inflammation/)
 
 ## SQL
 
@@ -340,5 +502,39 @@ A dashboard is a **visual display** of **the most important information** needed
 
 **Other readings or videos**
 
+## Unix shell
+
+**Open access books**
+
+**Other readings or videos**
+- [Software Carpentry course](https://swcarpentry.github.io/shell-novice/)
+
+## Github
+
+**Open access books**
+
+**Other readings or videos**
+- [Software Carpentry course](https://swcarpentry.github.io/git-novice/)
+- [Happy Git with R](https://happygitwithr.com/index.html)
+- [Happier Version control with Git and Github](https://bcjaeger.github.io/seminar-git/#1)
+
+
+## Programming in general
+
+**Other readings or videos**
+- [Advent of code](https://adventofcode.com/2023/about)
+
+![](images/dracula_poster.jpg){width=300}
+
+-  What text did you read first?
+- Why?
+  - Style?
+  - Size?
+  - Color?
+  - Cultural norms?
+
+::: footer
+[Inspired by S Landry on LinkedIn](hhttps://www.linkedin.com/posts/seanlandry_visual-design-isnt-just-about-making-something-activity-7123689734878433280-NrTC?utm_source=share&utm_medium=member_desktop)
+:::
 
 ## Thank you!

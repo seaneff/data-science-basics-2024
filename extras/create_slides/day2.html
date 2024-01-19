@@ -8,7 +8,7 @@
 <link href="day2_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="day2_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="day2_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.353">
+  <meta name="generator" content="quarto-1.3.433">
 
   <title>Data Science Basics in R, Day 2</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -327,17 +327,67 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Data Science Basics in R, Day 2</h1>
-  <p class="subtitle">Data management and version control</p>
+  <p class="subtitle">Data Management and Version Control</p>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
-<section id="learning-by-doing" class="slide level2">
-<h2>Learning by doing</h2>
+<section id="reflecting-on-yesterday" class="slide level2">
+<h2>Reflecting on yesterday</h2>
+<p>Please spend two minutes reflecting on:</p>
+<div>
+<ul>
+<li class="fragment">One thing you learned</li>
+<li class="fragment">One thing you found frustrating</li>
+<li class="fragment">One thing you’re excited about</li>
+<li class="fragment">One thing you’d like to learn</li>
+</ul>
+</div>
+</section>
+<section id="reflecting-on-yesterday-1" class="slide level2">
+<h2>Reflecting on yesterday</h2>
+<p>Would anyone like to share?</p>
 </section>
 <section id="goals-for-today" class="slide level2">
 <h2>Goals for today</h2>
+<div>
+<ul>
+<li class="fragment"><strong>Understand</strong> the foundations of data management</li>
+<li class="fragment"><strong>Identify</strong> some useful global health and health diplomacy datasets</li>
+<li class="fragment"><strong>Load and clean</strong> your first dataset in R
+<ul>
+<li class="fragment">explore a new dataset while learning about <strong>data structures</strong></li>
+<li class="fragment">do some basic <strong>data cleaning</strong></li>
+</ul></li>
+<li class="fragment"><strong>Learn best practices</strong> for documentation
+<ul>
+<li class="fragment">documenting your code</li>
+<li class="fragment">data dictionaries</li>
+<li class="fragment">doing reproducible research in R</li>
+</ul></li>
+<li class="fragment"><strong>Get familiar</strong> with Github (by writing poems about unicorns)</li>
+</ul>
+</div>
+</section>
+<section id="goals-for-today-1" class="slide level2">
+<h2>Goals for today</h2>
+<ul>
+<li><strong>Understand</strong> the foundations of data management</li>
+<li><span style="color:#DBDBDB;"><strong>Identify</strong> some useful global health and health diplomacy datasets</span></li>
+<li><span style="color:#DBDBDB;"><strong>Load and clean</strong> your first dataset in R</span>
+<ul>
+<li><span style="color:#DBDBDB;">explore a new dataset while learning about <strong>data structures</strong></span></li>
+<li><span style="color:#DBDBDB;">do some basic <strong>data cleaning</strong></span></li>
+</ul></li>
+<li><span style="color:#DBDBDB;"><strong>Learn best practices</strong> for documentation</span>
+<ul>
+<li><span style="color:#DBDBDB;">documenting your code</span></li>
+<li><span style="color:#DBDBDB;">data dictionaries</span></li>
+<li><span style="color:#DBDBDB;">doing reproducible research in R</span></li>
+</ul></li>
+<li><span style="color:#DBDBDB;"><strong>Get familiar</strong> with Github (by writing poems about unicorns)</span></li>
+</ul>
 </section>
 <section>
 <section id="what-is-data-management" class="title-slide slide level1 center">
@@ -346,9 +396,78 @@
 </section>
 <section id="data-management" class="slide level2">
 <h2>Data management</h2>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<ul>
+<li class="fragment">Data management is the practice of creating, maintaining, documenting, and securing data.</li>
+<li class="fragment">It involves all stages of data collection, use, and storage.</li>
+<li class="fragment">In this course, we’ll focus mainly on <strong>data access and usage</strong></li>
+</ul>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/data-management-pie-chart-tall.png"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="footer">
+<p><a href="https://datamanagement.iu.edu/">Image from Indiana University Library</a></p>
+</div>
 </section>
-<section id="what-does-data-management-involve" class="slide level2">
-<h2>What does data management involve?</h2>
+<section id="data-access" class="slide level2">
+<h2>Data access</h2>
+<div>
+<ul>
+<li class="fragment">Where do your data “live”?
+<ul>
+<li class="fragment">How can you access them?</li>
+<li class="fragment">Who else can access them?</li>
+<li class="fragment">For how long will they be available?</li>
+</ul></li>
+<li class="fragment">What format are they in?</li>
+<li class="fragment">Where is the documentation?</li>
+<li class="fragment">How, and with whom, can you share data, code, and/or results?</li>
+</ul>
+</div>
+</section>
+<section id="data-cleaning" class="slide level2">
+<h2>Data cleaning</h2>
+<div>
+<ul>
+<li class="fragment">To use your data, you first have to “clean” them</li>
+<li class="fragment">Data cleaning tasks depending on your specific data:
+<ul>
+<li class="fragment">Identifying and addressing missing values</li>
+<li class="fragment">Fixing “weird” characters</li>
+<li class="fragment">Combining multiple datasets</li>
+<li class="fragment">Deduplicating lists</li>
+<li class="fragment">Identifying other discrepancies…</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="goals-for-today-2" class="slide level2">
+<h2>Goals for today</h2>
+<ul>
+<li><strong>Understand</strong> the foundations of data management</li>
+<li><strong>Identify</strong> some useful global health and health diplomacy datasets</li>
+<li><span style="color:#DBDBDB;"><strong>Load and clean</strong> your first dataset in R</span>
+<ul>
+<li><span style="color:#DBDBDB;">explore a new dataset while learning about <strong>data structures</strong></span></li>
+<li><span style="color:#DBDBDB;">do some basic <strong>data cleaning</strong></span></li>
+</ul></li>
+<li><span style="color:#DBDBDB;"><strong>Learn best practices</strong> for documentation</span>
+<ul>
+<li><span style="color:#DBDBDB;">documenting your code</span></li>
+<li><span style="color:#DBDBDB;">data dictionaries</span></li>
+<li><span style="color:#DBDBDB;">doing reproducible research in R</span></li>
+</ul></li>
+<li><span style="color:#DBDBDB;"><strong>Get familiar</strong> with Github (by writing poems about unicorns)</span></li>
+</ul>
 </section></section>
 <section>
 <section id="some-useful-and-interesting-sources-of-data" class="title-slide slide level1 center">
@@ -357,28 +476,74 @@
 </section>
 <section id="who-global-health-observatory" class="slide level2">
 <h2>WHO Global Health Observatory</h2>
+
+<img data-src="images/who_gho.png" class="r-stretch quarto-figure-center"><div class="footer">
+<p><a href="https://www.who.int/data/gho">www.who.int/data/gho</a></p>
+</div>
 </section>
 <section id="oecd-health-data-repository" class="slide level2">
 <h2>OECD Health Data Repository</h2>
+
+<img data-src="images/oecd_health_data.png" class="r-stretch quarto-figure-center"><div class="footer">
+<p><a href="https://data.oecd.org/health.htm">data.oecd.org/health.htm</a></p>
+</div>
 </section>
 <section id="ocha-humanitarian-data-exchange" class="slide level2">
 <h2>OCHA Humanitarian Data Exchange</h2>
+
+<img data-src="images/ocha_hdx.png" class="r-stretch quarto-figure-center"><div class="footer">
+<p><a href="https://data.humdata.org/">data.humdata.org</a></p>
+</div>
 </section>
 <section id="demographic-and-health-surveys" class="slide level2">
 <h2>Demographic and Health Surveys</h2>
+
+<img data-src="images/dhs_surveys.png" class="r-stretch quarto-figure-center"><div class="footer">
+<p><a href="https://dhsprogram.com/">dhsprogram.com</a></p>
+</div>
 </section>
 <section id="un-sdg-global-database" class="slide level2">
 <h2>UN SDG Global Database</h2>
+
+<img data-src="images/un_sdg_data.png" class="r-stretch quarto-figure-center"><div class="footer">
+<p><a href="https://unstats.un.org/sdgs/dataportal">unstats.un.org/sdgs/dataportal</a></p>
+</div>
+</section>
+<section id="undp-data-futures-platform" class="slide level2">
+<h2>UNDP Data Futures Platform</h2>
+
+<img data-src="images/undp_data_futures.png" class="r-stretch quarto-figure-center"><p><a href="https://data.undp.org/">data.undp.org</a></p>
+</section>
+<section id="ipums" class="slide level2">
+<h2>IPUMS</h2>
+
+<img data-src="images/ipums_data.png" class="r-stretch quarto-figure-center"><div class="footer">
+<p><a href="https://www.idhsdata.org/idhs/index.shtml">www.idhsdata.org/idhs/index.shtml</a></p>
+</div>
 </section>
 <section id="lets-chat" class="slide level2">
 <h2>Let’s chat</h2>
 <p>What other datasets have you used for work or school?</p>
-</section></section>
-<section id="data-cleaning-demo" class="title-slide slide level1 center">
-<h1>Data cleaning demo</h1>
-
 </section>
-
+<section id="goals-for-today-3" class="slide level2">
+<h2>Goals for today</h2>
+<ul>
+<li><strong>Understand</strong> the foundations of data management</li>
+<li><strong>Identify</strong> some useful global health and health diplomacy datasets</li>
+<li><strong>Load and clean</strong> your first dataset in R
+<ul>
+<li>explore a new dataset while learning about <strong>data structures</strong></li>
+<li>do some basic <strong>data cleaning</strong></li>
+</ul></li>
+<li><span style="color:#DBDBDB;"><strong>Learn best practices</strong> for documentation</span>
+<ul>
+<li><span style="color:#DBDBDB;">documenting your code</span></li>
+<li><span style="color:#DBDBDB;">data dictionaries</span></li>
+<li><span style="color:#DBDBDB;">doing reproducible research in R</span></li>
+</ul></li>
+<li><span style="color:#DBDBDB;"><strong>Get familiar</strong> with Github (by writing poems about unicorns)</span></li>
+</ul>
+</section></section>
 <section>
 <section id="loading-datasets-in-r" class="title-slide slide level1 center">
 <h1>Loading datasets in R</h1>
@@ -386,21 +551,195 @@
 </section>
 <section id="raw-data-files" class="slide level2">
 <h2>Raw data files</h2>
+<div>
+<p>We’re going to talk about structured, flat files today, but there are many types of data that R can work with!</p>
+<ul>
+<li class="fragment"><strong>Excel:</strong> proprietary file format (Microsoft), but common (.xls files)</li>
+<li class="fragment"><strong>CSV:</strong> comma-separated value files</li>
+<li class="fragment"><strong>TSV:</strong> tab-separated value files</li>
+<li class="fragment"><strong>RData:</strong> data saved from within your R environment</li>
+<li class="fragment"><strong>SPSS or SAS:</strong> data from other statistical programming tools</li>
+<li class="fragment"><strong>Shapefiles:</strong> geospatial or mapping data</li>
+</ul>
+</div>
 </section>
 <section id="functions-to-load-data" class="slide level2">
 <h2>Functions to load data</h2>
+<div>
+<ul>
+<li class="fragment"><strong>Excel:</strong> read_excel(“countries.xls”)</li>
+<li class="fragment"><strong>CSV:</strong> read.csv(“countries.csv”)</li>
+<li class="fragment"><strong>TSV:</strong> read.delim(“countries.tsv”)</li>
+<li class="fragment"><strong>RData:</strong> load(“countries.RData”)</li>
+<li class="fragment"><strong>SPSS or SAS:</strong> use the ‘foreign’ package</li>
+<li class="fragment"><strong>Shapefiles:</strong> use the ‘sf’ or other geopsatial data packages</li>
+</ul>
+</div>
 </section>
-<section id="a-note-on-excel-files" class="slide level2">
-<h2>A note on Excel files</h2>
+<section id="a-note-on-excel-files-and-libraries-in-r" class="slide level2">
+<h2>A note on Excel files and libraries in R</h2>
+<div>
+<ul>
+<li class="fragment">To use the function <strong>read_excel()</strong>, we need to have installed the package <strong>readxl</strong> into R.</li>
+<li class="fragment">You (usually) only need to install it once, and then you will need to re-load it every new R session
+<ul>
+<li class="fragment"><strong>Installing:</strong> install.packages(“readxl”)</li>
+<li class="fragment"><strong>Loading:</strong> library(“readxl”)</li>
+</ul></li>
+<li class="fragment">If you are working with RStudio and using the workflow in the next slides, you will automatically be prompted to do these things if they are required</li>
+</ul>
+</div>
 </section>
 <section id="loading-data-with-rstudio" class="slide level2">
 <h2>Loading data with RStudio</h2>
+
+<img data-src="images/loading_data_import.jpg" class="r-stretch quarto-figure-center"></section>
+<section id="loading-data-with-rstudio-1" class="slide level2">
+<h2>Loading data with RStudio</h2>
+
+<img data-src="images/loading_data_select_filetype.jpg" class="r-stretch quarto-figure-center"></section>
+<section id="loading-data-with-rstudio-2" class="slide level2">
+<h2>Loading data with RStudio</h2>
+
+<img data-src="images/load_data_select_file.jpg" class="r-stretch quarto-figure-center"></section>
+<section id="loading-data-with-rstudio-3" class="slide level2">
+<h2>Loading data with RStudio</h2>
+
+<img data-src="images/load_data_basic_format.jpg" class="r-stretch quarto-figure-center"></section>
+<section id="loading-data-with-rstudio-4" class="slide level2">
+<h2>Loading data with RStudio</h2>
+
+<img data-src="images/load_data_specify_heading.jpg" class="r-stretch quarto-figure-center"></section>
+<section id="loading-data-with-rstudio-5" class="slide level2">
+<h2>Loading data with RStudio</h2>
+
+<img data-src="images/load_data_import.jpg" class="r-stretch quarto-figure-center"></section>
+<section id="loading-data-with-rstudio-6" class="slide level2">
+<h2>Loading data with RStudio</h2>
+
+<img data-src="images/load_data_view.jpg" class="r-stretch quarto-figure-center"></section>
+<section id="loading-data-with-rstudio-7" class="slide level2">
+<h2>Loading data with RStudio</h2>
+<p><img data-src="images/load_data_write_delim.jpg" data-fig-align="center"> ## Loading data with RStudio</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/load_data_view_code.jpg"></p>
+</figure>
+</div>
 </section>
+<section id="loading-data-with-rstudio-8" class="slide level2">
+<h2>Loading data with RStudio</h2>
+
+<img data-src="images/load_data_in_workspace.jpg" class="r-stretch quarto-figure-center"></section>
 <section id="workshop-dataset" class="slide level2">
 <h2>Workshop dataset</h2>
+<ul>
+<li>The Sustainable Development Goals (SDGs) are a shared plan to end extreme poverty, reduce inequality, and protect the planet</li>
+<li>Adopted by 193 countries in 2015 based on UN negotiations</li>
+</ul>
+<div class="footer">
+<p><a href="https://unfoundation.org/what-we-do/issues/sustainable-development-goals/">unfoundation.org/what-we-do/issues/sustainable-development-goals/</a></p>
+</div>
 </section>
-<section id="your-turn" class="slide level2">
-<h2>Your turn</h2>
+<section id="workshop-dataset-1" class="slide level2">
+<h2>Workshop dataset</h2>
+
+<img data-src="images/unsdg.png" class="r-stretch quarto-figure-center"></section>
+<section id="now-you-try" class="slide level2">
+<h2>Now you try!</h2>
+<center>
+<br><br><br> Spend 5 minutes reading about the UN SDGs. <br><br><br> <a href="sdgs.un.org/goals">https://sdgs.un.org/goals</a>
+</center>
+</section>
+<section id="workshop-dataset-2" class="slide level2">
+<h2>Workshop dataset</h2>
+<p><strong>Data points:</strong> maternal and infant health</p>
+<div>
+<ul>
+<li class="fragment">Maternal mortality ratio</li>
+<li class="fragment">Proportion of births attended by skilled health personnel (%)</li>
+<li class="fragment">Infant mortality rate (deaths per 1,000 live births)</li>
+</ul>
+</div>
+</section>
+<section id="workshop-dataset-3" class="slide level2">
+<h2>Workshop dataset</h2>
+<p><strong>Data points:</strong> infectious disease</p>
+<div>
+<ul>
+<li class="fragment">Number of new HIV infections per 1,000 uninfected population</li>
+<li class="fragment">Tuberculosis incidence per 100,000 population</li>
+<li class="fragment">Malaria incidence per 1,000 population</li>
+</ul>
+</div>
+</section>
+<section id="workshop-dataset-4" class="slide level2">
+<h2>Workshop dataset</h2>
+<p><strong>Data points:</strong> universal health coverage</p>
+<div>
+<ul>
+<li class="fragment">Coverage of essential health services</li>
+<li class="fragment">Proportion of population with large expenditures on health</li>
+</ul>
+</div>
+</section>
+<section id="workshop-dataset-5" class="slide level2">
+<h2>Workshop dataset</h2>
+<p><strong>Data points:</strong> environmental health</p>
+<div>
+<ul>
+<li class="fragment">Mortality rate attributed to household and ambient air pollution</li>
+<li class="fragment">Mortality rate attributed to unsafe water, unsafe sanitation and lack of hygiene</li>
+</ul>
+</div>
+</section>
+<section id="workshop-dataset-6" class="slide level2">
+<h2>Workshop dataset</h2>
+
+<img data-src="images/un_sdg_data.png" class="r-stretch quarto-figure-center"></section>
+<section id="workshop-dataset-7" class="slide level2">
+<h2>Workshop dataset</h2>
+
+<img data-src="images/unsdg_data_download.png" class="r-stretch quarto-figure-center"></section>
+<section id="workshop-dataset-8" class="slide level2">
+<h2>Workshop dataset</h2>
+<p>todo: bitly link for workshop dataset</p>
+</section>
+<section id="now-you-try-1" class="slide level2">
+<h2>Now you try!</h2>
+<div>
+<ul>
+<li class="fragment">TODO</li>
+<li class="fragment">Go to bit.ly/XXX</li>
+<li class="fragment">Copy URL</li>
+<li class="fragment">Read data into R
+<ul>
+<li class="fragment">code will look something like this: read.delim(“https://raw.githubusercontent.com/seaneff/data-science-basics-2023/main/reference-dataset/countries.tsv”, fileEncoding = “Latin1”)</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="minute-break" class="slide level2">
+<h2>15 minute break</h2>
+</section>
+<section id="goals-for-today-4" class="slide level2">
+<h2>Goals for today</h2>
+<ul>
+<li><strong>Understand</strong> the foundations of data management</li>
+<li><strong>Identify</strong> some useful global health and health diplomacy datasets</li>
+<li><strong>Load and clean</strong> your first dataset in R
+<ul>
+<li>explore a new dataset while learning about <strong>data structures</strong></li>
+<li>do some basic <strong>data cleaning</strong></li>
+</ul></li>
+<li><span style="color:#DBDBDB;"><strong>Learn best practices</strong> for documentation</span>
+<ul>
+<li><span style="color:#DBDBDB;">documenting your code</span></li>
+<li><span style="color:#DBDBDB;">data dictionaries</span></li>
+<li><span style="color:#DBDBDB;">doing reproducible research in R</span></li>
+</ul></li>
+<li><span style="color:#DBDBDB;"><strong>Get familiar</strong> with Github (by writing poems about unicorns)</span></li>
+</ul>
 </section></section>
 <section>
 <section id="data-structures-in-r" class="title-slide slide level1 center">
@@ -409,36 +748,97 @@
 </section>
 <section id="data-structures-in-r-1" class="slide level2">
 <h2>Data structures in R</h2>
+<p>Yesterday we discussed vectors, today, we’re going to talk about other types of data structures in R. There are a few different types, but the main ones we’ll talk about this week are:</p>
+<ul>
+<li><strong>vector:</strong> a group of observations of one type (e.g., country names)</li>
+<li><strong>data frame:</strong> group of observations with different types</li>
+</ul>
 </section>
 <section id="vectors" class="slide level2">
 <h2>Vectors</h2>
-</section>
-<section id="dataframe" class="slide level2">
-<h2>Dataframe</h2>
-</section>
-<section id="now-you-try" class="slide level2">
+
+<img data-src="images/unsdg_vector.png" class="r-stretch quarto-figure-center"></section>
+<section id="data-frames" class="slide level2">
+<h2>Data frames</h2>
+
+<img data-src="images/unsdg_dataframe.png" class="r-stretch quarto-figure-center"></section>
+<section id="now-you-try-2" class="slide level2">
 <h2>Now you try!</h2>
+<div>
+<ul>
+<li class="fragment">Find two examples of character vectors</li>
+<li class="fragment">Find two examples of numeric vectors</li>
+<li class="fragment">Can you remember a data type that we don’t see here?
+<ul>
+<li class="fragment">we don’t have any logical vectors (yet)</li>
+</ul></li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="exploring-your-dataset" class="title-slide slide level1 center">
+<h1>Exploring your dataset</h1>
+
 </section>
 <section id="print-the-top-rows-of-a-dataset" class="slide level2">
 <h2>Print the top rows of a dataset</h2>
+<p>Todo: head</p>
 </section>
 <section id="see-your-entire-dataset-in-rstudio" class="slide level2">
 <h2>See your entire dataset in RStudio</h2>
-</section>
-<section id="make-basic-tables" class="slide level2">
-<h2>Make basic tables</h2>
+<p>Todo: View</p>
 </section>
 <section id="dimensions-and-field-names" class="slide level2">
 <h2>Dimensions and field names</h2>
 </section>
+<section id="todo-dim-and-names" class="slide level2">
+<h2>Todo, dim and names</h2>
+</section>
+<section id="make-basic-tables" class="slide level2">
+<h2>Make basic tables</h2>
+<p>Todo: count table</p>
+</section>
+<section id="check-for-missing-values" class="slide level2">
+<h2>Check for missing values</h2>
+<p>Todo: table with missing values</p>
+</section>
 <section id="accessing-subsets-of-data" class="slide level2">
 <h2>Accessing subsets of data</h2>
+<p>Todo: $ to see vectors</p>
 </section>
 <section id="ask-questions-of-your-data" class="slide level2">
 <h2>Ask questions of your data</h2>
+<p>Todo: summary</p>
 </section>
-<section id="now-you-try-1" class="slide level2">
+<section id="now-you-try-3" class="slide level2">
 <h2>Now you try!</h2>
+<div>
+<ul>
+<li class="fragment">Take five minutes to explore this dataset</li>
+<li class="fragment">How many rows are there?</li>
+<li class="fragment">How many columns are there?</li>
+<li class="fragment">Can you use “$” to select a vector?</li>
+</ul>
+</div>
+</section>
+<section id="goals-for-today-5" class="slide level2">
+<h2>Goals for today</h2>
+<ul>
+<li><strong>Understand</strong> the foundations of data management</li>
+<li><strong>Identify</strong> some useful global health and health diplomacy datasets</li>
+<li><strong>Load and clean</strong> your first dataset in R
+<ul>
+<li>explore a new dataset while learning about <strong>data structures</strong></li>
+<li>do some basic <strong>data cleaning</strong></li>
+</ul></li>
+<li><strong>Learn best practices</strong> for documentation
+<ul>
+<li>documenting your code</li>
+<li>data dictionaries</li>
+<li>doing reproducible research in R</li>
+</ul></li>
+<li><span style="color:#DBDBDB;"><strong>Get familiar</strong> with Github (by writing poems about unicorns)</span></li>
+</ul>
 </section></section>
 <section>
 <section id="documenting-your-data-code-and-results" class="title-slide slide level1 center">
@@ -447,44 +847,128 @@
 </section>
 <section id="documentation" class="slide level2">
 <h2>Documentation</h2>
-</section>
-<section id="documentation-1" class="slide level2">
-<h2>Documentation</h2>
+<div>
+<ul>
+<li class="fragment">Different materials, and different types of analysis benefit from different types of documentation.</li>
+<li class="fragment"><strong>Datasets:</strong> Data dictionaries, rules to generate datasets</li>
+<li class="fragment"><strong>Code:</strong> Comments in code, README files</li>
+<li class="fragment"><strong>Analysis/Results:</strong> Methods documentation, in a word document, a google document, or in github</li>
+</ul>
+</div>
 </section>
 <section id="documenting-data-data-dictionaries" class="slide level2">
-<h2>Documenting data: Data dictionaries</h2>
+<h2>Documenting data: data dictionaries</h2>
+<div>
+<ul>
+<li class="fragment">The most common way to document a dataset is a data dictionary. At a minimum, data dictionaries:
+<ul>
+<li class="fragment">Define the columns (“fields”) of a dataset</li>
+<li class="fragment">Specify what a row corresponds to (e.g., one country)</li>
+<li class="fragment">Give context about what the data are, including where they come from and how often they are updated</li>
+</ul></li>
+</ul>
+</div>
 </section>
-<section id="documening-code-comments" class="slide level2">
-<h2>Documening code: comments</h2>
+<section id="documenting-data-data-dictionaries-1" class="slide level2">
+<h2>Documenting data: data dictionaries</h2>
+<center>
+Data dictionaries come in lots of formats and flavors. <br><br>Work with the type that makes the most sense for who you are trying to communicate with.
+</center>
 </section>
-<section id="documening-code-readme-files" class="slide level2">
-<h2>Documening code: README files</h2>
+<section id="documenting-data-data-dictionaries-2" class="slide level2">
+<h2>Documenting data: data dictionaries</h2>
+<p>Todo: add screenshots of data dictionaries</p>
 </section>
-<section id="reproducable-code-r-markdown" class="slide level2">
-<h2>Reproducable code: R Markdown</h2>
+<section id="documenting-data-data-dictionaries-3" class="slide level2">
+<h2>Documenting data: data dictionaries</h2>
+<p>Todo: add bitly link to course data dictionary</p>
 </section>
-<section id="reproducable-code-github" class="slide level2">
-<h2>Reproducable code: github</h2>
+<section id="documenting-code-comments" class="slide level2">
+<h2>Documenting code: comments</h2>
+<div>
+<ul>
+<li class="fragment">As we start writing code, it’s helpful to leave “notes” for yourself and others reminding yourself what you did</li>
+<li class="fragment">Comments can also help break code into sections</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/xkcd_code_quality.png"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="documenting-code-comments-1" class="slide level2">
+<h2>Documenting code: comments</h2>
+<p>Todo: add screenshot of comments in R</p>
+</section>
+<section id="documenting-code-readme-files" class="slide level2">
+<h2>Documenting code: README files</h2>
+<div>
+<ul>
+<li class="fragment">README files summarize the contents of a specific folder</li>
+<li class="fragment">Common in github, rendered using Markdown</li>
+</ul>
+</div>
+<p>Todo: add screenshots of readme files</p>
+</section>
+<section id="reproducable-code" class="slide level2">
+<h2>Reproducable code</h2>
+<div>
+<ul>
+<li class="fragment">We won’t cover it in detail in this workshop, but R is a great way to ensure that your code, and your results, are well documented and reproducible</li>
+<li class="fragment">Use a single version of a clean dataset</li>
+<li class="fragment">Document and version your data cleaning decisions</li>
+<li class="fragment">Store your code, results, &amp; documentation in one spot</li>
+</ul>
+</div>
+</section>
+<section id="reproducable-code-1" class="slide level2">
+<h2>Reproducable code</h2>
+<p>Todo: add screenshot of RMarkdown</p>
+</section>
+<section id="reproducable-code-2" class="slide level2">
+<h2>Reproducable code</h2>
+<p>Todo: add screenshot of github repo</p>
+</section>
+<section id="goals-for-today-6" class="slide level2">
+<h2>Goals for today</h2>
+<ul>
+<li><strong>Understand</strong> the foundations of data management</li>
+<li><strong>Identify</strong> some useful global health and health diplomacy datasets</li>
+<li><strong>Load and clean</strong> your first dataset in R
+<ul>
+<li>explore a new dataset while learning about <strong>data structures</strong></li>
+<li>do some basic <strong>data cleaning</strong></li>
+</ul></li>
+<li><strong>Learn best practices</strong> for documentation
+<ul>
+<li>documenting your code</li>
+<li>data dictionaries</li>
+<li>doing reproducible research in R</li>
+</ul></li>
+<li><strong>Get familiar</strong> with Github (by writing poems about unicorns)</li>
+</ul>
+</section></section>
+<section>
+<section id="github" class="title-slide slide level1 center">
+<h1>Github</h1>
+
+</section>
+<section id="github-1" class="slide level2">
+<h2>Github</h2>
+<p>Todo: add brief blurb about github</p>
+</section>
+<section id="github-for-poets" class="slide level2">
+<h2>Github for poets</h2>
+<p>Todo: add link to github for poets</p>
+</section>
+<section id="your-turn" class="slide level2">
+<h2>Your turn!</h2>
+<p>Create a github account</p>
 </section>
 <section id="your-turn-1" class="slide level2">
 <h2>Your turn!</h2>
-</section></section>
-<section>
-<section id="data-questions-and-exploratory-analysis" class="title-slide slide level1 center">
-<h1>Data, questions, and exploratory analysis</h1>
-
-</section>
-<section id="start-with-a-question" class="slide level2">
-<h2>Start with a question</h2>
-</section>
-<section id="data-analysis-is-a-multi-step-process" class="slide level2">
-<h2>Data analysis is a multi-step process</h2>
-</section>
-<section id="our-workshop-dataset" class="slide level2">
-<h2>Our workshop dataset</h2>
-</section>
-<section id="your-turn-2" class="slide level2">
-<h2>Your turn!</h2>
+<p>Create a github repo for your work in this class</p>
 <div class="footer footer-default">
 
 </div>

@@ -1,11 +1,6 @@
 /*-- scss:defaults --*/
 /* modified based on https://github.com/cararthompson/nhsr2022_level-up-your-plots/blob/main/cararquarto.scss */
 
-// override root variables
-:root {
---r-link-color: #9797EE;
-}
-
 // fonts
 @import url('https://fonts.googleapis.com/css2?family=Enriqueta:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@700&display=swap');
@@ -15,7 +10,7 @@ $font-family-sans-serif: "Bitter",
   "FreeSerif", "serif" !default;
 $font-family-monospace: "Anonymous Pro", monospace !default;
 
-  // headings
+// headings
 $presentation-heading-font: "Bitter", "Enriqueta", "Book Antiqua", Palatino,
   FreeSerif, serif !default;
 $presentation-heading-color: #326765 !default;
@@ -23,7 +18,7 @@ $presentation-heading-color: #326765 !default;
 // other variables
 $body-bg: #FFFFF7;
 $body-color: #1A242F;
-$highlight-color: #5bbcb8;
+$highlight-color: #326765;
 
 // code information
 $code-bg: #d4dfde; // colour for background of inline code
@@ -38,24 +33,13 @@ $code-block-border-color: #abc0be;
 }
 
 /* sets color of controls*/
-$link-color: #47918f;
+$link-color: #FFFFFF;
 $presentation-font-size-root: 24pt;
 $selection-bg: #5bbcb8;
 
 /*-- scss:rules --*/
 
-.reveal .slide blockquote {
-  border-left: 3px solid $text-muted;
-  padding-left: 0.6em;
-  background: #F6F7F7;
-}
-
-.reveal h2 {
-  padding-bottom: 0.3em;
-}
-
 .reveal .footer {
-  color: #326765;
   background-color: $presentation-heading-color;
   display: block;
   position: fixed;
@@ -64,16 +48,10 @@ $selection-bg: #5bbcb8;
   width: 100%;
   text-align: center;
   font-size: 18px;
-  z-index: 2;
 }
 
 .reveal .controls {
   color: $highlight-color;
-}
-
-.reveal .progress {
-  background: $presentation-heading-color;
-  color: $highlight-color
 }
 
 .reveal a {
@@ -82,14 +60,6 @@ $selection-bg: #5bbcb8;
 
 .reveal a:hover {
   color: #4076AE;
-}
-
-.reveal .footer a {
-  color: #F6F7F7;
-}
-
-.reveal .footer a:hover {
-  color: #FFFFFF;
 }
 
 .reveal .slide ul li {

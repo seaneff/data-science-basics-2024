@@ -8,7 +8,7 @@
 <link href="day4_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="day4_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="day4_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.353">
+  <meta name="generator" content="quarto-1.3.433">
 
   <title>Data Science Basics in R, Day 4</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -320,6 +320,9 @@
       margin-right: 0; 
     }
   </style>
+  
+  <link href="day4_files/libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+  <script src="day4_files/libs/pagedtable-1.1/js/pagedtable.js"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -335,85 +338,223 @@
 </section>
 <section id="goals-for-today" class="slide level2">
 <h2>Goals for today</h2>
+<div>
 <ul>
-<li>How to create data visualizations</li>
-<li>Plan</li>
-<li>Design</li>
-<li>Build</li>
+<li class="fragment"><strong>Learn</strong> a step-by-step process for creating great data visualizations</li>
+<li class="fragment"><strong>Understand</strong> your audience and your goals when visualizing data</li>
+<li class="fragment"><strong>Design</strong> some fun and beautiful data visualizations</li>
+<li class="fragment"><strong>Get creative</strong> and explore some new skills in R</li>
+</ul>
+</div>
+</section>
+<section id="goals-for-today-1" class="slide level2">
+<h2>Goals for today</h2>
+<ul>
+<li><strong>Learn</strong> a step-by-step process for creating great data visualizations</li>
+<li><span style="color:#DBDBDB;"><strong>Understand</strong> your audience and your goals when visualizing data</span></li>
+<li><span style="color:#DBDBDB;"><strong>Design</strong> some fun and beautiful data visualizations</span></li>
+<li><span style="color:#DBDBDB;"><strong>Get creative</strong> and explore some new skills in R</span></li>
 </ul>
 </section>
-<section>
-<section id="creating-a-data-visualization" class="title-slide slide level1 center">
-<h1>Creating a data visualization</h1>
-
-</section>
-<section id="steps" class="slide level2">
-<h2>Steps:</h2>
+<section id="stages-of-creating-a-data-visualization" class="slide level2">
+<h2>Stages of creating a data visualization</h2>
+<div>
 <ul>
-<li>Plan</li>
-<li>Design</li>
-<li>Build</li>
-<li>Refine</li>
+<li class="fragment"><strong>Plan:</strong> define your goals and your audience</li>
+<li class="fragment"><strong>Design:</strong> brainstorm and sketch out some ideas</li>
+<li class="fragment"><strong>Build:</strong> create your data visualization</li>
+<li class="fragment"><strong>Refine:</strong> review, update, and clarify your visualization</li>
 </ul>
-</section></section>
-<section>
-<section id="planning" class="title-slide slide level1 center">
-<h1>Planning</h1>
-<ul>
-<li>Who</li>
-<li>What</li>
-<li>When</li>
-<li>Where</li>
-<li>Why</li>
-</ul>
-<p><a href="https://graphicsprinciples.github.io/initiative.html">Concept from Graphics Principles</a></p>
+</div>
 </section>
-<section id="why-what-are-your-goals" class="slide level2">
-<h2>Why: What are your goals?</h2>
+<section id="stages-of-creating-a-data-visualization-1" class="slide level2">
+<h2>Stages of creating a data visualization</h2>
 <ul>
-<li>Identify the purpose of the graph
+<li><strong>Plan:</strong> define your goals and your audience</li>
+<li><span style="color:#DBDBDB;"><strong>Design:</strong> brainstorm and sketch out some ideas</span></li>
+<li><span style="color:#DBDBDB;"><strong>Build:</strong> create your data visualization</span></li>
+<li><span style="color:#DBDBDB;"><strong>Refine:</strong> review, update, and clarify your visualization</span></li>
+</ul>
+</section>
+<section id="step-1-plan" class="slide level2">
+<h2>Step 1: Plan</h2>
+<div>
 <ul>
-<li>deliver a message?</li>
-<li>explore a topic?</li>
-<li>support a decision?</li>
+<li class="fragment"><strong>Why</strong> are you doing this in the first place?</li>
+<li class="fragment"><strong>Who</strong> is your audience?</li>
+<li class="fragment"><strong>What</strong> are you trying to communicate?</li>
+<li class="fragment"><strong>Where</strong> are you going to share the graphic?</li>
+</ul>
+</div>
+</section>
+<section id="why-are-you-doing-this-in-the-first-place" class="slide level2">
+<h2>Why are you doing this in the first place?</h2>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<ul>
+<li class="fragment"><strong>What are your goals?</strong>
+<ul>
+<li class="fragment">understand your data?</li>
+<li class="fragment">explore a topic?</li>
+<li class="fragment">deliver a message?</li>
+<li class="fragment">support a decision?</li>
+<li class="fragment">teach a new topic?</li>
 </ul></li>
 </ul>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<ul>
+<li class="fragment"><strong>Why does this matter? </strong></li>
+<li class="fragment">Degree of effort</li>
+<li class="fragment">Level of complexity</li>
+<li class="fragment">Types of text</li>
+</ul>
+</div>
+</div>
+</div>
 </section>
-<section id="what-what-are-the-data-and-evidence" class="slide level2">
-<h2>What: What are the data and evidence?</h2>
+<section id="who-is-your-audience" class="slide level2">
+<h2>Who is your audience?</h2>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <ul>
-<li>Understand your data
+<li class="fragment"><strong>Who are they? </strong></li>
+<li class="fragment">What are their expectations?</li>
+<li class="fragment">How much background knowledge do they have?</li>
+<li class="fragment">How interested are they?</li>
+</ul>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <ul>
-<li>type of data</li>
-<li>volume of data</li>
-</ul></li>
-<li>Understand the evidence
+<li class="fragment"><strong>Why does this matter? </strong></li>
+<li class="fragment">Context (types of data shown)</li>
+<li class="fragment">Style (specific styles or colors)</li>
+<li class="fragment">Level of detail (footnotes, etc)</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="what-are-you-trying-to-communicate" class="slide level2">
+<h2>What are you trying to communicate?</h2>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <ul>
-<li>what do the data say?</li>
+<li class="fragment"><strong>What’s the point? </strong></li>
+<li class="fragment">today’s status</li>
+<li class="fragment">change over time</li>
+<li class="fragment">comparing groups</li>
+<li class="fragment">highlight extremes</li>
+</ul>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<ul>
+<li class="fragment"><strong>Why does this matter? </strong></li>
+<li class="fragment">Plot type</li>
+<li class="fragment">Emphasis (color, text)</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="where-are-you-doing-to-share-the-graphic" class="slide level2">
+<h2>Where are you doing to share the graphic?</h2>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<ul>
+<li class="fragment"><strong>Where will this go? </strong></li>
+<li class="fragment">peer-reviewed publication</li>
+<li class="fragment">poster</li>
+<li class="fragment">dashboard</li>
+<li class="fragment">slide deck
+<ul>
+<li class="fragment">“ballroom vs boardroom”</li>
 </ul></li>
 </ul>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<ul>
+<li class="fragment"><strong>Why does this matter? </strong></li>
+<li class="fragment">Sizing and alignment</li>
+<li class="fragment">Level of complexity</li>
+<li class="fragment">Formatting constraints
+<ul>
+<li class="fragment">color</li>
+<li class="fragment">font</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
 </section>
-<section id="who-who-is-the-audience" class="slide level2">
-<h2>Who: Who is the audience</h2>
-<p>specialists? non-specialists?</p>
+<section id="your-turn" class="slide level2">
+<h2>Your turn</h2>
+<p>Grab a piece of blank paper.</p>
 </section>
-<section id="where" class="slide level2">
-<h2>Where:</h2>
-<p>Adapt the design to space or formatting constraints - clinical report? - poster? - slide deck? - publication? - dashboard?</p>
+<section id="your-turn-1" class="slide level2">
+<h2>Your turn</h2>
+<p>Imagine you have two weeks, access to any data you want, and the help of a big team of graphic designers, statistical programmers, and researchers. What would you work on with them? You have 5 minutes.</p>
+<ul>
+<li><strong>Why</strong> are you doing this in the first place?</li>
+<li><strong>Who</strong> is your audience?</li>
+<li><strong>What</strong> are you trying to communicate?</li>
+<li><strong>Where</strong> are you going to share the graphic?</li>
+</ul>
 </section>
-<section id="when-how-much-time-do-you-want-to-invest" class="slide level2">
-<h2>When: How much time do you want to invest?</h2>
-</section></section>
-<section>
-<section id="designing" class="title-slide slide level1 center">
-<h1>Designing</h1>
-
+<section id="my-turn" class="slide level2">
+<h2>My turn</h2>
+<p>For today, we’re going go work with a dataset on global refugee populations, based on data from the UN Refugee Agency (UNHCR).</p>
+<ul>
+<li><strong>Why:</strong> to learn more about the status of global refugee populations</li>
+<li><strong>Who:</strong> ourselves</li>
+<li><strong>What:</strong> general information about refugee populations</li>
+<li><strong>Where:</strong> in class and maybe on our github repos</li>
+</ul>
 </section>
-<section id="choosing-a-plot-type" class="slide level2">
-<h2>Choosing a plot type</h2>
+<section id="explore-a-new-dataset" class="slide level2">
+<h2>Explore a new dataset</h2>
+<p><a href="https://www.unhcr.org/refugee-statistics/insights/explainers/refugees-r-package.html">UNHCR Refugee data in R</a></p>
+</section>
+<section id="stages-of-creating-a-data-visualization-2" class="slide level2">
+<h2>Stages of creating a data visualization</h2>
+<ul>
+<li><strong>Plan:</strong> define your goals and your audience</li>
+<li><span style="color:#DBDBDB;"><strong>Design:</strong> brainstorm and sketch out some ideas</span></li>
+<li><span style="color:#DBDBDB;"><strong>Build:</strong> create your data visualization</span></li>
+<li><span style="color:#DBDBDB;"><strong>Refine:</strong> review, update, and clarify your visualization</span></li>
+</ul>
+</section>
+<section id="stages-of-creating-a-data-visualization-3" class="slide level2">
+<h2>Stages of creating a data visualization</h2>
+<ul>
+<li><strong>Plan:</strong> define your goals and your audience</li>
+<li><strong>Design:</strong> brainstorm and sketch out some ideas</li>
+<li><span style="color:#DBDBDB;"><strong>Build:</strong> create your data visualization</span></li>
+<li><span style="color:#DBDBDB;"><strong>Refine:</strong> review, update, and clarify your visualization</span></li>
+</ul>
+</section>
+<section id="step-2-design" class="slide level2">
+<h2>Step 2: Design</h2>
+<div>
+<ul>
+<li class="fragment">Visual elements</li>
+<li class="fragment">Choosing a plot type</li>
+<li class="fragment">Colors</li>
+<li class="fragment">Text</li>
+<li class="fragment">Trial and error</li>
+</ul>
+</div>
 </section>
 <section id="visual-elements" class="slide level2">
 <h2>Visual elements</h2>
+
+<img data-src="images/jhu_encodings.jpg" class="r-stretch"><div class="footer">
+<p><a href="https://guides.library.jhu.edu/datavisualization/design">Image from JHU Library</a></p>
+</div>
 </section>
 <section id="cleveland-mcgill-scale" class="slide level2">
 <h2>Cleveland McGill Scale</h2>
@@ -495,7 +636,7 @@
 <li>How accurately are people were able to interpret data?
 <ul>
 <li>Experimented: asked subjects to guess data from graphics</li>
-<li>Varied plot design and details: position, shape, size, symbols, color</li>
+<li>Varied plot design and details: position, shape, size, symbols</li>
 <li>Ranked most-to-least interpretable visual elements</li>
 </ul></li>
 </ul>
@@ -506,73 +647,86 @@
 </div>
 </div>
 </section>
-<section id="cleveland-mcgill-scale-ranking" class="slide level2">
-<h2>Cleveland McGill Scale Ranking</h2>
-<div>
-<ul>
-<li class="fragment"><strong>#1</strong> Position</li>
-<li class="fragment"><strong>#2</strong> Length</li>
-<li class="fragment"><strong>#3</strong> Angle and slope</li>
-<li class="fragment"><strong>#4</strong> Color saturation</li>
-<li class="fragment"><strong>#5</strong> Color hue</li>
-<li class="fragment">For more information and complete rankings, see original publication</li>
-</ul>
+<section id="perception-of-visual-elements" class="slide level2">
+<h2>Perception of visual elements</h2>
+
+<img data-src="images/jhu_rankings.jpg" class="r-stretch"><div class="footer">
+<p><a href="https://guides.library.jhu.edu/datavisualization/design">Image from JHU Library</a></p>
 </div>
 </section>
 <section id="boubakiki-effect" class="slide level2">
 <h2>Bouba/kiki effect</h2>
-<p>Which is kiki, and which is bouba?</p>
-</section>
+<p>Which is bouba, and which is kiki?</p>
+
+<img data-src="images/2560px-Booba-Kiki.png" class="r-stretch"></section>
 <section id="boubakiki-effect-1" class="slide level2">
 <h2>Bouba/kiki effect</h2>
-<div>
-<ul>
-<li class="fragment">First observed in 1924 by a Georgian psychologist</li>
-<li class="fragment">How do people understand and interpret shapes, sounds, and words?
-<ul>
-<li class="fragment">Participants given a list with nonsense words to match with shapes</li>
-<li class="fragment">Users consistently grouped certains words and shapes together</li>
-</ul></li>
-</ul>
+<p><a href="https://www.youtube.com/watch?v=rQX1ax96l7Y">Video break</a></p>
+</section>
+<section id="choosing-a-plot-type" class="slide level2">
+<h2>Choosing a plot type</h2>
+
+<img data-src="images/chart-chooser-2020.png" class="r-stretch"></section>
+<section id="choosing-a-plot-type-1" class="slide level2">
+<h2>Choosing a plot type</h2>
+<p><img data-src="images/datatovizscreenshot.png"> ## Barcharts</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["year"],"name":[1],"type":["int"],"align":["right"]},{"label":["coo_name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["coo"],"name":[3],"type":["chr"],"align":["left"]},{"label":["coo_iso"],"name":[4],"type":["chr"],"align":["left"]},{"label":["coa_name"],"name":[5],"type":["chr"],"align":["left"]},{"label":["coa"],"name":[6],"type":["chr"],"align":["left"]},{"label":["coa_iso"],"name":[7],"type":["chr"],"align":["left"]},{"label":["refugees"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["asylum_seekers"],"name":[9],"type":["int"],"align":["right"]},{"label":["returned_refugees"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["idps"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["returned_idps"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["stateless"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["ooc"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["oip"],"name":[15],"type":["int"],"align":["right"]},{"label":["hst"],"name":[16],"type":["int"],"align":["right"]}],"data":[{"1":"1951","2":"Unknown","3":"UKN","4":"UNK","5":"Australia","6":"AUL","7":"AUS","8":"180000","9":"0","10":"0","11":"0","12":"0","13":"0","14":"0","15":"NA","16":"NA","_rn_":"1"},{"1":"1951","2":"Unknown","3":"UKN","4":"UNK","5":"Austria","6":"AUS","7":"AUT","8":"282000","9":"0","10":"0","11":"0","12":"0","13":"0","14":"0","15":"NA","16":"NA","_rn_":"2"},{"1":"1951","2":"Unknown","3":"UKN","4":"UNK","5":"Belgium","6":"BEL","7":"BEL","8":"55000","9":"0","10":"0","11":"0","12":"0","13":"0","14":"0","15":"NA","16":"NA","_rn_":"3"},{"1":"1951","2":"Unknown","3":"UKN","4":"UNK","5":"Canada","6":"CAN","7":"CAN","8":"168511","9":"0","10":"0","11":"0","12":"0","13":"0","14":"0","15":"NA","16":"NA","_rn_":"4"},{"1":"1951","2":"Unknown","3":"UKN","4":"UNK","5":"Denmark","6":"DEN","7":"DNK","8":"2000","9":"0","10":"0","11":"0","12":"0","13":"0","14":"0","15":"NA","16":"NA","_rn_":"5"},{"1":"1951","2":"Unknown","3":"UKN","4":"UNK","5":"France","6":"FRA","7":"FRA","8":"290000","9":"0","10":"0","11":"0","12":"0","13":"0","14":"0","15":"NA","16":"NA","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
 </div>
 </section>
-<section id="boubakiki-effect-2" class="slide level2">
-<h2>Bouba/kiki effect</h2>
-
-<img data-src="images/larger_kiki_bouba.png" class="r-stretch"><div class="footer">
-<p><a href="https://link.springer.com/article/10.1007/s00426-019-01163-9">Król ME, Ferenc K. Silent shapes and shapeless sounds: the robustness of the diminished crossmodal correspondences effect in autism spectrum conditions. Psychological Research. 2020 Sep 1;84(6):1507–16.</a></p>
+<section id="choosing-a-plot-type-2" class="slide level2">
+<h2>Choosing a plot type</h2>
+<p>Over time, you’ll develop a sense of <strong>informed intuition</strong> for selecting plot types.</p>
+<p>At first, play around and see what works well!</p>
+<p>And consult flowcharts and examples, if it’s helpful.</p>
+<div class="footer">
+<p>Creative Confidence by Tom Kelley and David Kelley, page 48 (“informed intuitition”)</p>
 </div>
 </section>
-<section id="position" class="slide level2">
-<h2>Position</h2>
+<section id="choosing-a-plot-type-3" class="slide level2">
+<h2>Choosing a plot type</h2>
+<p><a href="https://www.data-to-viz.com/">Data to Viz</a></p>
+</section>
+<section id="your-turn-2" class="slide level2">
+<h2>Your turn</h2>
+<p>“If you want a good idea, start with a lot of ideas” - Linus Pauling</p>
+<div class="footer">
+<p>Creative Confidence by Tom Kelley and David Kelley, page 48 (“informed intuitition”)</p>
+</div>
+</section>
+<section id="stages-of-creating-a-data-visualization-4" class="slide level2">
+<h2>Stages of creating a data visualization</h2>
 <ul>
-<li>Do not plot log-normally distributed variables on a linear scale</li>
+<li><strong>Plan:</strong> define your goals and your audience</li>
+<li><strong>Design:</strong> brainstorm and sketch out some ideas</li>
+<li><span style="color:#DBDBDB;"><strong>Build:</strong> create your data visualization</span></li>
+<li><span style="color:#DBDBDB;"><strong>Refine:</strong> review, update, and clarify your visualization</span></li>
 </ul>
 </section>
-<section id="shape" class="slide level2">
-<h2>Shape</h2>
+<section id="stages-of-creating-a-data-visualization-5" class="slide level2">
+<h2>Stages of creating a data visualization</h2>
 <ul>
-<li>Use position for comparisons rather than length (e.g., dots instead of bars), especially for non-linear scales</li>
+<li><strong>Plan:</strong> define your goals and your audience</li>
+<li><strong>Design:</strong> brainstorm and sketch out some ideas</li>
+<li><strong>Build:</strong> create your data visualization</li>
+<li><span style="color:#DBDBDB;"><strong>Refine:</strong> review, update, and clarify your visualization</span></li>
 </ul>
 </section>
-<section id="color" class="slide level2">
-<h2>Color</h2>
+<section id="stages-of-creating-a-data-visualization-6" class="slide level2">
+<h2>Stages of creating a data visualization</h2>
 <ul>
-<li>Use color intentionally
-<ul>
-<li>existing or branded color palettes</li>
-</ul></li>
+<li><strong>Plan:</strong> define your goals and your audience</li>
+<li><strong>Design:</strong> brainstorm and sketch out some ideas</li>
+<li><strong>Build:</strong> create your data visualization</li>
+<li><strong>Refine:</strong> review, update, and clarify your visualization</li>
 </ul>
-</section></section>
-<section id="building" class="title-slide slide level1 center">
-<h1>Building</h1>
-
-</section>
-
-<section>
-<section id="refining" class="title-slide slide level1 center">
-<h1>Refining</h1>
-
 </section>
 <section id="refining-a-data-visualization" class="slide level2">
 <h2>Refining a data visualization</h2>
@@ -629,7 +783,7 @@
 <section id="technical-details" class="slide level2">
 <h2>Technical details</h2>
 </section>
-<section id="choosing-a-plot-type-1" class="slide level2">
+<section id="choosing-a-plot-type-4" class="slide level2">
 <h2>Choosing a plot type</h2>
 </section>
 <section id="selecting-colors" class="slide level2">
@@ -637,7 +791,12 @@
 </section>
 <section id="playing-with-fonts" class="slide level2">
 <h2>Playing with fonts</h2>
-</section></section>
+</section>
+<section id="appendix" class="title-slide slide level1 center">
+<h1>Appendix</h1>
+
+</section>
+
 <section>
 <section id="dashboards" class="title-slide slide level1 center">
 <h1>Dashboards</h1>
@@ -693,33 +852,73 @@
 <section id="data-visualization" class="slide level2">
 <h2>Data visualization</h2>
 <p><strong>Open access books</strong> - <a href="https://socviz.co/">Data Visualization: A practical introduction</a> - <a href="https://handsondataviz.org/">Hands on Data Vizualization</a> - <a href="https://clauswilke.com/dataviz/">Fundamentals of Data Visualization</a> - <a href="https://ggplot2-book.org/">ggplot2: Elegant Graphics for Data Analysis</a></p>
-<p><strong>Other readings or videos</strong> - <a href="https://nightingaledvs.com/">Journal of the Data Vizualization Society</a> - <a href="https://medium.com/multiple-views-visualization-research-explained">Multiple Views on Medium</a> - <a href="https://www.youtube.com/watch?v=fSgEeI2Xpdc">How Humans See Data</a></p>
-<p><strong>Examples</strong> - <a href="https://ourworldindata.org/latest">Our World in Data</a> - <a href="https://r-graph-gallery.com/index.html">R Graph Gallery</a> - <a href="https://www.cedricscherer.com/top/dataviz/">Portfolios: Cedtric Scherer</a></p>
+<p><strong>Other readings, courses, or videos</strong> - <a href="https://nightingaledvs.com/">Journal of the Data Vizualization Society</a> - <a href="https://medium.com/multiple-views-visualization-research-explained">Multiple Views on Medium</a> - <a href="https://www.youtube.com/watch?v=fSgEeI2Xpdc">How Humans See Data</a> - <a href="https://www.data-to-viz.com/">Data to Viz</a> - <a href="https://extremepresentation.typepad.com/blog/2006/09/choosing_a_good.html">Chart Chooser</a></p>
+<p><strong>Examples</strong> - <a href="https://ourworldindata.org/latest">Our World in Data</a> - <a href="https://r-graph-gallery.com/index.html">R Graph Gallery</a> - <a href="https://www.cedricscherer.com/top/dataviz/">Portfolios: Cedric Scherer</a> - <a href="https://cedricscherer.netlify.app/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/">Online course</a></p>
 </section>
 <section id="colors" class="slide level2">
 <h2>Colors</h2>
-<p><strong>Other readings or videos</strong> - <a href="https://blog.datawrapper.de/colorguide/">Your Friendly Guide to Colors in Data Visualisation</a> - <a href="https://blog.datawrapper.de/colors/">What to consider when choosing colors for data visualization</a></p>
+<p><strong>Other readings, courses, or videos</strong> - <a href="https://blog.datawrapper.de/colorguide/">Your Friendly Guide to Colors in Data Visualisation</a> - <a href="https://blog.datawrapper.de/colors/">What to consider when choosing colors for data visualization</a></p>
 <p><strong>Choosing your color palette</strong> - <a href="https://github.com/EmilHvitfeldt/r-color-palettes/">Color palettes in R</a></p>
+</section>
+<section id="shapes-text-and-other-visual-elements" class="slide level2">
+<h2>Shapes, text, and other visual elements</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=rQX1ax96l7Y">The Bouba-Kiki Effect, SciFri</a></li>
+</ul>
 </section>
 <section id="data-science" class="slide level2">
 <h2>Data science</h2>
 <p><strong>Open access books</strong> - <a href="https://r4ds.had.co.nz/">R for Data Science</a></p>
-<p><strong>Other readings or videos</strong></p>
+<p><strong>Other readings, courses, or videos</strong> - <a href="https://datasciencebox.org/">Data Science in a Box</a></p>
 </section>
 <section id="statistical-learningmachine-learning" class="slide level2">
 <h2>Statistical Learning/Machine learning</h2>
 <p><strong>Open access books</strong></p>
 <p><strong>Other readings or videos</strong></p>
 </section>
+<section id="working-with-specific-data-types" class="slide level2">
+<h2>Working with specific data types</h2>
+<p><strong>Geospatial data</strong> - <a href="https://datacarpentry.org/r-intro-geospatial/01-rstudio-intro.html#introduction-to-rstudio">Introduction to R for Geospatial Data</a></p>
+</section>
 <section id="python" class="slide level2">
 <h2>Python</h2>
 <p><strong>Open access books</strong></p>
+<p><a href="https://wesmckinney.com/book/">Pandas for Data Analysis</a> <a href="https://docs.python.org/3/tutorial/index.html">Official Python Tutorial</a></p>
 <p><strong>Other readings or videos</strong></p>
+<p><a href="https://www.mit.edu/~amidi/teaching/data-science-tools/conversion-guide/r-python-data-manipulation/">R/Python Conversion Sheets</a> <a href="https://swcarpentry.github.io/python-novice-inflammation/">Software carpentry course</a></p>
 </section>
 <section id="sql" class="slide level2">
 <h2>SQL</h2>
 <p><strong>Open access books</strong></p>
 <p><strong>Other readings or videos</strong></p>
+</section>
+<section id="unix-shell" class="slide level2">
+<h2>Unix shell</h2>
+<p><strong>Open access books</strong></p>
+<p><strong>Other readings or videos</strong> - <a href="https://swcarpentry.github.io/shell-novice/">Software Carpentry course</a></p>
+</section>
+<section id="github" class="slide level2">
+<h2>Github</h2>
+<p><strong>Open access books</strong></p>
+<p><strong>Other readings or videos</strong> - <a href="https://swcarpentry.github.io/git-novice/">Software Carpentry course</a> - <a href="https://happygitwithr.com/index.html">Happy Git with R</a> - <a href="https://bcjaeger.github.io/seminar-git/#1">Happier Version control with Git and Github</a></p>
+</section>
+<section id="programming-in-general" class="slide level2">
+<h2>Programming in general</h2>
+<p><strong>Other readings or videos</strong> - <a href="https://adventofcode.com/2023/about">Advent of code</a></p>
+
+<img data-src="images/dracula_poster.jpg" width="300" class="r-stretch"><ul>
+<li>What text did you read first?</li>
+<li>Why?
+<ul>
+<li>Style?</li>
+<li>Size?</li>
+<li>Color?</li>
+<li>Cultural norms?</li>
+</ul></li>
+</ul>
+<div class="footer">
+<p><a href="hhttps://www.linkedin.com/posts/seanlandry_visual-design-isnt-just-about-making-something-activity-7123689734878433280-NrTC?utm_source=share&amp;utm_medium=member_desktop">Inspired by S Landry on LinkedIn</a></p>
+</div>
 </section>
 <section id="thank-you" class="slide level2">
 <h2>Thank you!</h2>
@@ -940,6 +1139,44 @@
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
