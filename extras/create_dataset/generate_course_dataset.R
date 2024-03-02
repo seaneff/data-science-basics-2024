@@ -24,7 +24,7 @@ library(readr) ## to use the convenience function write_delim
 
 ## read in CW vaccine dataset from github
 ## update once final
-#policies <- read.csv("https://raw.githubusercontent.com/cghss/VaxxPolicy/main/ChildhoodVaxxWithIsos.csv?token=GHSAT0AAAAAACPAKVTF6U2UH7SFWMMPYPPIZPDNWKA")
+policies <- read.csv("https://raw.githubusercontent.com/cghss/VaxxPolicy/main/ChildhoodVaxxWithIsos.csv?token=GHSAT0AAAAAACPAKVTEP42SYIU5KPXTCORYZPDROSA")
 
 ## data downloaded from World Bank on March 2, 2024
 ## https://databank.worldbank.org/source/population-estimates-and-projections#
@@ -117,7 +117,7 @@ full_dataset_5 <- merge(full_dataset_4, selected_regions[,c(2,3)], by = "iso_316
 ## Generate course datasets #################
 #############################################
 
-day2_dataset <- full_dataset_5[,c(1,2,6,10,11,7,4)]
+day2_dataset <- full_dataset_5[,c(1,2,6,10,11,5,7,4)]
 names(day2_dataset)[which(names(day2_dataset) == "name")] <- "country"
 
 #############################################

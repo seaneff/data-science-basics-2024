@@ -30,7 +30,7 @@ If you have questions, feel free to reach out at sde31@georgetown.edu.
 -   Brief overview of useful global health datasets
 -   Loading dataset(s) in R
 -   Data types and structures in R
--   Data cleaning
+-   Basics of data cleaning
 -   Documenting your data, code, and results
 -   Version control with github
 
