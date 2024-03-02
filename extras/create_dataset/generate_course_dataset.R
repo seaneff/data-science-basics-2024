@@ -3,7 +3,7 @@
 #############################################
 
 ## This script contains code to process raw data into a dataset for in-class use
-## original data are archived in the inputs/ subdirectory
+## original data are archived in the inputs/ subdirectory or are otherwise online
 ## assume working directory is set to data-science-basics-2024
 
 #############################################
@@ -22,13 +22,13 @@ library(readr) ## to use the convenience function write_delim
 ## Read in data #############################
 #############################################
 
-## goal 3
-## data downloaded from UNSD SDG Data Download on January 9, 2024
-goal3 <- read_excel("extras/create_dataset/inputs/Goal3.xlsx")
+## read in CW vaccine dataset from github
+## update once final
+#policies <- read.csv("https://raw.githubusercontent.com/cghss/VaxxPolicy/main/ChildhoodVaxxWithIsos.csv?token=GHSAT0AAAAAACPAKVTF6U2UH7SFWMMPYPPIZPDNWKA")
 
-## data downloaded from World Bank on January 19, 2024
+## data downloaded from World Bank on March 2, 2024
 ## https://databank.worldbank.org/source/population-estimates-and-projections#
-## data for the year 2021
+## data for the year 2024
 population <- read_excel("extras/create_dataset/inputs/population_size.xlsx")
 
 ## base data from CIA World Factbook
@@ -38,34 +38,14 @@ base <- read.delim("extras/create_dataset/inputs/locations.tsv", header = TRUE, 
 ## WHO membership data from WHO
 who_membership <- read.delim("extras/create_dataset/inputs/who_member_states.tsv", header = TRUE)
 
-#############################################
-## Filter and rename UNSDG goal data ########
-#############################################
+## malaria incidence
+malaria_incidence <- read_excel("extras/create_dataset/inputs/malaria_incidence.xls")
 
-## select our columns
-goal3_export <- goal3[## identify the rows we want
-                      which(complete.cases(as.numeric(goal3$Time_Detail)) & 
-                      (!goal3$GeoAreaName %in% c("Netherlands Antilles  [former]", "Serbia and Montenegro [former]")) & 
-                      (is.na(goal3$Sex) | goal3$Sex %in% c("MALE", "FEMALE")) &
-                      goal3$SeriesDescription %in% c("Maternal mortality ratio", "Proportion of births attended by skilled health personnel (%)",
-                                                                    "Infant mortality rate (deaths per 1,000 live births)", "Infant deaths (number)",
-                                                                    "Number of new HIV infections per 1,000 uninfected population, by sex and age (per 1,000 uninfected population)",
-                                                                    "Tuberculosis incidence (per 100,000 population)", "Malaria incidence per 1,000 population at risk (per 1,000 population)",
-                                                                    "Universal health coverage (UHC) service coverage index", 
-                                                                    "Proportion of population with large household expenditures on health (greater than 10%) as a share of total household expenditure or income (%)",
-                                                                    "Age-standardized mortality rate attributed to ambient air pollution (deaths per 100,000 population)",
-                                                                    "Age-standardized mortality rate attributed to household air pollution (deaths per 100,000 population)",
-                                                                    "Mortality rate attributed to unsafe water, unsafe sanitation and lack of hygiene from diarrhoea, intestinal nematode infections, malnutrition and acute respiratory infections (deaths per 100,000 population)")),
-                      ## identify the columns we want
-                      which(names(goal3) %in% c("SeriesDescription", "GeoAreaName", "Time_Detail", "Value", "UpperBound", "LowerBound", "Source"))]
+## income groups
+income_groups <- read_excel("extras/create_dataset/inputs/income_groups.xlsx", sheet = "List of economies")
 
-names(goal3_export)[which(names(goal3_export) == "SeriesDescription")] <- "metric"
-names(goal3_export)[which(names(goal3_export) == "GeoAreaName")] <- "country"
-names(goal3_export)[which(names(goal3_export) == "Time_Detail")] <- "year"
-names(goal3_export)[which(names(goal3_export) == "Value")] <- "value"
-names(goal3_export)[which(names(goal3_export) == "LowerBound")] <- "lower_bound"
-names(goal3_export)[which(names(goal3_export) == "UpperBound")] <- "upper_bound"
-names(goal3_export)[which(names(goal3_export) == "Source")] <- "source"
+## regions
+regions <- read_excel("extras/create_dataset/inputs/income_groups.xlsx", sheet = "Groups")
 
 #######################################################################
 ## Process World Bank population count data ###########################
@@ -77,149 +57,68 @@ names(population) <- c("country", "iso_3166", "metric", "metric_code", "value_20
 ## long to wide dataset
 population_wide <- population %>% 
   filter(complete.cases(metric)) %>%
+  filter(metric != "Age dependency ratio (% of working-age population)") %>%
   select(metric, iso_3166, value_2021) %>%
+  filter(iso_3166 != "") %>%
   pivot_wider(id_cols = iso_3166,
               names_from = metric,
               values_from = value_2021)
 
-names(population_wide) <- c("iso_3166", "age_dependency_ratio", "total_population", "pct_rural", "pct_urban")
+names(population_wide)[which(names(population_wide) == "Rural population (% of total population)")] <- "pct_rural"
+names(population_wide)[which(names(population_wide) == "Urban population (% of total population)")] <- "pct_urban"
+names(population_wide)[which(names(population_wide) == "Population, total")] <- "total_population"
 
-#############################################
-## Clean country names/ISOs #################
-#############################################
+#######################################################################
+## Process policy data ################################################
+#######################################################################
 
-if(any(goal3_export$country == "Bolivia (Plurinational State of)")){
-  goal3_export$country[which(goal3_export$country == "Bolivia (Plurinational State of)")] <- "Bolivia"
-}
+names(policies)[which(names(policies) == "Country")] <- "country"
+names(policies)[which(names(policies) == "Subtopic_link")] <- "disease"
+names(policies)[which(names(policies) == "Status_link")] <- "measles_policy"
+names(policies)[which(names(policies) == "iso_a3_eh")] <- "iso_3166"
 
-if(any(goal3_export$country == "Brunei Darussalam")){
-  goal3_export$country[which(goal3_export$country == "Brunei Darussalam")] <- "Brunei"
-}
+measles_policies <- policies %>% filter(disease == "Measles")
 
-if(any(goal3_export$country == "Brunei Darussalam")){
-  goal3_export$country[which(goal3_export$country == "Brunei Darussalam")] <- "Brunei"
-}
+#######################################################################
+## Process income group data ##########################################
+#######################################################################
 
-if(any(base$name == "Congo, Democratic Republic of the")){
-  base$name[which(base$name == "Congo, Democratic Republic of the")] <- "Democratic Republic of the Congo"
-}
+names(income_groups)[which(names(income_groups) == "income_group_2021")] <- "income_group"
 
-if(any(base$name == "Congo, Republic of the")){
-  base$name[which(base$name == "Congo, Republic of the")] <- "Congo"
-}
+income_groups$income_group <- recode(income_groups$income_group, 
+                        "L" = "Low income",
+                        "LM" = "Lower middle income",
+                        "UM" = "Upper middle income",
+                        "H" = "High income")
 
-if(any(goal3_export$country == "State of Palestine")){
-  goal3_export$country[which(goal3_export$country == "State of Palestine")] <- "Palestine"
-}
 
-if(any(goal3_export$country == "Iran (Islamic Republic of)")){
-  goal3_export$country[which(goal3_export$country == "Iran (Islamic Republic of)")] <- "Iran"
-}
+selected_regions <- regions %>%
+  filter(regions$group %in% c("East Asia & Pacific", "Europe & Central Asia",
+                     "Latin America & Caribbean", "Middle East & North Africa",
+                     "North America", "South Asia", "Sub-Saharan Africa"))
 
-if(any(goal3_export$country == "Democratic People's Republic of Korea")){
-  goal3_export$country[which(goal3_export$country == "Democratic People's Republic of Korea")] <- "North Korea"
-}
+names(selected_regions)[which(names(selected_regions) == "group")] <- "world_bank_region"
 
-if(any(goal3_export$country == "Republic of Korea")){
-  goal3_export$country[which(goal3_export$country == "Republic of Korea")] <- "South Korea"
-}
-
-if(any(goal3_export$country == "Lao People's Democratic Republic")){
-  goal3_export$country[which(goal3_export$country == "Lao People's Democratic Republic")] <- "Laos"
-}
-
-if(any(goal3_export$country == "Republic of Moldova")){
-  goal3_export$country[which(goal3_export$country == "Republic of Moldova")] <- "Moldova"
-}
-
-if(any(goal3_export$country == "Netherlands (Kingdom of the)")){
-  goal3_export$country[which(goal3_export$country == "Netherlands (Kingdom of the)")] <- "Netherlands"
-}
-
-if(any(goal3_export$country == "Micronesia (Federated States of)")){
-  goal3_export$country[which(goal3_export$country == "Micronesia (Federated States of)")] <- "Micronesia"
-}
-
-if(any(base$name == "Micronesia, Federated States of")){
-  base$name[which(base$name == "Micronesia, Federated States of")] <- "Micronesia"
-}
-
-if(any(base$name == "Russian Federation")){
-  base$name[which(base$name == "Russian Federation")] <- "Russia"
-}
-
-if(any(goal3_export$country == "Russian Federation")){
-  goal3_export$country[which(goal3_export$country == "Russian Federation")] <- "Russia"
-}
-
-if(any(goal3_export$country == "Viet Nam")){
-  goal3_export$country[which(goal3_export$country == "Viet Nam")] <- "Vietnam"
-}
-
-if(any(goal3_export$country == "Syrian Arab Republic")){
-  goal3_export$country[which(goal3_export$country == "Syrian Arab Republic")] <- "Syria"
-}
-
-if(any(goal3_export$country == "Türkiye")){
-  goal3_export$country[which(goal3_export$country == "Türkiye")] <- "Turkey"
-}
-
-if(any(goal3_export$country == "United Kingdom of Great Britain and Northern Ireland")){
-  goal3_export$country[which(goal3_export$country == "United Kingdom of Great Britain and Northern Ireland")] <- "United Kingdom"
-}
-
-if(any(goal3_export$country == "United Republic of Tanzania")){
-  goal3_export$country[which(goal3_export$country == "United Republic of Tanzania")] <- "Tanzania"
-}
-
-if(any(base$name == "United States")){
-  base$name[which(base$name == "United States")] <- "United States of America"
-}
-
-if(any(goal3_export$country == "Venezuela (Bolivarian Republic of)")){
-  goal3_export$country[which(goal3_export$country == "Venezuela (Bolivarian Republic of)")] <- "Venezuela"
-}
-
-if(any(goal3_export$country == "China, Hong Kong Special Administrative Region")){
-  goal3_export$country[which(goal3_export$country == "China, Hong Kong Special Administrative Region")] <- "Hong Kong"
-}
-
-if(any(goal3_export$country == "China, Macao Special Administrative Region")){
-  goal3_export$country[which(goal3_export$country == "China, Macao Special Administrative Region")] <- "Macau"
-}
-
-if(any(goal3_export$country == "Sint Maarten (Dutch part)")){
-  goal3_export$country[which(goal3_export$country == "Sint Maarten (Dutch part)")] <- "Sint Maarten"
-}
-
-if(any(goal3_export$country == "Sint Maarten (Dutch part)")){
-  goal3_export$country[which(goal3_export$country == "Sint Maarten (Dutch part)")] <- "Sint Maarten"
-}
-
-if(any(base$name == "Wallis and Futuna")){
-  base$name[which(base$name == "Wallis and Futuna")] <- "Wallis and Futuna Islands"
-}
+#######################################################################
+## Process malaria incidence data #####################################
+#######################################################################
 
 #############################################
 ## Merge datasets ###########################
 #############################################
 
-full_dataset_1 <- merge(base, goal3_export, by.x = "name", by.y = "country", all.x = FALSE, all.y = TRUE)
-full_dataset_2 <- merge(full_dataset_1, who_membership, by.x = "iso_3166", all.x = TRUE, all.y = FALSE)
+full_dataset_1 <- merge(base[,c(1,2)], measles_policies[,c(2,4,6)], by.x = "iso_3166", by.y = "iso_3166", all.x = TRUE, all.y = TRUE)
+full_dataset_2 <- merge(full_dataset_1, who_membership[which(who_membership$who_member_state == TRUE),], by.x = "iso_3166", all.x = FALSE, all.y = TRUE)
 full_dataset_3 <- merge(full_dataset_2, population_wide, by.x = "iso_3166", all.x = TRUE, all.y = FALSE)
+full_dataset_4 <- merge(full_dataset_3, income_groups[,c(1,3)], by = "iso_3166", all.x = TRUE, all.y = FALSE)
+full_dataset_5 <- merge(full_dataset_4, selected_regions[,c(2,3)], by = "iso_3166", all.x = TRUE, all.y = FALSE)
 
 #############################################
-## Export simple day 1 dataset ##############
+## Generate course datasets #################
 #############################################
 
-day2_dataset <- full_dataset_3 %>%
-  filter(metric == "Malaria incidence per 1,000 population at risk (per 1,000 population)") %>%
-  filter(year == 2021) %>%
-  filter(name != "Mayotte") %>% ## no population data
-  select(iso_3166, name, who_member_state, who_region, total_population, pct_rural, pct_urban, value)
-
-names(day2_dataset)[which(names(day2_dataset) == "value")] <- "malaria_incidence"
-names(day2_dataset)[which(names(day2_dataset) == "name")] <- "location"
+day2_dataset <- full_dataset_5[,c(1,2,6,10,11,7,4)]
+names(day2_dataset)[which(names(day2_dataset) == "name")] <- "country"
 
 #############################################
 ## Export day 2 dataset #####################

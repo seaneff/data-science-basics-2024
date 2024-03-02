@@ -17,7 +17,7 @@ If you have questions, feel free to reach out at sde31@georgetown.edu.
 ---
 
 ### Day 1: Intro to statistical programming
--   Introductions and logistics
+-   Introductions, logistics, and what to expect
 -   What is statistical programming, and why should I care?
 -   Getting acquainted with R Studio
 -   R Basics
@@ -26,8 +26,10 @@ If you have questions, feel free to reach out at sde31@georgetown.edu.
 ---
 
 ### Day 2: Data management and version control
+-   Overview of data management
+-   Brief overview of useful global health datasets
+-   Loading dataset(s) in R
 -   Data types and structures in R
--   Reading in a new dataset
 -   Data cleaning
 -   Documenting your data, code, and results
 -   Version control with github
@@ -35,15 +37,16 @@ If you have questions, feel free to reach out at sde31@georgetown.edu.
 ---
 
 ### Day 3: Exploratory data analysis
+-   What is exploratory data analysis (EDA)?
 -   Descriptive statistics
--   Basic data visualization
--   Introduction to ggplot2
+-   Explore common data visualizations
 
 ---
 
-### Day 4: Visualizing and communicating about data
--   Designing data visualizations
--   Colors, labels, fonts, and more
+### Day 4: Designing data visualizations
+- Learn a step-by-step process for creating great data visualizations
+- Design some fun and beautiful data visualizations
+- Get creative and explore some new skills in R
 
 ---
 

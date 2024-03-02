@@ -1,6 +1,6 @@
 ---
 title: "Data Science Basics in R, Day 4"
-subtitle: "Visualizing and communicating about data"
+subtitle: "Designing data visualizations"
 from: revealjs
 format:
   revealjs: 

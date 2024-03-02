@@ -19,12 +19,19 @@ Descriptive statistics summarize data, and typically describe three types of thi
 
 ------------------------------------------------------------------------
 
-### Designing a data visualization
+## Exploring common data visualizations
 
+- pie charts
+- barcharts
+- histograms
+- scatterplots
+- boxplots
+- world maps
+- Cleveland dot plots
 
 ------------------------------------------------------------------------
 
-### Plots in base R
+### Figures with base R
 
 -   histograms
 -   pie chart
@@ -32,34 +39,14 @@ Descriptive statistics summarize data, and typically describe three types of thi
 
 ------------------------------------------------------------------------
 
-### Fun with ggplot2
+### Figures with ggplot2
 
 -   histograms
 -   pie charts
 -   scatterplots
 -   boxplots
 -   world maps
-
-------------------------------------------------------------------------
-
-### More advanced plots
-
 -   Cleveland dot plots
-
-
-------------------------------------------------------------------------
-
-### Choosing colors for your plots
-
--   best practices
--   color resources and examples
-
-
-------------------------------------------------------------------------
-
-### (Optional) Exercise
-
-See [exercise folder](https://github.com/seaneff/data-science-basics-2023/tree/main/day3/optional-exercise) for exercise ideas.
 
 ------------------------------------------------------------------------
 
