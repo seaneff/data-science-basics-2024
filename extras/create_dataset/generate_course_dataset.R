@@ -22,9 +22,8 @@ library(readr) ## to use the convenience function write_delim
 ## Read in data #############################
 #############################################
 
-## read in CW vaccine dataset from github
-## update once final
-policies <- read.csv("https://raw.githubusercontent.com/cghss/VaxxPolicy/main/ChildhoodVaxxWithIsos.csv?token=GHSAT0AAAAAACPAKVTEP42SYIU5KPXTCORYZPDROSA")
+## read in vaccine dataset from github
+policies <- read.csv("https://raw.githubusercontent.com/seaneff/data-science-basics-2024/main/course-datasets/measles_vaccines.csv?token=GHSAT0AAAAAACPAKVTERVFTNJNORSTRGIIOZP6CUKA")
 
 ## data downloaded from World Bank on March 2, 2024
 ## https://databank.worldbank.org/source/population-estimates-and-projections#
@@ -38,8 +37,8 @@ base <- read.delim("extras/create_dataset/inputs/locations.tsv", header = TRUE, 
 ## WHO membership data from WHO
 who_membership <- read.delim("extras/create_dataset/inputs/who_member_states.tsv", header = TRUE)
 
-## malaria incidence
-malaria_incidence <- read_excel("extras/create_dataset/inputs/malaria_incidence.xls")
+## measles cases
+measles_cases <- read_excel("extras/create_dataset/inputs/measlescasesbycountrybymonth.xlsx", sheet = "WEB")
 
 ## income groups
 income_groups <- read_excel("extras/create_dataset/inputs/income_groups.xlsx", sheet = "List of economies")
@@ -69,17 +68,6 @@ names(population_wide)[which(names(population_wide) == "Urban population (% of t
 names(population_wide)[which(names(population_wide) == "Population, total")] <- "total_population"
 
 #######################################################################
-## Process policy data ################################################
-#######################################################################
-
-names(policies)[which(names(policies) == "Country")] <- "country"
-names(policies)[which(names(policies) == "Subtopic_link")] <- "disease"
-names(policies)[which(names(policies) == "Status_link")] <- "measles_policy"
-names(policies)[which(names(policies) == "iso_a3_eh")] <- "iso_3166"
-
-measles_policies <- policies %>% filter(disease == "Measles")
-
-#######################################################################
 ## Process income group data ##########################################
 #######################################################################
 
@@ -100,33 +88,43 @@ selected_regions <- regions %>%
 names(selected_regions)[which(names(selected_regions) == "group")] <- "world_bank_region"
 
 #######################################################################
-## Process malaria incidence data #####################################
+## Process measles caseload data ######################################
 #######################################################################
 
-#############################################
-## Merge datasets ###########################
-#############################################
+measles_long <- measles_cases %>%
+  pivot_longer(cols = January:December,
+               names_to = "month",
+               values_to = "cases") %>%
+  mutate(date = as.Date(paste(month, "01,", Year), format = "%B %d, %Y")) 
 
-full_dataset_1 <- merge(base[,c(1,2)], measles_policies[,c(2,4,6)], by.x = "iso_3166", by.y = "iso_3166", all.x = TRUE, all.y = TRUE)
-full_dataset_2 <- merge(full_dataset_1, who_membership[which(who_membership$who_member_state == TRUE),], by.x = "iso_3166", all.x = FALSE, all.y = TRUE)
-full_dataset_3 <- merge(full_dataset_2, population_wide, by.x = "iso_3166", all.x = TRUE, all.y = FALSE)
-full_dataset_4 <- merge(full_dataset_3, income_groups[,c(1,3)], by = "iso_3166", all.x = TRUE, all.y = FALSE)
-full_dataset_5 <- merge(full_dataset_4, selected_regions[,c(2,3)], by = "iso_3166", all.x = TRUE, all.y = FALSE)
+names(measles_long) <- c("region", "iso_code", "country", "year", "month_name", "cases", "month")
 
 #############################################
-## Generate course datasets #################
+## Generate countries dataset ###############
 #############################################
 
-day2_dataset <- full_dataset_5[,c(1,2,6,10,11,5,7,4)]
-names(day2_dataset)[which(names(day2_dataset) == "name")] <- "country"
+## Todo: disambiguate ISO codes and match these up
+countries <- merge(policies[,c(2,3)], who_membership[which(who_membership$who_member_state == TRUE),], by.x = "iso_code", by.y = "iso_3166", all.x = TRUE, all.y = TRUE)
+countries <- merge(countries, population_wide, by.x = "iso_code", by.y = "iso_3166", all.x = TRUE, all.y = FALSE)
+
+countries <- merge(countries, income_groups[,c(1,3)], by.x = "iso_code", by.y = "iso_3166", all.x = TRUE, all.y = FALSE)
+countries <- merge(countries, selected_regions[,c(2,3)], by.x = "iso_code", by.y = "iso_3166", all.x = TRUE, all.y = FALSE)
 
 #############################################
-## Export day 2 dataset #####################
+## Export datasets ##########################
 #############################################
 
-write.table(day2_dataset,
+write.table(countries,
             sep = "\t",
-            file = "course-datasets/day2.tsv", 
+            file = "course-datasets/countries.tsv", 
+            na = "NA",
+            row.names = FALSE,
+            fileEncoding = "Latin1")
+
+
+write.table(measles_long[,c(3,2,7,6)],
+            sep = "\t",
+            file = "course-datasets/measles_cases.tsv", 
             na = "NA",
             row.names = FALSE,
             fileEncoding = "Latin1")
