@@ -38,8 +38,9 @@ If you have questions, feel free to reach out at sde31@georgetown.edu.
 
 ### Day 3: Exploratory data analysis
 -   What is exploratory data analysis (EDA)?
--   Descriptive statistics
--   Explore common data visualizations
+-   Calculate basic descriptive statistics in R
+-   Explore different strategies for data visualization
+-   Build your first data visualizations in R
 
 ---
 

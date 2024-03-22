@@ -28,13 +28,76 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="day2_files/libs/revealjs/dist/theme/quarto.css">
   <link href="day2_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="day2_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="day2_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="day2_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-  <link href="day2_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="day2_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
@@ -320,6 +383,9 @@
       margin-right: 0; 
     }
   </style>
+  
+  <link href="day2_files/libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+  <script src="day2_files/libs/pagedtable-1.1/js/pagedtable.js"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -333,646 +399,276 @@
 </div>
 
 </section>
-<section id="reflecting-on-yesterday" class="slide level2">
-<h2>Reflecting on yesterday</h2>
-<p>Please spend two minutes reflecting on:</p>
-<div>
-<ul>
-<li class="fragment">One thing you learned</li>
-<li class="fragment">One thing you found frustrating</li>
-<li class="fragment">One thing you’re excited about</li>
-<li class="fragment">One thing you’d like to learn</li>
-</ul>
-</div>
-</section>
-<section id="reflecting-on-yesterday-1" class="slide level2">
-<h2>Reflecting on yesterday</h2>
-<p>Would anyone like to share?</p>
-</section>
-<section id="goals-for-today" class="slide level2">
-<h2>Goals for today</h2>
-<div>
-<ul>
-<li class="fragment"><strong>Understand</strong> the foundations of data management</li>
-<li class="fragment"><strong>Identify</strong> some useful global health and health diplomacy datasets</li>
-<li class="fragment"><strong>Load and clean</strong> your first dataset in R
-<ul>
-<li class="fragment">explore a new dataset while learning about <strong>data structures</strong></li>
-<li class="fragment">do some basic <strong>data cleaning</strong></li>
-</ul></li>
-<li class="fragment"><strong>Learn best practices</strong> for documentation
-<ul>
-<li class="fragment">documenting your code</li>
-<li class="fragment">data dictionaries</li>
-<li class="fragment">doing reproducible research in R</li>
-</ul></li>
-<li class="fragment"><strong>Get familiar</strong> with Github (by writing poems about unicorns)</li>
-</ul>
-</div>
-</section>
-<section id="goals-for-today-1" class="slide level2">
-<h2>Goals for today</h2>
-<ul>
-<li><strong>Understand</strong> the foundations of data management</li>
-<li><span style="color:#DBDBDB;"><strong>Identify</strong> some useful global health and health diplomacy datasets</span></li>
-<li><span style="color:#DBDBDB;"><strong>Load and clean</strong> your first dataset in R</span>
-<ul>
-<li><span style="color:#DBDBDB;">explore a new dataset while learning about <strong>data structures</strong></span></li>
-<li><span style="color:#DBDBDB;">do some basic <strong>data cleaning</strong></span></li>
-</ul></li>
-<li><span style="color:#DBDBDB;"><strong>Learn best practices</strong> for documentation</span>
-<ul>
-<li><span style="color:#DBDBDB;">documenting your code</span></li>
-<li><span style="color:#DBDBDB;">data dictionaries</span></li>
-<li><span style="color:#DBDBDB;">doing reproducible research in R</span></li>
-</ul></li>
-<li><span style="color:#DBDBDB;"><strong>Get familiar</strong> with Github (by writing poems about unicorns)</span></li>
-</ul>
-</section>
-<section>
-<section id="what-is-data-management" class="title-slide slide level1 center">
-<h1>What is data management?</h1>
-
-</section>
-<section id="data-management" class="slide level2">
-<h2>Data management</h2>
-<div class="quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<ul>
-<li class="fragment">Data management is the practice of creating, maintaining, documenting, and securing data.</li>
-<li class="fragment">It involves all stages of data collection, use, and storage.</li>
-<li class="fragment">In this course, we’ll focus mainly on <strong>data access and usage</strong></li>
-</ul>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/data-management-pie-chart-tall.png"></p>
-</figure>
+<section id="use-table-to-check-for-missing-values" class="slide level2">
+<h2>Use table to check for missing values</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">table</span>(<span class="fu">is.na</span>(day2<span class="sc">$</span>who_region), <span class="at">useNA =</span> <span class="st">"ifany"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+FALSE 
+  194 </code></pre>
 </div>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">table</span>(<span class="fu">is.na</span>(day2<span class="sc">$</span>measles_policy), <span class="at">useNA =</span> <span class="st">"ifany"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+FALSE  TRUE 
+  191     3 </code></pre>
 </div>
 </div>
-<div class="footer">
-<p><a href="https://datamanagement.iu.edu/">Image from Indiana University Library</a></p>
-</div>
-</section>
-<section id="data-access" class="slide level2">
-<h2>Data access</h2>
-<div>
-<ul>
-<li class="fragment">Where do your data “live”?
-<ul>
-<li class="fragment">How can you access them?</li>
-<li class="fragment">Who else can access them?</li>
-<li class="fragment">For how long will they be available?</li>
-</ul></li>
-<li class="fragment">What format are they in?</li>
-<li class="fragment">Where is the documentation?</li>
-<li class="fragment">How, and with whom, can you share data, code, and/or results?</li>
-</ul>
-</div>
-</section>
-<section id="data-cleaning" class="slide level2">
-<h2>Data cleaning</h2>
-<div>
-<ul>
-<li class="fragment">To use your data, you first have to “clean” them</li>
-<li class="fragment">Data cleaning tasks depending on your specific data:
-<ul>
-<li class="fragment">Identifying and addressing missing values</li>
-<li class="fragment">Fixing “weird” characters</li>
-<li class="fragment">Combining multiple datasets</li>
-<li class="fragment">Deduplicating lists</li>
-<li class="fragment">Identifying other discrepancies…</li>
-</ul></li>
-</ul>
-</div>
-</section>
-<section id="goals-for-today-2" class="slide level2">
-<h2>Goals for today</h2>
-<ul>
-<li><strong>Understand</strong> the foundations of data management</li>
-<li><strong>Identify</strong> some useful global health and health diplomacy datasets</li>
-<li><span style="color:#DBDBDB;"><strong>Load and clean</strong> your first dataset in R</span>
-<ul>
-<li><span style="color:#DBDBDB;">explore a new dataset while learning about <strong>data structures</strong></span></li>
-<li><span style="color:#DBDBDB;">do some basic <strong>data cleaning</strong></span></li>
-</ul></li>
-<li><span style="color:#DBDBDB;"><strong>Learn best practices</strong> for documentation</span>
-<ul>
-<li><span style="color:#DBDBDB;">documenting your code</span></li>
-<li><span style="color:#DBDBDB;">data dictionaries</span></li>
-<li><span style="color:#DBDBDB;">doing reproducible research in R</span></li>
-</ul></li>
-<li><span style="color:#DBDBDB;"><strong>Get familiar</strong> with Github (by writing poems about unicorns)</span></li>
-</ul>
-</section></section>
-<section>
-<section id="some-useful-and-interesting-sources-of-data" class="title-slide slide level1 center">
-<h1>Some useful and interesting sources of data</h1>
-
-</section>
-<section id="who-global-health-observatory" class="slide level2">
-<h2>WHO Global Health Observatory</h2>
-
-<img data-src="images/who_gho.png" class="r-stretch quarto-figure-center"><div class="footer">
-<p><a href="https://www.who.int/data/gho">www.who.int/data/gho</a></p>
-</div>
-</section>
-<section id="oecd-health-data-repository" class="slide level2">
-<h2>OECD Health Data Repository</h2>
-
-<img data-src="images/oecd_health_data.png" class="r-stretch quarto-figure-center"><div class="footer">
-<p><a href="https://data.oecd.org/health.htm">data.oecd.org/health.htm</a></p>
-</div>
-</section>
-<section id="ocha-humanitarian-data-exchange" class="slide level2">
-<h2>OCHA Humanitarian Data Exchange</h2>
-
-<img data-src="images/ocha_hdx.png" class="r-stretch quarto-figure-center"><div class="footer">
-<p><a href="https://data.humdata.org/">data.humdata.org</a></p>
-</div>
-</section>
-<section id="demographic-and-health-surveys" class="slide level2">
-<h2>Demographic and Health Surveys</h2>
-
-<img data-src="images/dhs_surveys.png" class="r-stretch quarto-figure-center"><div class="footer">
-<p><a href="https://dhsprogram.com/">dhsprogram.com</a></p>
-</div>
-</section>
-<section id="un-sdg-global-database" class="slide level2">
-<h2>UN SDG Global Database</h2>
-
-<img data-src="images/un_sdg_data.png" class="r-stretch quarto-figure-center"><div class="footer">
-<p><a href="https://unstats.un.org/sdgs/dataportal">unstats.un.org/sdgs/dataportal</a></p>
-</div>
-</section>
-<section id="undp-data-futures-platform" class="slide level2">
-<h2>UNDP Data Futures Platform</h2>
-
-<img data-src="images/undp_data_futures.png" class="r-stretch quarto-figure-center"><p><a href="https://data.undp.org/">data.undp.org</a></p>
-</section>
-<section id="ipums" class="slide level2">
-<h2>IPUMS</h2>
-
-<img data-src="images/ipums_data.png" class="r-stretch quarto-figure-center"><div class="footer">
-<p><a href="https://www.idhsdata.org/idhs/index.shtml">www.idhsdata.org/idhs/index.shtml</a></p>
-</div>
-</section>
-<section id="lets-chat" class="slide level2">
-<h2>Let’s chat</h2>
-<p>What other datasets have you used for work or school?</p>
-</section>
-<section id="goals-for-today-3" class="slide level2">
-<h2>Goals for today</h2>
-<ul>
-<li><strong>Understand</strong> the foundations of data management</li>
-<li><strong>Identify</strong> some useful global health and health diplomacy datasets</li>
-<li><strong>Load and clean</strong> your first dataset in R
-<ul>
-<li>explore a new dataset while learning about <strong>data structures</strong></li>
-<li>do some basic <strong>data cleaning</strong></li>
-</ul></li>
-<li><span style="color:#DBDBDB;"><strong>Learn best practices</strong> for documentation</span>
-<ul>
-<li><span style="color:#DBDBDB;">documenting your code</span></li>
-<li><span style="color:#DBDBDB;">data dictionaries</span></li>
-<li><span style="color:#DBDBDB;">doing reproducible research in R</span></li>
-</ul></li>
-<li><span style="color:#DBDBDB;"><strong>Get familiar</strong> with Github (by writing poems about unicorns)</span></li>
-</ul>
-</section></section>
-<section>
-<section id="loading-datasets-in-r" class="title-slide slide level1 center">
-<h1>Loading datasets in R</h1>
-
-</section>
-<section id="raw-data-files" class="slide level2">
-<h2>Raw data files</h2>
-<div>
-<p>We’re going to talk about structured, flat files today, but there are many types of data that R can work with!</p>
-<ul>
-<li class="fragment"><strong>Excel:</strong> proprietary file format (Microsoft), but common (.xls files)</li>
-<li class="fragment"><strong>CSV:</strong> comma-separated value files</li>
-<li class="fragment"><strong>TSV:</strong> tab-separated value files</li>
-<li class="fragment"><strong>RData:</strong> data saved from within your R environment</li>
-<li class="fragment"><strong>SPSS or SAS:</strong> data from other statistical programming tools</li>
-<li class="fragment"><strong>Shapefiles:</strong> geospatial or mapping data</li>
-</ul>
-</div>
-</section>
-<section id="functions-to-load-data" class="slide level2">
-<h2>Functions to load data</h2>
-<div>
-<ul>
-<li class="fragment"><strong>Excel:</strong> read_excel(“countries.xls”)</li>
-<li class="fragment"><strong>CSV:</strong> read.csv(“countries.csv”)</li>
-<li class="fragment"><strong>TSV:</strong> read.delim(“countries.tsv”)</li>
-<li class="fragment"><strong>RData:</strong> load(“countries.RData”)</li>
-<li class="fragment"><strong>SPSS or SAS:</strong> use the ‘foreign’ package</li>
-<li class="fragment"><strong>Shapefiles:</strong> use the ‘sf’ or other geopsatial data packages</li>
-</ul>
-</div>
-</section>
-<section id="a-note-on-excel-files-and-libraries-in-r" class="slide level2">
-<h2>A note on Excel files and libraries in R</h2>
-<div>
-<ul>
-<li class="fragment">To use the function <strong>read_excel()</strong>, we need to have installed the package <strong>readxl</strong> into R.</li>
-<li class="fragment">You (usually) only need to install it once, and then you will need to re-load it every new R session
-<ul>
-<li class="fragment"><strong>Installing:</strong> install.packages(“readxl”)</li>
-<li class="fragment"><strong>Loading:</strong> library(“readxl”)</li>
-</ul></li>
-<li class="fragment">If you are working with RStudio and using the workflow in the next slides, you will automatically be prompted to do these things if they are required</li>
-</ul>
-</div>
-</section>
-<section id="loading-data-with-rstudio" class="slide level2">
-<h2>Loading data with RStudio</h2>
-
-<img data-src="images/loading_data_import.jpg" class="r-stretch quarto-figure-center"></section>
-<section id="loading-data-with-rstudio-1" class="slide level2">
-<h2>Loading data with RStudio</h2>
-
-<img data-src="images/loading_data_select_filetype.jpg" class="r-stretch quarto-figure-center"></section>
-<section id="loading-data-with-rstudio-2" class="slide level2">
-<h2>Loading data with RStudio</h2>
-
-<img data-src="images/load_data_select_file.jpg" class="r-stretch quarto-figure-center"></section>
-<section id="loading-data-with-rstudio-3" class="slide level2">
-<h2>Loading data with RStudio</h2>
-
-<img data-src="images/load_data_basic_format.jpg" class="r-stretch quarto-figure-center"></section>
-<section id="loading-data-with-rstudio-4" class="slide level2">
-<h2>Loading data with RStudio</h2>
-
-<img data-src="images/load_data_specify_heading.jpg" class="r-stretch quarto-figure-center"></section>
-<section id="loading-data-with-rstudio-5" class="slide level2">
-<h2>Loading data with RStudio</h2>
-
-<img data-src="images/load_data_import.jpg" class="r-stretch quarto-figure-center"></section>
-<section id="loading-data-with-rstudio-6" class="slide level2">
-<h2>Loading data with RStudio</h2>
-
-<img data-src="images/load_data_view.jpg" class="r-stretch quarto-figure-center"></section>
-<section id="loading-data-with-rstudio-7" class="slide level2">
-<h2>Loading data with RStudio</h2>
-<p><img data-src="images/load_data_write_delim.jpg" data-fig-align="center"> ## Loading data with RStudio</p>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/load_data_view_code.jpg"></p>
-</figure>
-</div>
-</section>
-<section id="loading-data-with-rstudio-8" class="slide level2">
-<h2>Loading data with RStudio</h2>
-
-<img data-src="images/load_data_in_workspace.jpg" class="r-stretch quarto-figure-center"></section>
-<section id="workshop-dataset" class="slide level2">
-<h2>Workshop dataset</h2>
-<ul>
-<li>The Sustainable Development Goals (SDGs) are a shared plan to end extreme poverty, reduce inequality, and protect the planet</li>
-<li>Adopted by 193 countries in 2015 based on UN negotiations</li>
-</ul>
-<div class="footer">
-<p><a href="https://unfoundation.org/what-we-do/issues/sustainable-development-goals/">unfoundation.org/what-we-do/issues/sustainable-development-goals/</a></p>
-</div>
-</section>
-<section id="workshop-dataset-1" class="slide level2">
-<h2>Workshop dataset</h2>
-
-<img data-src="images/unsdg.png" class="r-stretch quarto-figure-center"></section>
-<section id="now-you-try" class="slide level2">
-<h2>Now you try!</h2>
-<center>
-<br><br><br> Spend 5 minutes reading about the UN SDGs. <br><br><br> <a href="sdgs.un.org/goals">https://sdgs.un.org/goals</a>
-</center>
-</section>
-<section id="workshop-dataset-2" class="slide level2">
-<h2>Workshop dataset</h2>
-<p><strong>Data points:</strong> maternal and infant health</p>
-<div>
-<ul>
-<li class="fragment">Maternal mortality ratio</li>
-<li class="fragment">Proportion of births attended by skilled health personnel (%)</li>
-<li class="fragment">Infant mortality rate (deaths per 1,000 live births)</li>
-</ul>
-</div>
-</section>
-<section id="workshop-dataset-3" class="slide level2">
-<h2>Workshop dataset</h2>
-<p><strong>Data points:</strong> infectious disease</p>
-<div>
-<ul>
-<li class="fragment">Number of new HIV infections per 1,000 uninfected population</li>
-<li class="fragment">Tuberculosis incidence per 100,000 population</li>
-<li class="fragment">Malaria incidence per 1,000 population</li>
-</ul>
-</div>
-</section>
-<section id="workshop-dataset-4" class="slide level2">
-<h2>Workshop dataset</h2>
-<p><strong>Data points:</strong> universal health coverage</p>
-<div>
-<ul>
-<li class="fragment">Coverage of essential health services</li>
-<li class="fragment">Proportion of population with large expenditures on health</li>
-</ul>
-</div>
-</section>
-<section id="workshop-dataset-5" class="slide level2">
-<h2>Workshop dataset</h2>
-<p><strong>Data points:</strong> environmental health</p>
-<div>
-<ul>
-<li class="fragment">Mortality rate attributed to household and ambient air pollution</li>
-<li class="fragment">Mortality rate attributed to unsafe water, unsafe sanitation and lack of hygiene</li>
-</ul>
-</div>
-</section>
-<section id="workshop-dataset-6" class="slide level2">
-<h2>Workshop dataset</h2>
-
-<img data-src="images/un_sdg_data.png" class="r-stretch quarto-figure-center"></section>
-<section id="workshop-dataset-7" class="slide level2">
-<h2>Workshop dataset</h2>
-
-<img data-src="images/unsdg_data_download.png" class="r-stretch quarto-figure-center"></section>
-<section id="workshop-dataset-8" class="slide level2">
-<h2>Workshop dataset</h2>
-<p>todo: bitly link for workshop dataset</p>
-</section>
-<section id="now-you-try-1" class="slide level2">
-<h2>Now you try!</h2>
-<div>
-<ul>
-<li class="fragment">TODO</li>
-<li class="fragment">Go to bit.ly/XXX</li>
-<li class="fragment">Copy URL</li>
-<li class="fragment">Read data into R
-<ul>
-<li class="fragment">code will look something like this: read.delim(“https://raw.githubusercontent.com/seaneff/data-science-basics-2023/main/reference-dataset/countries.tsv”, fileEncoding = “Latin1”)</li>
-</ul></li>
-</ul>
-</div>
-</section>
-<section id="minute-break" class="slide level2">
-<h2>15 minute break</h2>
-</section>
-<section id="goals-for-today-4" class="slide level2">
-<h2>Goals for today</h2>
-<ul>
-<li><strong>Understand</strong> the foundations of data management</li>
-<li><strong>Identify</strong> some useful global health and health diplomacy datasets</li>
-<li><strong>Load and clean</strong> your first dataset in R
-<ul>
-<li>explore a new dataset while learning about <strong>data structures</strong></li>
-<li>do some basic <strong>data cleaning</strong></li>
-</ul></li>
-<li><span style="color:#DBDBDB;"><strong>Learn best practices</strong> for documentation</span>
-<ul>
-<li><span style="color:#DBDBDB;">documenting your code</span></li>
-<li><span style="color:#DBDBDB;">data dictionaries</span></li>
-<li><span style="color:#DBDBDB;">doing reproducible research in R</span></li>
-</ul></li>
-<li><span style="color:#DBDBDB;"><strong>Get familiar</strong> with Github (by writing poems about unicorns)</span></li>
-</ul>
-</section></section>
-<section>
-<section id="data-structures-in-r" class="title-slide slide level1 center">
-<h1>Data structures in R</h1>
-
-</section>
-<section id="data-structures-in-r-1" class="slide level2">
-<h2>Data structures in R</h2>
-<p>Yesterday we discussed vectors, today, we’re going to talk about other types of data structures in R. There are a few different types, but the main ones we’ll talk about this week are:</p>
-<ul>
-<li><strong>vector:</strong> a group of observations of one type (e.g., country names)</li>
-<li><strong>data frame:</strong> group of observations with different types</li>
-</ul>
-</section>
-<section id="vectors" class="slide level2">
-<h2>Vectors</h2>
-
-<img data-src="images/unsdg_vector.png" class="r-stretch quarto-figure-center"></section>
-<section id="data-frames" class="slide level2">
-<h2>Data frames</h2>
-
-<img data-src="images/unsdg_dataframe.png" class="r-stretch quarto-figure-center"></section>
-<section id="now-you-try-2" class="slide level2">
-<h2>Now you try!</h2>
-<div>
-<ul>
-<li class="fragment">Find two examples of character vectors</li>
-<li class="fragment">Find two examples of numeric vectors</li>
-<li class="fragment">Can you remember a data type that we don’t see here?
-<ul>
-<li class="fragment">we don’t have any logical vectors (yet)</li>
-</ul></li>
-</ul>
-</div>
-</section></section>
-<section>
-<section id="exploring-your-dataset" class="title-slide slide level1 center">
-<h1>Exploring your dataset</h1>
-
-</section>
-<section id="print-the-top-rows-of-a-dataset" class="slide level2">
-<h2>Print the top rows of a dataset</h2>
-<p>Todo: head</p>
-</section>
-<section id="see-your-entire-dataset-in-rstudio" class="slide level2">
-<h2>See your entire dataset in RStudio</h2>
-<p>Todo: View</p>
 </section>
 <section id="dimensions-and-field-names" class="slide level2">
 <h2>Dimensions and field names</h2>
-</section>
-<section id="todo-dim-and-names" class="slide level2">
-<h2>Todo, dim and names</h2>
-</section>
-<section id="make-basic-tables" class="slide level2">
-<h2>Make basic tables</h2>
-<p>Todo: count table</p>
-</section>
-<section id="check-for-missing-values" class="slide level2">
-<h2>Check for missing values</h2>
-<p>Todo: table with missing values</p>
-</section>
-<section id="accessing-subsets-of-data" class="slide level2">
-<h2>Accessing subsets of data</h2>
-<p>Todo: $ to see vectors</p>
-</section>
-<section id="ask-questions-of-your-data" class="slide level2">
-<h2>Ask questions of your data</h2>
-<p>Todo: summary</p>
-</section>
-<section id="now-you-try-3" class="slide level2">
-<h2>Now you try!</h2>
-<div>
-<ul>
-<li class="fragment">Take five minutes to explore this dataset</li>
-<li class="fragment">How many rows are there?</li>
-<li class="fragment">How many columns are there?</li>
-<li class="fragment">Can you use “$” to select a vector?</li>
-</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">dim</span>(day2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 194   7</code></pre>
 </div>
-</section>
-<section id="goals-for-today-5" class="slide level2">
-<h2>Goals for today</h2>
-<ul>
-<li><strong>Understand</strong> the foundations of data management</li>
-<li><strong>Identify</strong> some useful global health and health diplomacy datasets</li>
-<li><strong>Load and clean</strong> your first dataset in R
-<ul>
-<li>explore a new dataset while learning about <strong>data structures</strong></li>
-<li>do some basic <strong>data cleaning</strong></li>
-</ul></li>
-<li><strong>Learn best practices</strong> for documentation
-<ul>
-<li>documenting your code</li>
-<li>data dictionaries</li>
-<li>doing reproducible research in R</li>
-</ul></li>
-<li><span style="color:#DBDBDB;"><strong>Get familiar</strong> with Github (by writing poems about unicorns)</span></li>
-</ul>
-</section></section>
-<section>
-<section id="documenting-your-data-code-and-results" class="title-slide slide level1 center">
-<h1>Documenting your data, code, and results</h1>
-
-</section>
-<section id="documentation" class="slide level2">
-<h2>Documentation</h2>
-<div>
-<ul>
-<li class="fragment">Different materials, and different types of analysis benefit from different types of documentation.</li>
-<li class="fragment"><strong>Datasets:</strong> Data dictionaries, rules to generate datasets</li>
-<li class="fragment"><strong>Code:</strong> Comments in code, README files</li>
-<li class="fragment"><strong>Analysis/Results:</strong> Methods documentation, in a word document, a google document, or in github</li>
-</ul>
 </div>
-</section>
-<section id="documenting-data-data-dictionaries" class="slide level2">
-<h2>Documenting data: data dictionaries</h2>
-<div>
-<ul>
-<li class="fragment">The most common way to document a dataset is a data dictionary. At a minimum, data dictionaries:
-<ul>
-<li class="fragment">Define the columns (“fields”) of a dataset</li>
-<li class="fragment">Specify what a row corresponds to (e.g., one country)</li>
-<li class="fragment">Give context about what the data are, including where they come from and how often they are updated</li>
-</ul></li>
-</ul>
-</div>
-</section>
-<section id="documenting-data-data-dictionaries-1" class="slide level2">
-<h2>Documenting data: data dictionaries</h2>
-<center>
-Data dictionaries come in lots of formats and flavors. <br><br>Work with the type that makes the most sense for who you are trying to communicate with.
-</center>
-</section>
-<section id="documenting-data-data-dictionaries-2" class="slide level2">
-<h2>Documenting data: data dictionaries</h2>
-<p>Todo: add screenshots of data dictionaries</p>
-</section>
-<section id="documenting-data-data-dictionaries-3" class="slide level2">
-<h2>Documenting data: data dictionaries</h2>
-<p>Todo: add bitly link to course data dictionary</p>
-</section>
-<section id="documenting-code-comments" class="slide level2">
-<h2>Documenting code: comments</h2>
-<div>
-<ul>
-<li class="fragment">As we start writing code, it’s helpful to leave “notes” for yourself and others reminding yourself what you did</li>
-<li class="fragment">Comments can also help break code into sections</li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/xkcd_code_quality.png"></p>
-</figure>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">names</span>(day2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "iso_3166"          "country"           "who_region"       
+[4] "income_group"      "world_bank_region" "total_population" 
+[7] "measles_policy"   </code></pre>
 </div>
 </div>
 </section>
-<section id="documenting-code-comments-1" class="slide level2">
-<h2>Documenting code: comments</h2>
-<p>Todo: add screenshot of comments in R</p>
-</section>
-<section id="documenting-code-readme-files" class="slide level2">
-<h2>Documenting code: README files</h2>
-<div>
-<ul>
-<li class="fragment">README files summarize the contents of a specific folder</li>
-<li class="fragment">Common in github, rendered using Markdown</li>
-</ul>
+<section id="calling-a-vector" class="slide level2">
+<h2>Calling a vector</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>day2<span class="sc">$</span>country</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] "Afghanistan"                                                     
+  [2] "Angola"                                                          
+  [3] "Albania"                                                         
+  [4] "Andorra"                                                         
+  [5] "United Arab Emirates (UAE)"                                      
+  [6] "Argentina"                                                       
+  [7] "Armenia"                                                         
+  [8] "Antigua and Barbuda"                                             
+  [9] "Australia"                                                       
+ [10] "Austria"                                                         
+ [11] "Azerbaijan"                                                      
+ [12] "Burundi"                                                         
+ [13] "Belgium"                                                         
+ [14] "Benin"                                                           
+ [15] "Burkina Faso"                                                    
+ [16] "Bangladesh"                                                      
+ [17] "Bulgaria"                                                        
+ [18] "Bahrain"                                                         
+ [19] "Bahamas"                                                         
+ [20] "Bosnia and Herzegovina"                                          
+ [21] "Belarus"                                                         
+ [22] "Belize"                                                          
+ [23] "Bolivia (Plurinational State of)"                                
+ [24] "Brazil"                                                          
+ [25] "Barbados"                                                        
+ [26] "Brunei Darussalam"                                               
+ [27] "Bhutan"                                                          
+ [28] "Botswana"                                                        
+ [29] "Central African Republic (CAR)"                                  
+ [30] "Canada"                                                          
+ [31] "Switzerland"                                                     
+ [32] "Chile"                                                           
+ [33] "China (People's Republic of China; PRC)"                         
+ [34] "Cote d'Ivoire (Ivory Coast)"                                     
+ [35] "Cameroon"                                                        
+ [36] "Democratic Republic of Congo (DRC)"                              
+ [37] "Republic of the Congo"                                           
+ [38] NA                                                                
+ [39] "Colombia"                                                        
+ [40] "Comoros"                                                         
+ [41] "Cabo Verde (Cape Verde)"                                         
+ [42] "Costa Rica"                                                      
+ [43] "Cuba"                                                            
+ [44] "Cyprus"                                                          
+ [45] "Czechia (Czech Republic)"                                        
+ [46] "Germany"                                                         
+ [47] "Djibouti"                                                        
+ [48] "Dominica"                                                        
+ [49] "Denmark"                                                         
+ [50] "Dominican Republic"                                              
+ [51] "Algeria"                                                         
+ [52] "Ecuador"                                                         
+ [53] "Egypt"                                                           
+ [54] "Eritrea"                                                         
+ [55] "Spain"                                                           
+ [56] "Estonia"                                                         
+ [57] "Ethiopia"                                                        
+ [58] "Finland"                                                         
+ [59] "Fiji"                                                            
+ [60] "France"                                                          
+ [61] "Micronesia (Federated States of Micronesia)"                     
+ [62] "Gabon"                                                           
+ [63] "United Kingdom of Great Britain and Northern Ireland (UK)"       
+ [64] "Georgia"                                                         
+ [65] "Ghana"                                                           
+ [66] "Guinea"                                                          
+ [67] "Gambia (Republic of The)"                                        
+ [68] "Guinea Bissau"                                                   
+ [69] "Equatorial Guinea"                                               
+ [70] "Greece"                                                          
+ [71] "Grenada"                                                         
+ [72] "Guatemala"                                                       
+ [73] "Guyana"                                                          
+ [74] "Honduras"                                                        
+ [75] "Croatia"                                                         
+ [76] "Haiti"                                                           
+ [77] "Hungary"                                                         
+ [78] "Indonesia"                                                       
+ [79] "India"                                                           
+ [80] "Ireland"                                                         
+ [81] "Iran (Islamic Republic of)"                                      
+ [82] "Iraq"                                                            
+ [83] "Iceland"                                                         
+ [84] "Israel"                                                          
+ [85] "Italy"                                                           
+ [86] "Jamaica"                                                         
+ [87] "Jordan"                                                          
+ [88] "Japan"                                                           
+ [89] "Kazakhstan"                                                      
+ [90] "Kenya"                                                           
+ [91] "Kyrgyzstan"                                                      
+ [92] "Cambodia"                                                        
+ [93] NA                                                                
+ [94] "Saint Kitts and Nevis (St Kitts and Nevis)"                      
+ [95] "Republic of Korea (South Korea; ROK)"                            
+ [96] "Kuwait"                                                          
+ [97] "Lao People's Democratic Republic (Laos; Lao PDR)"                
+ [98] "Lebanon"                                                         
+ [99] "Liberia"                                                         
+[100] "Libya"                                                           
+[101] "Saint Lucia (St Lucia)"                                          
+[102] "Sri Lanka"                                                       
+[103] "Lesotho"                                                         
+[104] "Lithuania"                                                       
+[105] "Luxembourg"                                                      
+[106] "Latvia"                                                          
+[107] "Morocco"                                                         
+[108] "Monaco"                                                          
+[109] "Republic of Moldova"                                             
+[110] "Madagascar"                                                      
+[111] "Maldives"                                                        
+[112] "Mexico"                                                          
+[113] "Marshall Islands"                                                
+[114] "North Macedonia (Macedonia; FYROM)"                              
+[115] "Mali"                                                            
+[116] "Malta"                                                           
+[117] "Myanmar (Burma)"                                                 
+[118] "Montenegro"                                                      
+[119] "Mongolia"                                                        
+[120] "Mozambique"                                                      
+[121] "Mauritania"                                                      
+[122] "Mauritius"                                                       
+[123] "Malawi"                                                          
+[124] "Malaysia"                                                        
+[125] "Namibia"                                                         
+[126] "Niger"                                                           
+[127] "Nigeria"                                                         
+[128] "Nicaragua"                                                       
+[129] "Niue"                                                            
+[130] "Netherlands"                                                     
+[131] "Norway"                                                          
+[132] "Nepal"                                                           
+[133] "Nauru"                                                           
+[134] "New Zealand"                                                     
+[135] "Oman"                                                            
+[136] "Pakistan"                                                        
+[137] "Panama"                                                          
+[138] "Peru"                                                            
+[139] "Philippines"                                                     
+[140] "Palau"                                                           
+[141] "Papua New Guinea"                                                
+[142] "Poland"                                                          
+[143] "Democratic People's Republic of Korea (DPRK)"                    
+[144] "Portugal"                                                        
+[145] "Paraguay"                                                        
+[146] "Qatar"                                                           
+[147] "Romania"                                                         
+[148] "Russian Federation"                                              
+[149] "Rwanda"                                                          
+[150] "Saudi Arabia"                                                    
+[151] "Sudan"                                                           
+[152] "Senegal"                                                         
+[153] "Singapore"                                                       
+[154] "Solomon Islands"                                                 
+[155] "Sierra Leone"                                                    
+[156] "El Salvador"                                                     
+[157] "San Marino"                                                      
+[158] "Somalia"                                                         
+[159] "Serbia"                                                          
+[160] "South Sudan"                                                     
+[161] "S\xe3o Tom\xe9 and Pr\xedncipe"                                  
+[162] "Suriname"                                                        
+[163] "Slovakia"                                                        
+[164] "Slovenia"                                                        
+[165] "Sweden"                                                          
+[166] "Eswatini (Swaziland)"                                            
+[167] "Seychelles"                                                      
+[168] "Syrian Arab Republic (Syria)"                                    
+[169] "Chad"                                                            
+[170] "Togo"                                                            
+[171] "Thailand"                                                        
+[172] "Tajikistan"                                                      
+[173] "Turkmenistan"                                                    
+[174] "Timor-Leste"                                                     
+[175] NA                                                                
+[176] "Trinidad and Tobago"                                             
+[177] "Tunisia"                                                         
+[178] "T\xfcrkiye (Turkey)"                                             
+[179] "Tuvalu"                                                          
+[180] "United Republic of Tanzania"                                     
+[181] "Uganda"                                                          
+[182] "Ukraine"                                                         
+[183] "Uruguay"                                                         
+[184] "United States of America (USA)"                                  
+[185] "Uzbekistan"                                                      
+[186] "Saint Vincent and the Grenadines (St Vincent and the Grenadines)"
+[187] "Venezuela (Bolivarian Republic of)"                              
+[188] "Viet Nam (Vietnam)"                                              
+[189] "Vanuatu"                                                         
+[190] "Samoa"                                                           
+[191] "Yemen"                                                           
+[192] "South Africa"                                                    
+[193] "Zambia"                                                          
+[194] "Zimbabwe"                                                        </code></pre>
 </div>
-<p>Todo: add screenshots of readme files</p>
-</section>
-<section id="reproducable-code" class="slide level2">
-<h2>Reproducable code</h2>
-<div>
-<ul>
-<li class="fragment">We won’t cover it in detail in this workshop, but R is a great way to ensure that your code, and your results, are well documented and reproducible</li>
-<li class="fragment">Use a single version of a clean dataset</li>
-<li class="fragment">Document and version your data cleaning decisions</li>
-<li class="fragment">Store your code, results, &amp; documentation in one spot</li>
-</ul>
 </div>
 </section>
-<section id="reproducable-code-1" class="slide level2">
-<h2>Reproducable code</h2>
-<p>Todo: add screenshot of RMarkdown</p>
-</section>
-<section id="reproducable-code-2" class="slide level2">
-<h2>Reproducable code</h2>
-<p>Todo: add screenshot of github repo</p>
-</section>
-<section id="goals-for-today-6" class="slide level2">
-<h2>Goals for today</h2>
-<ul>
-<li><strong>Understand</strong> the foundations of data management</li>
-<li><strong>Identify</strong> some useful global health and health diplomacy datasets</li>
-<li><strong>Load and clean</strong> your first dataset in R
-<ul>
-<li>explore a new dataset while learning about <strong>data structures</strong></li>
-<li>do some basic <strong>data cleaning</strong></li>
-</ul></li>
-<li><strong>Learn best practices</strong> for documentation
-<ul>
-<li>documenting your code</li>
-<li>data dictionaries</li>
-<li>doing reproducible research in R</li>
-</ul></li>
-<li><strong>Get familiar</strong> with Github (by writing poems about unicorns)</li>
-</ul>
-</section></section>
-<section>
-<section id="github" class="title-slide slide level1 center">
-<h1>Github</h1>
-
-</section>
-<section id="github-1" class="slide level2">
-<h2>Github</h2>
-<p>Todo: add brief blurb about github</p>
-</section>
-<section id="github-for-poets" class="slide level2">
-<h2>Github for poets</h2>
-<p>Todo: add link to github for poets</p>
-</section>
-<section id="your-turn" class="slide level2">
-<h2>Your turn!</h2>
-<p>Create a github account</p>
-</section>
-<section id="your-turn-1" class="slide level2">
-<h2>Your turn!</h2>
-<p>Create a github repo for your work in this class</p>
+<section id="table-summaries" class="slide level2">
+<h2>Table summaries</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">table</span>(day2<span class="sc">$</span>who_region)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+              African Region Eastern Mediterranean Region 
+                          47                           21 
+             European Region       Region of the Americas 
+                          53                           35 
+      South-East Asia Region       Western Pacific Region 
+                          11                           27 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">table</span>(day2<span class="sc">$</span>measles_policy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+                                                                                                                                      No data 
+                                                                                                                                            1 
+There is a childhood vaccination mandate for at least one vaccination in this country, but vaccination against this disease is not mandated.  
+                                                                                                                                           18 
+                                                                                                      Vaccination for Measles is not required 
+                                                                                                                                           91 
+                                                                                                          Vaccination for Measles is required 
+                                                                                                                                           81 </code></pre>
+</div>
+</div>
 <div class="footer footer-default">
 
 </div>
-</section></section>
+</section>
     </div>
   </div>
 
@@ -983,7 +679,6 @@ Data dictionaries come in lots of formats and flavors. <br><br>Work with the typ
   <script src="day2_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
   <script src="day2_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="day2_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="day2_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
   <script src="day2_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -999,14 +694,13 @@ Data dictionaries come in lots of formats and flavors. <br><br>Work with the typ
       // https://revealjs.com/config/
       Reveal.initialize({
 'controlsAuto': true,
-'previewLinksAuto': true,
+'previewLinksAuto': false,
 'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'chalkboard': {"buttons":false},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -1027,7 +721,7 @@ Data dictionaries come in lots of formats and flavors. <br><br>Work with the typ
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: 'c/t',
+        slideNumber: false,
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
@@ -1177,7 +871,7 @@ Data dictionaries come in lots of formats and flavors. <br><br>Work with the typ
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
 
           RevealMath,
           RevealNotes,
@@ -1186,6 +880,44 @@ Data dictionaries come in lots of formats and flavors. <br><br>Work with the typ
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

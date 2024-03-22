@@ -1,0 +1,559 @@
+---
+title: "Data Science Basics in R, Day 2"
+subtitle: "Data Management and Version Control"
+from: revealjs
+format:
+  revealjs: 
+    transition: none
+    auto-stretch: true
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    theme: seaneffquarto.scss
+    df-print: paged
+---
+
+## Reflecting on yesterday
+
+Please spend two minutes reflecting on:
+
+::: {.incremental}
+- One thing you learned
+- One thing you found frustrating
+- One thing you're excited about
+- One thing you'd like to learn
+::: 
+
+## Reflecting on yesterday
+
+Would anyone like to share?
+
+## Goals for today
+
+::: {.incremental}
+- **Understand** the foundations of data management
+- **Identify** some useful global health and health diplomacy datasets
+- **Load and clean** your first dataset in R
+  - explore a new dataset while learning about **data structures**
+  - do some basic **data cleaning**
+- **Learn best practices** for documentation
+  - documenting your code
+  - data dictionaries
+  - doing reproducible research in R
+- **Get familiar** with Github (by writing poems about unicorns)
+:::
+
+## Goals for today
+
+- **Understand** the foundations of data management
+- <span style="color:#DBDBDB;">**Identify** some useful global health and health diplomacy datasets</span>
+- <span style="color:#DBDBDB;">**Load and clean** your first dataset in R</span>
+  - <span style="color:#DBDBDB;">explore a new dataset while learning about **data structures**</span>
+  - <span style="color:#DBDBDB;">do some basic **data cleaning**</span>
+- <span style="color:#DBDBDB;">**Learn best practices** for documentation</span>
+  - <span style="color:#DBDBDB;">documenting your code</span>
+  - <span style="color:#DBDBDB;">data dictionaries</span>
+  - <span style="color:#DBDBDB;">doing reproducible research in R</span>
+- <span style="color:#DBDBDB;">**Get familiar** with Github (by writing poems about unicorns)</span>
+
+# What is data management?
+
+## Data management
+
+::: {layout-ncol=2}
+::: {.incremental}
+- Data management is the practice of  creating, maintaining, documenting, and securing data.
+- It involves all stages of data collection, use, and storage.
+- In this course, we'll focus mainly on **data access and usage**
+:::
+![](images/data-management-pie-chart-tall.png){height=4in fig-align="center"}
+::: 
+::: footer
+[Image from Indiana University Library](https://datamanagement.iu.edu/)
+:::
+
+## Data access
+
+::: {.incremental}
+- Where do your data "live"?
+  - How can you access them?
+  - Who else can access them?
+  - For how long will they be available?
+- What format are they in?
+- Where is the documentation?
+- How, and with whom, can you share data, code, and/or results?
+:::
+
+## Data cleaning
+
+::: {.incremental}
+- To use your data, you first have to "clean" them
+- Data cleaning tasks depending on your specific data:
+  - Identifying and addressing missing values
+  - Fixing “weird” characters
+  - Combining multiple datasets
+  - Deduplicating lists
+  - Identifying other discrepancies…
+:::
+
+
+## Goals for today
+
+- **Understand** the foundations of data management
+- **Identify** some useful global health and health diplomacy datasets
+- <span style="color:#DBDBDB;">**Load and clean** your first dataset in R</span>
+  - <span style="color:#DBDBDB;">explore a new dataset while learning about **data structures**</span>
+  - <span style="color:#DBDBDB;">do some basic **data cleaning**</span>
+- <span style="color:#DBDBDB;">**Learn best practices** for documentation</span>
+  - <span style="color:#DBDBDB;">documenting your code</span>
+  - <span style="color:#DBDBDB;">data dictionaries</span>
+  - <span style="color:#DBDBDB;">doing reproducible research in R</span>
+- <span style="color:#DBDBDB;">**Get familiar** with Github (by writing poems about unicorns)</span>
+
+
+# Some useful and interesting sources of data
+
+## WHO Global Health Observatory
+
+![](images/who_gho.png){fig-align="center"}
+
+::: footer
+[www.who.int/data/gho](https://www.who.int/data/gho)
+:::
+
+## OECD Health Data Repository
+
+![](images/oecd_health_data.png){fig-align="center"}
+
+::: footer
+[data.oecd.org/health.htm](https://data.oecd.org/health.htm)
+:::
+
+## OCHA Humanitarian Data Exchange
+
+![](images/ocha_hdx.png){fig-align="center"}
+
+::: footer
+[data.humdata.org](https://data.humdata.org/)
+:::
+
+## Demographic and Health Surveys
+
+![](images/dhs_surveys.png){fig-align="center"}
+
+::: footer
+[dhsprogram.com](https://dhsprogram.com/)
+:::
+
+## UN SDG Global Database
+
+![](images/un_sdg_data.png){fig-align="center"}
+
+::: footer
+[unstats.un.org/sdgs/dataportal](https://unstats.un.org/sdgs/dataportal)
+:::
+
+## UNDP Data Futures Platform
+
+![](images/undp_data_futures.png){fig-align="center"}
+
+[data.undp.org](https://data.undp.org/)
+
+## IPUMS
+
+![](images/ipums_data.png){fig-align="center"}
+
+::: footer
+[www.idhsdata.org/idhs/index.shtml](https://www.idhsdata.org/idhs/index.shtml)
+:::
+
+## Let's chat
+
+What other datasets have you used for work or school? 
+
+## Goals for today
+
+- **Understand** the foundations of data management
+- **Identify** some useful global health and health diplomacy datasets
+- **Load and clean** your first dataset in R
+  - explore a new dataset while learning about **data structures**
+  - do some basic **data cleaning**
+- <span style="color:#DBDBDB;">**Learn best practices** for documentation</span>
+  - <span style="color:#DBDBDB;">documenting your code</span>
+  - <span style="color:#DBDBDB;">data dictionaries</span>
+  - <span style="color:#DBDBDB;">doing reproducible research in R</span>
+- <span style="color:#DBDBDB;">**Get familiar** with Github (by writing poems about unicorns)</span>
+
+# Loading datasets in R
+
+## Raw data files
+
+::: {.incremental}
+We’re going to talk about structured, flat files today, but there are many types of data that R can work with!
+
+- **Excel:** proprietary file format (Microsoft), but common (.xls files)
+- **CSV:** comma-separated value files
+- **TSV:** tab-separated value files
+- **RData:** data saved from within your R environment
+- **SPSS or SAS:** data from other statistical programming tools
+- **Shapefiles:** geospatial or mapping data
+
+::: 
+
+## Functions to load data
+
+::: {.incremental}
+- **Excel:** read_excel("countries.xls")
+- **CSV:** read.csv("countries.csv")
+- **TSV:** read.delim("countries.tsv")
+- **RData:** load("countries.RData")
+- **SPSS or SAS:** use the 'foreign' package
+- **Shapefiles:** use the 'sf' or other geopsatial data packages
+::: 
+
+## A note on Excel files and libraries in R
+
+::: {.incremental}
+- To use the function **read_excel()**, we need to have installed the package **readxl** into R. 
+- You (usually) only need to install it once, and then you will need to re-load it every new R session
+  - **Installing:** install.packages("readxl")
+  - **Loading:** library("readxl")
+- If you are working with RStudio and using the workflow in the next slides, you will automatically be prompted to do these things if they are required
+::: 
+
+## Loading data with RStudio
+
+![](images/loading_data_import.jpg){fig-align="center"}
+
+## Loading data with RStudio
+
+![](images/loading_data_select_filetype.jpg){fig-align="center"}
+
+## Loading data with RStudio
+
+![](images/load_data_select_file.jpg){fig-align="center"}
+
+## Loading data with RStudio
+
+![](images/load_data_basic_format.jpg){fig-align="center"}
+
+
+## Loading data with RStudio
+
+![](images/load_data_specify_heading.jpg){fig-align="center"}
+
+## Loading data with RStudio
+
+![](images/load_data_import.jpg){fig-align="center"}
+
+## Loading data with RStudio
+
+![](images/load_data_view.jpg){fig-align="center"}
+
+## Loading data with RStudio
+
+![](images/load_data_write_delim.jpg){fig-align="center"}
+## Loading data with RStudio
+
+![](images/load_data_view_code.jpg){fig-align="center"}
+
+## Loading data with RStudio
+
+![](images/load_data_in_workspace.jpg){fig-align="center"}
+
+## Workshop dataset
+
+- The Sustainable Development Goals (SDGs) are a shared plan to end extreme poverty, reduce inequality, and protect the planet
+- Adopted by 193 countries in 2015 based on UN negotiations 
+
+::: footer
+[unfoundation.org/what-we-do/issues/sustainable-development-goals/](https://unfoundation.org/what-we-do/issues/sustainable-development-goals/)
+:::
+
+
+## Workshop dataset
+
+![](images/unsdg.png){fig-align="center"}
+
+## Now you try!
+<center>
+<br><br><br>
+Spend 5 minutes reading about the UN SDGs.
+<br><br><br>
+[https://sdgs.un.org/goals](sdgs.un.org/goals)
+</center>
+
+
+## Workshop dataset
+
+**Data points:** maternal and infant health
+
+::: {.incremental}
+- Maternal mortality ratio
+- Proportion of births attended by skilled health personnel (%)
+- Infant mortality rate (deaths per 1,000 live births)
+::: 
+
+## Workshop dataset
+
+**Data points:** infectious disease
+
+::: {.incremental}
+- Number of new HIV infections per 1,000 uninfected population
+- Tuberculosis incidence per 100,000 population
+- Malaria incidence per 1,000 population
+::: 
+
+## Workshop dataset
+
+**Data points:** universal health coverage
+
+::: {.incremental}
+- Coverage of essential health services
+- Proportion of population with large expenditures on health
+::: 
+
+## Workshop dataset
+
+**Data points:** environmental health
+
+::: {.incremental}
+- Mortality rate attributed to household and ambient air pollution
+- Mortality rate attributed to unsafe water, unsafe sanitation and lack of hygiene
+::: 
+
+## Workshop dataset
+
+![](images/un_sdg_data.png){fig-align="center"}
+
+## Workshop dataset
+
+![](images/unsdg_data_download.png){fig-align="center"}
+
+## Workshop dataset
+
+todo: bitly link for workshop dataset
+
+## Now you try!
+
+::: {.incremental}
+
+- TODO
+- Go to bit.ly/XXX
+- Copy URL
+- Read data into R
+  - code will look something like this: read.delim("https://raw.githubusercontent.com/seaneff/data-science-basics-2023/main/reference-dataset/countries.tsv", fileEncoding = "Latin1")
+:::
+
+## 15 minute break
+
+## Goals for today
+
+- **Understand** the foundations of data management
+- **Identify** some useful global health and health diplomacy datasets
+- **Load and clean** your first dataset in R
+  - explore a new dataset while learning about **data structures**
+  - do some basic **data cleaning**
+- <span style="color:#DBDBDB;">**Learn best practices** for documentation</span>
+  - <span style="color:#DBDBDB;">documenting your code</span>
+  - <span style="color:#DBDBDB;">data dictionaries</span>
+  - <span style="color:#DBDBDB;">doing reproducible research in R</span>
+- <span style="color:#DBDBDB;">**Get familiar** with Github (by writing poems about unicorns)</span>
+
+# Data structures in R
+
+## Data structures in R
+
+Yesterday we discussed vectors, today, we’re going to talk about other types of data structures in R. 
+There are a few different types, but the main ones we’ll talk about this week are:
+
+- **vector:** a group of observations of one type (e.g., country names)
+- **data frame:** group of observations with different types 
+
+## Vectors
+
+![](images/unsdg_vector.png){fig-align="center"}
+
+## Data frames
+
+![](images/unsdg_dataframe.png){fig-align="center"}
+
+## Now you try!
+
+::: {.incremental}
+- Find two examples of character vectors
+- Find two examples of numeric vectors
+- Can you remember a data type that we don't see here?
+  - we don't have any logical vectors (yet)
+::: 
+
+# Exploring your dataset
+
+## Print the top rows of a dataset
+
+Todo: head
+
+## See your entire dataset in RStudio
+
+Todo: View
+
+## Dimensions and field names
+
+## Todo, dim and names
+
+## Make basic tables
+
+Todo: count table
+
+## Check for missing values
+
+Todo: table with missing values
+
+## Accessing subsets of data
+
+Todo: $ to see vectors
+
+## Ask questions of your data
+
+Todo: summary
+
+## Now you try!
+
+::: {.incremental}
+- Take five minutes to explore this dataset
+- How many rows are there?
+- How many columns are there?
+- Can you use “$” to select a vector?
+::: 
+
+## Goals for today
+
+- **Understand** the foundations of data management
+- **Identify** some useful global health and health diplomacy datasets
+- **Load and clean** your first dataset in R
+  - explore a new dataset while learning about **data structures**
+  - do some basic **data cleaning**
+- **Learn best practices** for documentation
+  - documenting your code
+  - data dictionaries
+  - doing reproducible research in R
+- <span style="color:#DBDBDB;">**Get familiar** with Github (by writing poems about unicorns)</span>
+
+# Documenting your data, code, and results
+
+## Documentation
+
+::: {.incremental}
+
+- Different materials, and different types of analysis benefit from different types of documentation.
+- **Datasets:** Data dictionaries, rules to generate datasets
+- **Code:** Comments in code, README files
+- **Analysis/Results:** Methods documentation, in a word document, a google document, or in github
+::: 
+
+## Documenting data: data dictionaries
+
+::: {.incremental}
+- The most common way to document a dataset is a data dictionary. At a minimum, data dictionaries:
+  - Define the columns (“fields”) of a dataset
+  - Specify what a row corresponds to (e.g., one country)
+  - Give context about what the data are, including where they come from and how often they are updated
+::: 
+
+## Documenting data: data dictionaries
+
+<center>
+
+Data dictionaries come in lots of formats and flavors. <br><br>Work with the type that makes the most sense for who you are trying to communicate with. 
+</center>
+## Documenting data: data dictionaries
+
+Todo: add screenshots of data dictionaries
+
+## Documenting data: data dictionaries
+
+Todo: add bitly link to course data dictionary
+
+## Documenting code: comments
+
+::: {.incremental}
+- As we start writing code, it’s helpful to leave “notes” for yourself and others reminding yourself what you did
+- Comments can also help break code into sections
+
+![](images/xkcd_code_quality.png){fig-align="center"}
+:::
+
+## Documenting code: comments
+
+Todo: add screenshot of comments in R
+
+## Documenting code: README files
+
+::: {.incremental}
+- README files summarize the contents of a specific folder 
+- Common in github, rendered using Markdown
+:::
+
+Todo: add screenshots of readme files
+
+## Reproducable code
+
+::: {.incremental}
+- We won’t cover it in detail in this workshop, but R is a great way to ensure that your code, and your results, are well documented and reproducible
+- Use a single version of a clean dataset
+- Document and version your data cleaning decisions
+- Store your code, results, & documentation in one spot
+::: 
+
+## Reproducable code
+
+Todo: add screenshot of RMarkdown
+
+## Reproducable code
+
+Todo: add screenshot of github repo
+
+## Goals for today
+
+- **Understand** the foundations of data management
+- **Identify** some useful global health and health diplomacy datasets
+- **Load and clean** your first dataset in R
+  - explore a new dataset while learning about **data structures**
+  - do some basic **data cleaning**
+- **Learn best practices** for documentation
+  - documenting your code
+  - data dictionaries
+  - doing reproducible research in R
+- **Get familiar** with Github (by writing poems about unicorns)
+
+# Github
+
+## Github
+
+Todo: add brief blurb about github
+
+## Github for poets
+
+Todo: add link to github for poets
+
+## Your turn!
+
+Create a github account
+
+## Your turn!
+
+Create a github repo for your work in this class
+
+
+
+
+
+
+
+
+
+
+
+
+
