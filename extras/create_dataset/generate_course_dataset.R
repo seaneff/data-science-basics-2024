@@ -23,9 +23,10 @@ library(readr) ## to use the convenience function write_delim
 #############################################
 
 ## read in vaccine dataset from github
-policies <- read.csv("https://raw.githubusercontent.com/seaneff/data-science-basics-2024/main/course-datasets/measles_vaccines.csv?token=GHSAT0AAAAAACPAKVTERVFTNJNORSTRGIIOZP6CUKA")
+## note: token changes, sometimes need to update
+policies <- read.csv("https://raw.githubusercontent.com/seaneff/data-science-basics-2024/main/course-datasets/measles_vaccines.csv?token=GHSAT0AAAAAACPAKVTEIVJEYEQOZKS6VBFUZQHCVKA")
 
-## data downloaded from World Bank on March 2, 2024
+## data downloaded from World Bank on March 29, 2024
 ## https://databank.worldbank.org/source/population-estimates-and-projections#
 ## data for the year 2024
 population <- read_excel("extras/create_dataset/inputs/population_size.xlsx")
@@ -44,34 +45,35 @@ measles_cases <- read_excel("extras/create_dataset/inputs/measlescasesbycountryb
 income_groups <- read_excel("extras/create_dataset/inputs/income_groups.xlsx", sheet = "List of economies")
 
 ## regions
-regions <- read_excel("extras/create_dataset/inputs/income_groups.xlsx", sheet = "Groups")
+## ignore weird fifth column
+regions <- read_excel("extras/create_dataset/inputs/income_groups.xlsx", sheet = "Groups")[,c(1:4)]
 
 #######################################################################
 ## Process World Bank population count data ###########################
 #######################################################################
 
 ## rename select values
-names(population) <- c("country", "iso_3166", "metric", "metric_code", "value_2021")
+names(population) <- c("country", "iso_3166", "metric", "metric_code", "value_2024")
 
 ## long to wide dataset
 population_wide <- population %>% 
   filter(complete.cases(metric)) %>%
-  filter(metric != "Age dependency ratio (% of working-age population)") %>%
-  select(metric, iso_3166, value_2021) %>%
+  filter(metric %in% c("Population, total",
+                       "Rural population (% of total population)")) %>%
+  select(metric, iso_3166, value_2024) %>%
   filter(iso_3166 != "") %>%
   pivot_wider(id_cols = iso_3166,
               names_from = metric,
-              values_from = value_2021)
+              values_from = value_2024)
 
 names(population_wide)[which(names(population_wide) == "Rural population (% of total population)")] <- "pct_rural"
-names(population_wide)[which(names(population_wide) == "Urban population (% of total population)")] <- "pct_urban"
 names(population_wide)[which(names(population_wide) == "Population, total")] <- "total_population"
 
 #######################################################################
 ## Process income group data ##########################################
 #######################################################################
 
-names(income_groups)[which(names(income_groups) == "income_group_2021")] <- "income_group"
+names(income_groups)[which(names(income_groups) == "Income group")] <- "income_group"
 
 income_groups$income_group <- recode(income_groups$income_group, 
                         "L" = "Low income",
@@ -79,13 +81,12 @@ income_groups$income_group <- recode(income_groups$income_group,
                         "UM" = "Upper middle income",
                         "H" = "High income")
 
-
 selected_regions <- regions %>%
-  filter(regions$group %in% c("East Asia & Pacific", "Europe & Central Asia",
+  filter(regions$GroupName %in% c("East Asia & Pacific", "Europe & Central Asia",
                      "Latin America & Caribbean", "Middle East & North Africa",
                      "North America", "South Asia", "Sub-Saharan Africa"))
 
-names(selected_regions)[which(names(selected_regions) == "group")] <- "world_bank_region"
+names(selected_regions)[which(names(selected_regions) == "GroupName")] <- "world_bank_region"
 
 #######################################################################
 ## Process measles caseload data ######################################
@@ -103,12 +104,10 @@ names(measles_long) <- c("region", "iso_code", "country", "year", "month_name", 
 ## Generate countries dataset ###############
 #############################################
 
-## Todo: disambiguate ISO codes and match these up
-countries <- merge(policies[,c(2,3)], who_membership[which(who_membership$who_member_state == TRUE),], by.x = "iso_code", by.y = "iso_3166", all.x = TRUE, all.y = TRUE)
+countries <- merge(policies[,c(2,3)], who_membership[which(who_membership$who_member_state == TRUE),], by.x = "iso_code", by.y = "iso_3166", all.x = FALSE, all.y = TRUE)
 countries <- merge(countries, population_wide, by.x = "iso_code", by.y = "iso_3166", all.x = TRUE, all.y = FALSE)
-
-countries <- merge(countries, income_groups[,c(1,3)], by.x = "iso_code", by.y = "iso_3166", all.x = TRUE, all.y = FALSE)
-countries <- merge(countries, selected_regions[,c(2,3)], by.x = "iso_code", by.y = "iso_3166", all.x = TRUE, all.y = FALSE)
+countries <- merge(countries, income_groups[,c(2,4)], by.x = "iso_code", by.y = "Code", all.x = TRUE, all.y = FALSE)
+countries <- merge(countries, selected_regions[,c(2,3)], by.x = "iso_code", by.y = "CountryCode", all.x = TRUE, all.y = FALSE)
 
 #############################################
 ## Export datasets ##########################
