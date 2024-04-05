@@ -14,7 +14,7 @@
 ## example: install.packages("dplyr")
 
 ## Load libraries
-library(dplyr) ## reshape, reformat, recode data: https://dplyr.tidyverse.org/reference/recode.html
+library(tidyr) ## reshape, reformat, recode data: https://dplyr.tidyverse.org/reference/recode.html
 library(readxl) ## to work with Excel files
 library(readr) ## to use the convenience function write_delim
 
@@ -22,9 +22,9 @@ library(readr) ## to use the convenience function write_delim
 ## Read in data #############################
 #############################################
 
-## read in vaccine dataset from github
-## note: token changes, sometimes need to update
-policies <- read.csv("https://raw.githubusercontent.com/seaneff/data-science-basics-2024/main/course-datasets/measles_vaccines.csv?token=GHSAT0AAAAAACPAKVTEIVJEYEQOZKS6VBFUZQHCVKA")
+## read in vaccine dataset already created for course
+## based on Ciara's work
+policies <- read.csv("extras/create_dataset/inputs/measles_policies.csv", fileEncoding = "Latin1")
 
 ## data downloaded from World Bank on March 29, 2024
 ## https://databank.worldbank.org/source/population-estimates-and-projections#
@@ -98,13 +98,14 @@ measles_long <- measles_cases %>%
                values_to = "cases") %>%
   mutate(date = as.Date(paste(month, "01,", Year), format = "%B %d, %Y")) 
 
-names(measles_long) <- c("region", "iso_code", "country", "year", "month_name", "cases", "month")
+names(measles_long) <- c("region", "iso_code", "country_name", "year", "month_name", "measles_cases", "month")
 
 #############################################
 ## Generate countries dataset ###############
 #############################################
 
-countries <- merge(policies[,c(2,3)], who_membership[which(who_membership$who_member_state == TRUE),], by.x = "iso_code", by.y = "iso_3166", all.x = FALSE, all.y = TRUE)
+countries <- merge(base, policies[,c(2,3)], by.x = "iso_code", by.y = "iso_code", all.x = FALSE, all.y = TRUE)
+countries <- merge(countries, who_membership[which(who_membership$who_member_state == TRUE),], by.x = "iso_code", by.y = "iso_3166", all.x = FALSE, all.y = TRUE)
 countries <- merge(countries, population_wide, by.x = "iso_code", by.y = "iso_3166", all.x = TRUE, all.y = FALSE)
 countries <- merge(countries, income_groups[,c(2,4)], by.x = "iso_code", by.y = "Code", all.x = TRUE, all.y = FALSE)
 countries <- merge(countries, selected_regions[,c(2,3)], by.x = "iso_code", by.y = "CountryCode", all.x = TRUE, all.y = FALSE)
@@ -113,15 +114,15 @@ countries <- merge(countries, selected_regions[,c(2,3)], by.x = "iso_code", by.y
 ## Export datasets ##########################
 #############################################
 
-write.table(countries,
+write.table(countries[,c(1,2,5,9,8,6,7,3)],
             sep = "\t",
-            file = "course-datasets/countries.tsv", 
+            file = "course-datasets/measles_policies.tsv", 
             na = "NA",
             row.names = FALSE,
             fileEncoding = "Latin1")
 
 
-write.table(measles_long[,c(3,2,7,6)],
+write.table(measles_long[,c(2,3,7,6)],
             sep = "\t",
             file = "course-datasets/measles_cases.tsv", 
             na = "NA",
