@@ -48,6 +48,10 @@ income_groups <- read_excel("extras/create_dataset/inputs/income_groups.xlsx", s
 ## ignore weird fifth column
 regions <- read_excel("extras/create_dataset/inputs/income_groups.xlsx", sheet = "Groups")[,c(1:4)]
 
+## vaccine coverage (MCV1) from WHO
+coverage <- read.csv("extras/create_dataset/inputs/vaccine_coverage.csv")
+
+
 #######################################################################
 ## Process World Bank population count data ###########################
 #######################################################################
@@ -100,6 +104,12 @@ measles_long <- measles_cases %>%
 
 names(measles_long) <- c("region", "iso_code", "country_name", "year", "month_name", "measles_cases", "month")
 
+#####################################################################
+## Rename some values in the vaccine coverage dataset ###############
+#####################################################################
+
+names(coverage)[which(names(coverage) == "FactValueNumeric")] <- "mcv1_coverage"
+
 #############################################
 ## Generate countries dataset ###############
 #############################################
@@ -109,6 +119,8 @@ countries <- merge(countries, who_membership[which(who_membership$who_member_sta
 countries <- merge(countries, population_wide, by.x = "iso_code", by.y = "iso_3166", all.x = TRUE, all.y = FALSE)
 countries <- merge(countries, income_groups[,c(2,4)], by.x = "iso_code", by.y = "Code", all.x = TRUE, all.y = FALSE)
 countries <- merge(countries, selected_regions[,c(2,3)], by.x = "iso_code", by.y = "CountryCode", all.x = TRUE, all.y = FALSE)
+countries <- merge(countries, coverage[which(coverage$IsLatestYear == "true" & coverage$Location.type == "Country"),c(7, 24)], 
+                   by.x = "iso_code", by.y = "SpatialDimValueCode", all.x = TRUE, all.y = FALSE)
 
 #############################################
 ## Export datasets ##########################
@@ -116,7 +128,7 @@ countries <- merge(countries, selected_regions[,c(2,3)], by.x = "iso_code", by.y
 
 write.table(countries[,c(1,2,5,9,8,6,7,3)],
             sep = "\t",
-            file = "course-datasets/measles_policies.tsv", 
+            file = "course-datasets/countries.tsv", 
             na = "NA",
             row.names = FALSE,
             fileEncoding = "Latin1")
