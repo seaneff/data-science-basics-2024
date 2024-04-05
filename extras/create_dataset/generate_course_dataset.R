@@ -126,7 +126,7 @@ countries <- merge(countries, coverage[which(coverage$IsLatestYear == "true" & c
 ## Export datasets ##########################
 #############################################
 
-write.table(countries[,c(1,2,5,9,8,6,7,3)],
+write.table(countries[,c(1,2,5,9,8,6,7,10,3)],
             sep = "\t",
             file = "course-datasets/countries.tsv", 
             na = "NA",
