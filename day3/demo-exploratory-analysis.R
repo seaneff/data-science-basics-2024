@@ -13,7 +13,7 @@ library(dplyr)
 ### Read in course datasets ###########################################
 #######################################################################
 
-countries <- read.delim("https://raw.githubusercontent.com/seaneff/data-science-basics-2024/main/course-datasets/measles_policies.tsv")
+countries <- read.delim("https://raw.githubusercontent.com/seaneff/data-science-basics-2024/main/course-datasets/countries.tsv")
 cases <- read.delim("https://raw.githubusercontent.com/seaneff/data-science-basics-2024/main/course-datasets/measles_cases.tsv")
 
 #######################################################################
@@ -46,13 +46,12 @@ policies[which(is.na(countries$pct_rural)),]
 ### Measures of spread (standard deviation, interquartile range) ############################
 #############################################################################################
 
-## standard deviation, across countries reporting data, of proportion of total population who live in a rural area
-sd(countries$pct_rural) ## what happened here? missing values
-sd(countries$pct_rural, na.rm = TRUE) 
+## standard deviation, across countries reporting data, of MCV1 rates
+## MCV1 =  Measles-containing-vaccine first-dose (MCV1) immunization coverage among 1-year-olds (%) (WUENIC) 
+sd(countries$mcv1_coverage) 
 
-## interquartile range (IQR), across countries reporting data, of proportion of total population who live in a rural area
-quantile(countries$pct_rural) ## what happened here? missing values
-quantile(countries$pct_rural, na.rm = TRUE) 
+## interquartile range (IQR), across countries reporting data, of MVC1 rates
+quantile(countries$mcv1_coverage) 
 
 #############################################################################################
 ### Descriptive statistics: #################################################################
@@ -74,33 +73,43 @@ countries[which(countries$pct_rural > 75),]$country
 ########################################################################################################
 
 ## most basic possible histogram
-hist(policies$pct_rural)
+hist(countries$mcv1_coverage)
 
-## add axis labels and a title
-hist(policies$pct_rural,
-     ## xlab specifies the x axis label
-     xlab = "Percent of population",
+## full version of a histogram
+hist(countries$mcv1_coverage,
+     ## xlab specifies the x axis label, the \n here tells R to make a line break
+     xlab = "Percent of 1-year olds who have\nreceived at least one measles vaccine",
      ## ylab specifies the y axis label
-     ylab = "Count",
+     ylab = "Number of countries",
      ## main specifies the primary title, the \n here tells R to make a line break
-     main = "Proportion of population, per country\nwho feel safe walking alone after dark")
-
-## add a color
-hist(countries$safe_after_dark_overall,
-     xlab = "Percent of population",
-     ylab = "Count",
-     main = "Proportion of population, per country\nwho feel safe walking alone after dark",
-     ## col specifies the color that we should fill the bars with
-     col = "light blue")
-
-## specify the number of separate bars we want in the plot
-hist(countries$safe_after_dark_overall, 
-     xlab = "Percent of population",
-     ylab = "Count",
-     main = "Proportion of population, per country\nwho feel safe walking alone after dark",
+     main = "Distribution of country-level\nmeasles vaccination rates\nfor 1-year olds (MCV1)",
+     ## specify the color of the bars
      col = "light blue",
-     ## breaks specifies how many bins we want in our final plot
-     breaks = 10)
+     ## specify the number of bins
+     breaks = 20)
+
+########################################################################################################
+### Data visualization: ################################################################################
+### Boxplot (base R) ###################################################################################
+########################################################################################################
+
+## most basic possible boxplot
+boxplot(countries$mcv1_coverage)
+
+## full version of a boxplot
+
+
+
+boxplot(countries$mcv1_coverage,
+     ## xlab specifies the x axis label, the \n here tells R to make a line break
+     xlab = "Percent of 1-year olds who have\nreceived at least one measles vaccine",
+     ## ylab specifies the y axis label
+     ylab = "",
+     horizontal = TRUE,
+     ## main specifies the primary title, the \n here tells R to make a line break
+     main = "Distribution of country-level\nmeasles vaccination rates\nfor 1-year olds (MCV1)",
+     ## specify a fill color using a hex code 
+     col = "#77B0AA")
 
 ########################################################################################################
 ### Data visualization: ################################################################################
@@ -108,13 +117,13 @@ hist(countries$safe_after_dark_overall,
 ########################################################################################################
 
 ## most basic possible pie chart
-pie(table(sanctions$primary_sanctions_program))
+pie(table(countries$measles_vaccine_policy))
 
-## adjust the colors on the pie chart
-pie(table(sanctions$primary_sanctions_program),
-    col = c("#a6cee3", "#1f78b4", "#b2df8a", "#33a02c", "#fb9a99"),
+## full pie chart
+pie(table(countries$measles_vaccine_policy),
+    col = c("gray80","#256d85", "#f49431"),
     ## add a title
-    main = "Types of primary sanctions (DPRK)")
+    main = "Policy requirement for\nmeasles vaccination")
 
 ########################################################################################################
 ### Data visualization: ################################################################################
@@ -122,16 +131,17 @@ pie(table(sanctions$primary_sanctions_program),
 ########################################################################################################
 
 ## most basic possible scatterplot
-plot(x = countries$safe_after_dark_male,
-     y = countries$safe_after_dark_female)
+plot(x = countries$pct_rural,
+     y = countries$mcv1_coverage)
 
-## add labels and color
-plot(x = countries$safe_after_dark_male,
-     y = countries$safe_after_dark_female,
-     xlab = "Percent of males",
-     ylab = "Percent of females",
-     main = "Proportion of population, per country\nwho feel safe walking alone after dark\nby gender",
-     col = "salmon")
+## full scatterplot
+plot(x = countries$pct_rural,
+     y = countries$mcv1_coverage,
+     xlab = "Percent of population in rural areas",
+     ylab = "Vaccination rate (MCV1)",
+     main = "Measles vaccination rates\nfor 1-year olds (MCV1)\nvs. percent of population in rural areas",
+     col = "#8B4F80")
+
 
 ########################################################################################################
 ### Data visualization: ################################################################################

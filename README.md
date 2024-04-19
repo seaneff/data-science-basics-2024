@@ -56,22 +56,5 @@ If you have questions, feel free to reach out at sde31@georgetown.edu.
 -   Create a github repository to showcase your work
 -   Where and how to learn more
 
----
-
-### Other great resources
-
-
-|  Topic                                    |     Materials 
-|:--------------------------------------------:     |:-------------------------------------------------------------------------------------:|
-| R Basics: An Introduction to R (online book)      | [Intro2R Online Book](https://intro2r.com/)                                           |   
-| R Basics: An Introduction to R (online lectures)  | [Intro2R Website](https://alexd106.github.io/intro2R/lectures.html)                   | 
-| Real-world examples and talks                     | [Posit Youtube](https://www.youtube.com/@PositPBC/videos)                             |
-| Learning more: UNR R Workshop                     | [UNR R Workshop 2022](https://kevintshoemaker.github.io/R-Bootcamp/index.html#About)  |
-| Data visualization examples                       | [Data-to-Viz](https://www.data-to-viz.com/)                                           |
-| ggplot2                                           | [Posit ggplot2 cheatsheets](https://posit.co/resources/cheatsheets/)                  |
-| github                                            | [Github for poets](https://www.youtube.com/watch?v=BCQHnlnPusY&list=PLRqwX-V7Uu6ZF9C0YMKuns9sLDzK6zoiV&index=1)                  |
-
- ---
-
 
 
