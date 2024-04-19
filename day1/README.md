@@ -46,16 +46,7 @@ Day 1, Data Science Basics in R Workshop
 
 ------------------------------------------------------------------------
 
-## Acknowledgements and References
-
-Much of this material references or is adapted from [Douglas, A et
-al.“An Introduction to R”.](https://intro2r.com/). This free online
-book is a great resource to review if you are interested in learning
-more, or diving deeper into how R works. 
-
----
-
-### Additional Reading (optional)
+## Additional Reading (optional)
 
 
 |  Topic                                    |     Materials 
@@ -63,5 +54,13 @@ more, or diving deeper into how R works.
 | R for Data Science (online book)                  | [R for Data Science Website](https://r4ds.had.co.nz/)                                 | 
 | R Basics: An Introduction to R (online book)      | [Intro2R Online Book](https://intro2r.com/)                                           |   
 | R Basics: An Introduction to R (online lectures)  | [Intro2R Website](https://alexd106.github.io/intro2R/lectures.html)                   | 
- ---
+
+------------------------------------------------------------------------
+
+ ## Acknowledgements and References
+
+Much of this material references or is adapted from [Douglas, A et
+al.“An Introduction to R”.](https://intro2r.com/). This free online
+book is a great resource to review if you are interested in learning
+more, or diving deeper into how R works. 
 
