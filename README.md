@@ -1,3 +1,7 @@
+<p align="center" width="100%">
+<img src = "extras/Institute logo.png" alt = "Health Diplomacy Training Logo" width = "100%" height = "100%"/>
+</p>
+
 # Data Science Basics in R
 
 This workshop will build literacy and basic proficiency in statistical programming, with a focus on the skills needed to conduct data analyses in professional healthcare and public health workspaces. We will cover the basics of data management, data cleaning, data visualization, and basic statistical calculations in R, and version control in github. Participants will leave with a small portfolio of relevant data visualizations and analyses completed using a real‐world public health dataset.

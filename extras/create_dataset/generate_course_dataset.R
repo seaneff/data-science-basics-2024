@@ -17,6 +17,7 @@
 library(tidyr) ## reshape, reformat, recode data: https://dplyr.tidyverse.org/reference/recode.html
 library(readxl) ## to work with Excel files
 library(readr) ## to use the convenience function write_delim
+library(dplyr) ## for data manipulation
 
 #############################################
 ## Read in data #############################
@@ -61,9 +62,7 @@ names(population) <- c("country", "iso_3166", "metric", "metric_code", "value_20
 
 ## long to wide dataset
 population_wide <- population %>% 
-  filter(complete.cases(metric)) %>%
-  filter(metric %in% c("Population, total",
-                       "Rural population (% of total population)")) %>%
+  filter(metric %in% c("Population, total", "Rural population (% of total population)")) %>%
   select(metric, iso_3166, value_2024) %>%
   filter(iso_3166 != "") %>%
   pivot_wider(id_cols = iso_3166,
@@ -137,6 +136,13 @@ write.table(countries[,c(1,2,5,9,8,6,7,10,3)],
 write.table(measles_long[,c(2,3,7,6)],
             sep = "\t",
             file = "course-datasets/measles_cases.tsv", 
+            na = "NA",
+            row.names = FALSE,
+            fileEncoding = "Latin1")
+
+write.table(policies,
+            sep = "\t",
+            file = "course-datasets/measles_vaccine_policy.tsv", 
             na = "NA",
             row.names = FALSE,
             fileEncoding = "Latin1")
