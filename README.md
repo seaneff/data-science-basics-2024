@@ -6,7 +6,7 @@
 
 This workshop will build literacy and basic proficiency in statistical programming, with a focus on the skills needed to conduct data analyses in professional healthcare and public health workspaces. We will cover the basics of data management, data cleaning, data visualization, and basic statistical calculations in R, and version control in github. Participants will leave with a small portfolio of relevant data visualizations and analyses completed using a real‐world public health dataset.
 
-This workshop is part of the [2024 Georgetown University Health Diplomacy Training Initiative](https://ghss.georgetown.edu/health-diplomacy-training-initiative/#) led by the [Center for Health Science and Security](https://ghss.georgetown.edu/). 
+This workshop is part of the [2024 Georgetown University Health Diplomacy Training Institute](https://ghss.georgetown.edu/health-diplomacy-training-initiative/#) led by the [Center for Health Science and Security](https://ghss.georgetown.edu/). 
 
 No prior programming experience is necessary for this course, though to follow along with course materials, participants will require access to a fully charged laptop or computer. There are no required course materials or textbooks, though we will work together through select materials from the online [Intro to R](https://intro2r.com/) book developed by Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto and David Lusseau.
 

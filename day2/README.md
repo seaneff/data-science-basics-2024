@@ -8,6 +8,10 @@ Day 2, Data Science Basics in R Workshop
 ### Overview of data management
 
 
+-   creating new datasets
+-   documenting data (e.g., data dictionaries)
+-   maintaining and securing data
+
 ------------------------------------------------------------------------
 
 ### Some useful global health data sources

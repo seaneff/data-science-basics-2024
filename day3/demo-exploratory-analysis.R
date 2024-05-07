@@ -4,7 +4,6 @@
 
 ## if you don't already have readxl downloaded, start by running:
 #install.packages("ggplot2")
-#install.packages("dplyr")
 
 library(ggplot2)
 library(dplyr)
@@ -14,7 +13,15 @@ library(dplyr)
 #######################################################################
 
 countries <- read.delim("https://raw.githubusercontent.com/seaneff/data-science-basics-2024/main/course-datasets/countries.tsv")
-cases <- read.delim("https://raw.githubusercontent.com/seaneff/data-science-basics-2024/main/course-datasets/measles_cases.tsv")
+measles_cases <- read.delim("https://raw.githubusercontent.com/seaneff/data-science-basics-2024/main/course-datasets/measles_cases.tsv")
+measles_policy <- read.delim("https://raw.githubusercontent.com/seaneff/data-science-basics-2024/main/course-datasets/measles_vaccine_policy.tsv")
+
+#######################################################################
+### View the datasets #################################################
+#######################################################################
+
+View(countries)
+View(cases)
 
 #######################################################################
 ### Explore dataset generally #########################################
@@ -39,7 +46,6 @@ median(countries$pct_rural, na.rm = TRUE)
 
 ## look into missing data
 table(is.na(countries$pct_rural))
-policies[which(is.na(countries$pct_rural)),]
 
 #############################################################################################
 ### Descriptive statistics: #################################################################
@@ -89,6 +95,13 @@ hist(countries$mcv1_coverage,
      breaks = 20)
 
 ########################################################################################################
+### Your turn ##########################################################################################
+########################################################################################################
+
+## change the color of the plot above
+## examples of colors here, or you can use hex codes: https://r-charts.com/colors/
+
+########################################################################################################
 ### Data visualization: ################################################################################
 ### Boxplot (base R) ###################################################################################
 ########################################################################################################
@@ -97,9 +110,6 @@ hist(countries$mcv1_coverage,
 boxplot(countries$mcv1_coverage)
 
 ## full version of a boxplot
-
-
-
 boxplot(countries$mcv1_coverage,
      ## xlab specifies the x axis label, the \n here tells R to make a line break
      xlab = "Percent of 1-year olds who have\nreceived at least one measles vaccine",
@@ -110,6 +120,14 @@ boxplot(countries$mcv1_coverage,
      main = "Distribution of country-level\nmeasles vaccination rates\nfor 1-year olds (MCV1)",
      ## specify a fill color using a hex code 
      col = "#77B0AA")
+
+########################################################################################################
+### Your turn ##########################################################################################
+########################################################################################################
+
+## change the plot above to be vertically oriented
+## (horizontal = FALSE)
+## what else do you need to change now?
 
 ########################################################################################################
 ### Data visualization: ################################################################################
@@ -126,6 +144,13 @@ pie(table(countries$measles_vaccine_policy),
     main = "Policy requirement for\nmeasles vaccination")
 
 ########################################################################################################
+### Your turn ##########################################################################################
+########################################################################################################
+
+## remove the line break from the title
+## (remove\n)
+
+########################################################################################################
 ### Data visualization: ################################################################################
 ### Scatterplot (base R) ###############################################################################
 ########################################################################################################
@@ -137,11 +162,20 @@ plot(x = countries$pct_rural,
 ## full scatterplot
 plot(x = countries$pct_rural,
      y = countries$mcv1_coverage,
+     pch = 1,
      xlab = "Percent of population in rural areas",
      ylab = "Vaccination rate (MCV1)",
      main = "Measles vaccination rates\nfor 1-year olds (MCV1)\nvs. percent of population in rural areas",
      col = "#8B4F80")
 
+########################################################################################################
+### Your turn ##########################################################################################
+########################################################################################################
+
+## change the type of point (pch) and the color of the points (using a hex code)
+## example pch values: http://www.sthda.com/english/wiki/r-plot-pch-symbols-the-different-point-shapes-available-in-r
+## example hex codes: https://coolors.co/palettes/trending 
+## make sure to add the "#" before your hex code
 
 ########################################################################################################
 ### Data visualization: ################################################################################
@@ -149,47 +183,51 @@ plot(x = countries$pct_rural,
 ########################################################################################################
 
 ## most basic possible histogram in ggplot2
-ggplot(data = countries, aes(safe_after_dark_overall)) +
+ggplot(data = countries, aes(mcv1_coverage)) +
   geom_histogram()
 
 ## add axis labels and a title, adjust binwidth
-ggplot(data = countries, aes(safe_after_dark_overall)) +
-  geom_histogram(binwidth = 5) +
+ggplot(data = countries, aes(mcv1_coverage)) +
+  geom_histogram(binwidth = 5, fill = "light blue", color = "black") +
   ## xlab specifies the x axis label
   xlab("Percent of population") +
   ## ylab specifies the x axis label
-  ylab("Count") +
-  ## ggtitle specifies the x axis label
-  ggtitle("Proportion of population, per country\nwho feel safe walking alone after dark")
-  
-## add colors
-ggplot(data = countries, aes(safe_after_dark_overall)) +
-  ## fill specifies how the histogram bins are filled, color specifies their outline color
-  geom_histogram(fill = "light blue", color = "black", binwidth = 5) +
-  xlab("Percent of population") +
-  ylab("Count") +
-  ggtitle("Proportion of population, per country\nwho feel safe walking alone after dark")
+  ylab("Number of countries") +
+  ## ggtitle specifies the title
+  ggtitle("Distribution of country-level measles vaccination rates\nfor 1-year olds (MCV1)") +
+  ## add a caption
+  labs(caption = "MCV1 is defined as the percentage of children under one year of age who have\nreceived at least one dose of measles-containing vaccine in a given year.")
+
+########################################################################################################
+### Your turn ##########################################################################################
+########################################################################################################
+
+## remove or change the caption
 
 ########################################################################################################
 ### Data visualization: ################################################################################
-### Piechart (ggplot2) #################################################################################
+### Boxplot (ggplot2) ##################################################################################
 ########################################################################################################
 
-# note: piecharts in ggplot2 are a bit tough,
-# don't worry about following this first step right away
+## full version of a boxplot
+ggplot(data = countries, aes(mcv1_coverage/100)) +
+  geom_boxplot(fill = "#77B0AA") +
+  ## xlab specifies the x axis label
+  xlab("Percent of 1-year olds who have\nreceived at least one measles vaccine") +
+  ## ylab specifies the y axis label
+  ylab("") + 
+  ## ggtitle specifies the title
+  ggtitle("Distribution of country-level measles vaccination rates\nfor 1-year olds (MCV1)") +
+  ## remove numbers from the y axis
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
+  ## scale x axis as percentage
+  scale_x_continuous(labels = scales::percent_format())
 
-# generate a dataset with counts
-temp_data <- sanctions %>%
-  group_by(primary_sanctions_program) %>%
-  summarize(n = n())
+########################################################################################################
+### Your turn ##########################################################################################
+########################################################################################################
 
-ggplot(temp_data, aes(x = "" , y = n, fill = primary_sanctions_program)) +
-  geom_col(width = 1, color = 1) +
-  coord_polar(theta = "y") +
-  scale_fill_brewer(palette = "Pastel1") +
-  guides(fill = guide_legend(title = "Primary sanction type")) +
-  theme_void() +
-  ggtitle("Types of primary sanctions (DPRK)")
+## comment out the theme() code above and see what happens
 
 ########################################################################################################
 ### Data visualization: ################################################################################
@@ -197,27 +235,22 @@ ggplot(temp_data, aes(x = "" , y = n, fill = primary_sanctions_program)) +
 ########################################################################################################
 
 ## most basic possible scatterplot in ggplot2
-ggplot(data = countries, aes(x = mds_per_10000capita, y = nurses_midwives_per_10000capita)) +
+ggplot(data = countries, aes(x = pct_rural, y = mcv1_coverage)) +
   geom_point()
 
-## add axis labels and a title
-ggplot(data = countries, aes(x = mds_per_10000capita, y = nurses_midwives_per_10000capita)) +
-  geom_point() +
-  xlab("Number of MDs\nper 10,000 capita") +
-  ylab("Number of nurses and midwives\nper 10,000 capita") +
-  ggtitle("Health workforce per capita, by country\nMDs and nurses/midwives")
-
-## color points by WHO region
-ggplot(data = countries, 
-       aes(x = mds_per_10000capita, 
-           y = nurses_midwives_per_10000capita,
-           ## the line below colors the plots by WHO region
-           col = who_region)) +
-  geom_point() +
-  xlab("Number of MDs\nper 10,000 capita") +
-  ylab("Number of nurses and midwives\nper 10,000 capita") +
-  ggtitle("Health workforce per capita, by country\nMDs and nurses/midwives") +
-  labs(col = "WHO region") ## this line gives the legend a nice title
+ggplot(data = countries, aes(x = pct_rural/100, y = mcv1_coverage/100)) +
+  ## plot points
+  geom_point(color = "#8B4F80") +
+  ## xlab specifies the x axis label
+  xlab("Percent of population in rural areas") +
+  ## ylab specifies the y axis label
+  ylab("Vaccination rate (MCV1)") +
+  ## ggtitle specifies the main title
+  ggtitle("Measles vaccination rates for 1-year olds (MCV1)\nvs. percent of population in rural areas") +
+  ## scale x axis as percentage
+  scale_x_continuous(labels = scales::percent_format()) +
+  ## scale y axis as percentage
+  scale_y_continuous(labels = scales::percent_format())
 
 ########################################################################################################
 ### Data visualization: ################################################################################

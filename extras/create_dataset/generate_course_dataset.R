@@ -52,7 +52,6 @@ regions <- read_excel("extras/create_dataset/inputs/income_groups.xlsx", sheet =
 ## vaccine coverage (MCV1) from WHO
 coverage <- read.csv("extras/create_dataset/inputs/vaccine_coverage.csv")
 
-
 #######################################################################
 ## Process World Bank population count data ###########################
 #######################################################################
@@ -146,3 +145,4 @@ write.table(policies,
             na = "NA",
             row.names = FALSE,
             fileEncoding = "Latin1")
+
