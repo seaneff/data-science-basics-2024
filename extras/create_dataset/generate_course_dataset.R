@@ -90,18 +90,6 @@ selected_regions <- regions %>%
 
 names(selected_regions)[which(names(selected_regions) == "GroupName")] <- "world_bank_region"
 
-#######################################################################
-## Process measles caseload data ######################################
-#######################################################################
-
-measles_long <- measles_cases %>%
-  pivot_longer(cols = January:December,
-               names_to = "month",
-               values_to = "cases") %>%
-  mutate(date = as.Date(paste(month, "01,", Year), format = "%B %d, %Y")) 
-
-names(measles_long) <- c("region", "iso_code", "country_name", "year", "month_name", "measles_cases", "month")
-
 #####################################################################
 ## Rename some values in the vaccine coverage dataset ###############
 #####################################################################
@@ -120,6 +108,21 @@ countries <- merge(countries, selected_regions[,c(2,3)], by.x = "iso_code", by.y
 countries <- merge(countries, coverage[which(coverage$IsLatestYear == "true" & coverage$Location.type == "Country"),c(7, 24)], 
                    by.x = "iso_code", by.y = "SpatialDimValueCode", all.x = TRUE, all.y = FALSE)
 
+#######################################################################
+## Process measles caseload data ######################################
+#######################################################################
+
+measles_long <- measles_cases %>%
+  pivot_longer(cols = January:December,
+               names_to = "month",
+               values_to = "cases") %>%
+  mutate(date = as.Date(paste(month, "01,", Year), format = "%B %d, %Y")) 
+
+names(measles_long) <- c("region", "iso_code", "country_name", "year", "month_name", "measles_cases", "month")
+
+measles_long <- merge(measles_long, countries[,c(1,5,8,9)],
+                      by = "iso_code", all.x = TRUE, all.y = FALSE)
+
 #############################################
 ## Export datasets ##########################
 #############################################
@@ -131,8 +134,7 @@ write.table(countries[,c(1,2,5,9,8,6,7,10,3)],
             row.names = FALSE,
             fileEncoding = "Latin1")
 
-
-write.table(measles_long[,c(2,3,7,6)],
+write.table(measles_long[,c(1,3,7,6,8,10,9)],
             sep = "\t",
             file = "course-datasets/measles_cases.tsv", 
             na = "NA",
