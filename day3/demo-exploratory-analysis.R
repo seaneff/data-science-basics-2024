@@ -75,6 +75,24 @@ table(countries$pct_rural > 75)
 ## which countries have over 75% of the population live in a rural area?
 countries[which(countries$pct_rural > 75),]$country
 
+#############################################################################################
+### Descriptive statistics ##################################################################
+### by group ################################################################################
+#############################################################################################
+
+countries %>%
+  group_by(who_region) %>%
+  summarize(n = n(),
+            avg_vaccination_rate = mean(mcv1_coverage),
+            sd_vaccination_rate = mean(mcv1_coverage))
+
+########################################################################################################
+### Your turn ##########################################################################################
+########################################################################################################
+
+## Using the code above, instead of calculating average vaccination rate per WHO region, 
+## calculate the averagn population size per income group
+
 ########################################################################################################
 ### Data visualization: ################################################################################
 ### Histogram (base R) #################################################################################
@@ -453,14 +471,45 @@ ggplot(data = world_data, mapping = aes(x = long, y = lat, group = group)) +
     plot.title = element_text(hjust = 0.5))
 
 ########################################################################################################
+### Your turn ##########################################################################################
+########################################################################################################
+
+## the plot above isn't very informative
+## change the colors to show some data that would teach us something useful about our dataset
+
+########################################################################################################
+### Data visualization: ################################################################################
+### World maps #########################################################################################
+########################################################################################################
+
+## generate world map plot
+ggplot(data = world_data, mapping = aes(x = long, y = lat, group = group)) + 
+  coord_fixed(1.3) +
+  geom_polygon(aes(fill = measles_vaccine_policy)) +
+  ggtitle("Measles vaccine policy requirements") +
+  labs(fill = "Measles vaccine") +
+  theme(
+    axis.text = element_blank(),
+    axis.line = element_blank(),
+    axis.ticks = element_blank(),
+    panel.border = element_blank(),
+    panel.grid = element_blank(),
+    axis.title = element_blank(),
+    panel.background = element_rect(fill = "white"),
+    plot.title = element_text(hjust = 0.5)) +
+    ## this specifies the colors for the fill values
+    scale_fill_manual(values = c( "#89ac53", "#6c7698", "gray80"),
+                      breaks = c("required", "not required", "no data")) 
+
+########################################################################################################
 ### Data visualization: ################################################################################
 ### Cleveland dot plot #################################################################################
 ### Getting fancier here, you don't need to replicaate this one ########################################
 ########################################################################################################
 
-# see more at https://r-graph-gallery.com/303-lollipop-plot-with-2-values.html
+crime <- read.delim("https://raw.githubusercontent.com/seaneff/data-science-basics-2024/main/course-datasets/additional_example_crime.tsv")
 
-countries %>%
+crime %>%
   filter(complete.cases(safe_after_dark_female)) %>%
   filter(complete.cases(safe_after_dark_male)) %>%
   filter(who_region == "Region of the Americas") %>%
@@ -480,6 +529,8 @@ countries %>%
 ### Study trajectory plot (line) with error bars #######################################################
 ### Getting fancier here, you don't need to replicate this one #########################################
 ########################################################################################################
+
+sample_study_data <- read.delim("https://raw.githubusercontent.com/seaneff/data-science-basics-2024/main/course-datasets/additional_example_study.tsv")
 
 ggplot(sample_study_data, aes(x = time, y = average_score, col = group, group = group,
                               ymin = ci_lower, ymax = ci_upper)) +

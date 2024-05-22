@@ -50,18 +50,13 @@ Descriptive statistics summarize data, and typically describe three types of thi
 
 ------------------------------------------------------------------------
 
-### Learn more
+## Additional Reading (optional)
 
-[Data to Viz](https://www.data-to-viz.com/)
-
-["Chart chooser"](https://extremepresentation.typepad.com/blog/2006/09/choosing_a_good.html)
-
-[colorbrewer2.org](https://colorbrewer2.org/)
-
-[Thompson, Cara. 2023. Talks](https://www.cararthompson.com/talks)
-
-[#30DayChartChallenge](https://nightingaledvs.com/the-30daychartchallenge-year-three/)
-
+|  Topic                                            |     Materials 
+|:----------------------------------------          |:--------------------------------------------------------------------------------------|
+| Data to Viz                                       | [Data to Viz Website](https://www.data-to-viz.com/)                                   | 
+| Chart Chooser                                     | [Chart Chooser Website](https://extremepresentation.typepad.com/blog/2006/09/choosing_a_good.html) |
+| Journal of the Data Visualization Society         | [Nightengale Website](https://nightingaledvs.com/)                                    |
 
 ------------------------------------------------------------------------
 
@@ -71,13 +66,3 @@ Much of this material references or is adapted from [Douglas, A et
 al.“An Introduction to R”.](https://intro2r.com/). This free online
 book is a great resource to review if you are interested in learning
 more, or diving deeper into how R works.
-
-
-------------------------------------------------------------------------
-
-## Acknowledgements and References
-
-Much of this material references or is adapted from [Douglas, A et
-al.“An Introduction to R”.](https://intro2r.com/). This free online
-book is a great resource to review if you are interested in learning
-more, or diving deeper into how R works. 
