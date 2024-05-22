@@ -7,6 +7,7 @@
 
 library(ggplot2)
 library(dplyr)
+library(maps)
 
 #######################################################################
 ### Read in course datasets ###########################################
@@ -21,7 +22,8 @@ measles_policy <- read.delim("https://raw.githubusercontent.com/seaneff/data-sci
 #######################################################################
 
 View(countries)
-View(cases)
+View(measles_cases)
+View(measles_policy)
 
 #######################################################################
 ### Explore dataset generally #########################################
@@ -29,7 +31,7 @@ View(cases)
 
 ## What are the columns/fields?
 names(countries)
-names(cases)
+names(measles_cases)
 
 #############################################################################################
 ### Descriptive statistics: #################################################################
@@ -128,6 +130,37 @@ boxplot(countries$mcv1_coverage,
 ## change the plot above to be vertically oriented
 ## (horizontal = FALSE)
 ## what else do you need to change now?
+
+########################################################################################################
+### Data visualization: ################################################################################
+### Bar chart (base R) #################################################################################
+########################################################################################################
+
+## most basic possible bar chart
+barplot(table(countries$income_group))
+
+## but we want income group to be sorted! (we'll learn more about factors later)
+countries$income_group <- factor(countries$income_group, levels = c("Low income",
+                                                                    "Lower middle income",
+                                                                    "Upper middle income",
+                                                                    "High income"))
+
+## now try again
+barplot(table(countries$income_group))
+
+## and add some color/styling
+barplot(table(countries$income_group),
+        main = "Number of WHO member states\nper income group",
+        xlab = "",
+        ylab = "Count",
+        col = "#005879")
+
+########################################################################################################
+### Your turn ##########################################################################################
+########################################################################################################
+
+## add a box around the plot by uncommenting and running the command below
+# box()
 
 ########################################################################################################
 ### Data visualization: ################################################################################
@@ -231,6 +264,27 @@ ggplot(data = countries, aes(mcv1_coverage/100)) +
 
 ########################################################################################################
 ### Data visualization: ################################################################################
+### Boxplot by group (ggplot2) #########################################################################
+########################################################################################################
+
+## full version of a boxplot
+countries %>%
+  filter(complete.cases(income_group)) %>%
+  ggplot(aes(x = mcv1_coverage/100, 
+             y = income_group,
+             group = income_group)) +
+  geom_boxplot(fill = "#77B0AA") +
+  ## xlab specifies the x axis label
+  xlab("Percent of 1-year olds who have\nreceived at least one measles vaccine") +
+  ## ylab specifies the y axis label
+  ylab("") + 
+  ## ggtitle specifies the title
+  ggtitle("Distribution of country-level measles vaccination rates\nfor 1-year olds (MCV1) by income group") +
+  ## scale x axis as percentage
+  scale_x_continuous(labels = scales::percent_format())
+
+########################################################################################################
+### Data visualization: ################################################################################
 ### Scatterplot (ggplot2) ##############################################################################
 ########################################################################################################
 
@@ -253,74 +307,124 @@ ggplot(data = countries, aes(x = pct_rural/100, y = mcv1_coverage/100)) +
   scale_y_continuous(labels = scales::percent_format())
 
 ########################################################################################################
+### Your turn ##########################################################################################
+########################################################################################################
+
+## change the axis labels to numbers without the % symbol
+## what do you need to comment out or delete?
+
+########################################################################################################
 ### Data visualization: ################################################################################
 ### Barplot (ggplot2) ##################################################################################
 ########################################################################################################
 
 ## most basic possible scatterplot in ggplot2
-ggplot(data = countries, aes(who_region)) +
+ggplot(data = countries, aes(income_group)) +
   geom_bar()
 
 ## labels are hard to see, try flipping plot
-ggplot(data = countries, aes(who_region)) +
+ggplot(data = countries, aes(income_group)) +
+  geom_bar() +
+  ## reverse the X and Y coordinates (flip barplot horizontally)
+  coord_flip()
+
+## excluding missing values from plot
+## dont worry about the changing ggplot2 syntax for now
+countries %>%
+  filter(complete.cases(income_group)) %>%
+  ggplot(aes(income_group)) +
   geom_bar() +
   ## reverse the X and Y coordinates (flip barplot horizontally)
   coord_flip()
 
 ## add colors and titles
-ggplot(data = countries, aes(who_region)) +
+countries %>%
+  filter(complete.cases(income_group)) %>%
+  ggplot(aes(income_group)) +
   ## fill is the color used to fill the barplot, black is the color that surrounds the bars
-  geom_bar(fill = "dark blue", color = "black") +
+  geom_bar(fill = "#005879", color = "black") +
   ylab("Count") +
   xlab("") +
-  ggtitle("Number of WHO member states\nper WHO region") +
+  ggtitle("Number of WHO member states\nper income group") +
   coord_flip() 
 
 ########################################################################################################
+### Your turn ##########################################################################################
+########################################################################################################
+
+## add a y axis label to the code above
+
+########################################################################################################
+### Discussion #########################################################################################
+########################################################################################################
+
+## what is this plot showing?
+## what might make it more informative or interesting?
+
+## filled (instead of stacked) barchart
+countries %>%
+## don't worry about these mutate commands too much for now, they let us update the order of the
+## colors and the things on the y axis
+mutate(measles_vaccine_policy = factor(measles_vaccine_policy,
+                                       levels = c("no data", "not required", "required"))) %>%
+mutate(who_region = factor(who_region,
+                           levels = c("South-East Asia Region",
+                                      "African Region",
+                                      "Western Pacific Region",
+                                      "European Region",
+                                      "Eastern Mediterranean Region",
+                                      "Region of the Americas"))) %>%
+ggplot(aes(y = who_region, group = measles_vaccine_policy, 
+           fill = measles_vaccine_policy)) +
+  geom_bar(position = "fill") +
+  labs(x = "Percent of countries",
+       y = "",
+       fill = "Measles vaccine policy?",
+       title = "Measles vaccine policies by WHO region") +
+  ## this makes the x axisshow a percentage
+  scale_x_continuous(labels = scales::label_percent()) +
+  ## this specifies the colors for the fill values
+  scale_fill_manual(values = c( "#89ac53", "#6c7698", "gray80"),
+                    breaks = c("required", "not required", "no data")) 
+
+########################################################################################################
 ### Data visualization: ################################################################################
-### Stacked barplot (ggplot2) ##########################################################################
+### Line chart #########################################################################################
 ########################################################################################################
 
-sanctions %>%
-  filter(primary_country == "DPRK") %>%
-  ggplot(aes(x = primary_sanctions_program, group = type, fill = type)) +
-  geom_bar(position = "stack", color = "black") +
-  xlab("Primary sanctions program") +
-  ylab("Number of sanctions") +
-  labs(fill = "Sanction type",
-       ## you can add a caption by specifying caption from within the labs() function
-       caption = "Based on public data from\nUS Office of Foreign Assets Control as of June 2023") +
-  ggtitle("Types of sanctions in DPRK") 
+## generic line plot
+measles_cases %>%
+  filter(country_name == "Afghanistan") %>%
+  ggplot(aes(x = month, y = measles_cases, group = country_name)) +
+  geom_line()
+
+## why is the x-axis weird?
+is(measles_cases$month)
+
+## tell R to treat the data as a date
+measles_cases$month <- as.Date(measles_cases$month)
+
+## try again
+measles_cases %>%
+  filter(country_name == "Afghanistan") %>%
+  ggplot(aes(x = month, y = measles_cases, group = country_name)) +
+  geom_line()
+
+## add styling
+measles_cases %>%
+  filter(country_name == "Afghanistan") %>%
+  ggplot(aes(x = month, y = measles_cases, group = country_name)) +
+  geom_line(color = "#3d4d6d") +
+  labs(x = "",
+       y = "Measles cases per month",
+       title = "Measles cases per month in Afghanistan")
 
 ########################################################################################################
-### Data visualization: ################################################################################
-### Boxplot (ggplot2) ##################################################################################
+### Your turn ##########################################################################################
 ########################################################################################################
 
-## most basic possible boxplot in ggplot2
-breeds %>%
-  filter(is_most_recent_with_data == TRUE) %>%
-  ggplot(aes(x = proportion_at_risk, y = who_region)) +
-  geom_boxplot()
-
-## add colors and titles
-breeds %>%
-  filter(is_most_recent_with_data == TRUE) %>%
-  ggplot(aes(x = proportion_at_risk, y = who_region)) +
-  geom_boxplot(fill = "#2E8A99") +
-  xlab("Proportion of species at risk") +
-  ylab("") +
-  ggtitle("Proportion of species at risk by region") 
-
-## what if I want a percent along the x axis?
-breeds %>%
-  filter(is_most_recent_with_data == TRUE) %>% 
-  ggplot(aes(x = proportion_at_risk/100, y = who_region)) + ## divide proportion at risk by 100
-  geom_boxplot(fill = "#2E8A99") +
-  xlab("Percentage of species at risk") +
-  ylab("") +
-  ggtitle("Percent of species at risk by region") +
-  scale_x_continuous(labels = scales::percent) ## tell R to scale the x axis based on a percentage
+## make the plot above for another country
+## and use a different color line
 
 ########################################################################################################
 ### Data visualization: ################################################################################
@@ -329,7 +433,7 @@ breeds %>%
 
 ## read in and format data
 world <- map_data("world")
-world_data <- inner_join(world, countries, by = join_by(region == country_name))
+world_data <- inner_join(world, countries, by = join_by(region == country))
 
 ## generate world map plot
 ggplot(data = world_data, mapping = aes(x = long, y = lat, group = group)) + 
