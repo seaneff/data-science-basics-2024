@@ -438,10 +438,10 @@ world_data <- inner_join(world, countries, by = join_by(region == country))
 ## generate world map plot
 ggplot(data = world_data, mapping = aes(x = long, y = lat, group = group)) + 
   coord_fixed(1.3) +
-  geom_polygon(aes(fill = mds_per_10000capita)) +
-  scale_fill_distiller(direction = 1) +
-  ggtitle("Health workforce per capita") +
-  labs(fill = "MDs per\n10,000 capita") +
+  geom_polygon(aes(fill = who_region)) +
+  #scale_fill_distiller(direction = 1) +
+  ggtitle("WHO regions") +
+  labs(fill = "WHO regions") +
   theme(
     axis.text = element_blank(),
     axis.line = element_blank(),
