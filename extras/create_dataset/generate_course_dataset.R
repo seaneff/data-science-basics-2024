@@ -90,11 +90,14 @@ selected_regions <- regions %>%
 
 names(selected_regions)[which(names(selected_regions) == "GroupName")] <- "world_bank_region"
 
-#####################################################################
-## Rename some values in the vaccine coverage dataset ###############
-#####################################################################
+#############################################
+## Rename coverage dataset ##################
+#############################################
 
 names(coverage)[which(names(coverage) == "FactValueNumeric")] <- "mcv1_coverage"
+names(coverage)[which(names(coverage) == "SpatialDimValueCode")] <- "iso_code"
+names(coverage)[which(names(coverage) == "Period")] <- "year"
+names(coverage)[which(names(coverage) == "IsLatestYear")] <- "is_latest_year"
 
 #############################################
 ## Generate countries dataset ###############
@@ -105,8 +108,8 @@ countries <- merge(countries, who_membership[which(who_membership$who_member_sta
 countries <- merge(countries, population_wide, by.x = "iso_code", by.y = "iso_3166", all.x = TRUE, all.y = FALSE)
 countries <- merge(countries, income_groups[,c(2,4)], by.x = "iso_code", by.y = "Code", all.x = TRUE, all.y = FALSE)
 countries <- merge(countries, selected_regions[,c(2,3)], by.x = "iso_code", by.y = "CountryCode", all.x = TRUE, all.y = FALSE)
-countries <- merge(countries, coverage[which(coverage$IsLatestYear == "true" & coverage$Location.type == "Country"),c(7, 24)], 
-                   by.x = "iso_code", by.y = "SpatialDimValueCode", all.x = TRUE, all.y = FALSE)
+countries <- merge(countries, coverage[which(coverage$is_latest_year == "true" & coverage$Location.type == "Country"),c(7, 24)], 
+                   by.x = "iso_code", by.y = "iso_code", all.x = TRUE, all.y = FALSE)
 
 #######################################################################
 ## Process measles caseload data ######################################
@@ -123,6 +126,21 @@ names(measles_long) <- c("region", "iso_code", "country_name", "year", "month_na
 measles_long <- merge(measles_long, countries[,c(1,5,8,9)],
                       by = "iso_code", all.x = TRUE, all.y = FALSE)
 
+#######################################################################
+## Process final coverage data ########################################
+#######################################################################
+
+coverage_temp <- coverage[,c(7, 10, 24, 11)]
+
+coverage_export <- merge(coverage_temp, countries[,c(1,2,5,8,9)],
+                      by = "iso_code", all.x = TRUE, all.y = FALSE)
+
+names(coverage_export)[which(names(coverage_export) == "country")] <- "country_name"
+
+coverage_export$is_latest_year[which(coverage_export$is_latest_year == "true")] <- TRUE
+coverage_export$is_latest_year[which(coverage_export$is_latest_year == "false")] <- FALSE
+coverage_export$is_latest_year <- as.logical(coverage_export$is_latest_year)
+  
 #############################################
 ## Export datasets ##########################
 #############################################
@@ -147,4 +165,12 @@ write.table(policies,
             na = "NA",
             row.names = FALSE,
             fileEncoding = "Latin1")
+
+write.table(coverage_export[,c(1,5,2,3,6,8,7,4)],
+            sep = "\t",
+            file = "course-datasets/measles_vaccine_coverage.tsv", 
+            na = "NA",
+            row.names = FALSE,
+            fileEncoding = "Latin1")
+
 
