@@ -52,6 +52,9 @@ regions <- read_excel("extras/create_dataset/inputs/income_groups.xlsx", sheet =
 ## vaccine coverage (MCV1) from WHO
 coverage <- read.csv("extras/create_dataset/inputs/vaccine_coverage.csv")
 
+## our world in data energy data
+energy_raw <- read.csv("extras/create_dataset/inputs/owid-energy-data.csv")
+
 #######################################################################
 ## Process World Bank population count data ###########################
 #######################################################################
@@ -141,6 +144,13 @@ coverage_export$is_latest_year[which(coverage_export$is_latest_year == "true")] 
 coverage_export$is_latest_year[which(coverage_export$is_latest_year == "false")] <- FALSE
 coverage_export$is_latest_year <- as.logical(coverage_export$is_latest_year)
   
+#######################################################################
+## Process energy data ################################################
+#######################################################################
+
+full_energy <- energy_raw[which(complete.cases(energy_raw$iso_code) & energy_raw$iso_code != ""),]
+energy_2022 <- full_energy[which(full_energy$year == 2022),]
+
 #############################################
 ## Export datasets ##########################
 #############################################
@@ -173,4 +183,23 @@ write.table(coverage_export[,c(1,5,2,3,6,8,7,4)],
             row.names = FALSE,
             fileEncoding = "Latin1")
 
+write.table(energy_2022[,which(names(energy_2022) %in% c("country", "iso_code", "population", "gdp",
+                                                         "biofuel_elec_per_capita", "biofuel_electricity", "biofuel_share_elec", 
+                                                         "carbon_intensity_elec", "coal_elec_per_capita", "coal_electricity",
+                                                         "coal_share_elec", "electricity_demand", "electricity_generation",
+                                                         "fossil_elec_per_capita", "fossil_electricity", "fossil_share_elec",
+                                                         "gas_elec_per_capita", "gas_electricity", "gas_share_elec", 
+                                                         "greenhouse_gas_emissions", "hydro_elec_per_capita", "hydro_electricity",
+                                                         "hydro_share_elec", "low_carbon_elec_per_capita", "low_carbon_electricity",
+                                                         "low_carbon_share_elec", "net_elec_imports", "net_elec_imports_share_demand",
+                                                         "nuclear_elec_per_capita", "nuclear_electricity", "nuclear_share_elec", 
+                                                         "oil_elec_per_capita", "oil_electricity", "oil_share_elec", "other_renewable_electricity",
+                                                         "other_renewables_elec_per_capita", "per_capita_electricity", "renewables_elec_per_capita",
+                                                         "renewables_electricity", "renewables_share_elec", "solar_electricity", "solar_share_elec",
+                                                         "wind_elec_per_capita", "wind_electricity", "wind_share_elec"))],
+            sep = "\t",
+            file = "course-datasets/energy_2022.tsv", 
+            na = "NA",
+            row.names = FALSE,
+            fileEncoding = "Latin1")
 
