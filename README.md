@@ -14,12 +14,6 @@ If you have questions, feel free to reach out at sde31@georgetown.edu.
 
 ---
 
-### Before class: 
--   Install R
--   Install RStudio Desktop
-
----
-
 ### Day 1: Intro to statistical programming
 -   Introductions, logistics, and what to expect
 -   What is statistical programming, and why should I care?
