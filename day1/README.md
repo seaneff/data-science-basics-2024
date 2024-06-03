@@ -1,7 +1,9 @@
 Intro to Statistical Programming
 ================
-Day 1, Data Science Basics in R Workshop
-2024 Georgetown University Health Diplomacy Training Initiative
+
+Day 1
+Data Science Basics in R
+Georgetown University Health Diplomacy Training Initiative
 
 ------------------------------------------------------------------------
 
@@ -11,6 +13,12 @@ Day 1, Data Science Basics in R Workshop
 -   Housekeeping notes and outlets
 -   What to expect
 -   Learning by trial and error
+
+------------------------------------------------------------------------
+
+### Downloading R and RStudio
+-   Download R
+-   Download RStudio
 
 ------------------------------------------------------------------------
 
@@ -39,27 +47,23 @@ Day 1, Data Science Basics in R Workshop
 
 ------------------------------------------------------------------------
 
-### Course materials on github
+### Course materials on GitHub
 
--   What is github?
+-   What is GitHub?
 -   Accessing course materials
 
 ------------------------------------------------------------------------
 
-## Additional Reading (optional)
+## Additional reading and resources (optional)
 
 |  Topic                                            |     Materials 
 |:----------------------------------------          |:--------------------------------------------------------------------------------------|
-| R for Data Science (online book)                  | [R for Data Science Website](https://r4ds.had.co.nz/)                                 | 
-| R Basics: An Introduction to R (online book)      | [Intro2R Online Book](https://intro2r.com/)                                           |   
-| R Basics: An Introduction to R (online lectures)  | [Intro2R Website](https://alexd106.github.io/intro2R/lectures.html)                   | 
+| R Overview                                        | [R for Data Science (online book)](https://r4ds.had.co.nz/)                           | 
+| R Overview                                        | [Intro2R (online book)](https://intro2r.com/)                                         |   
+| R Overview                                        | [Intro2R (online lectures)](https://alexd106.github.io/intro2R/lectures.html)         | 
+| Getting started with GitHub                       | [Github Docs, Hello World](https://docs.github.com/en/get-started/start-your-journey/hello-world)         | 
+| Getting started with github                       | [Git and Github for Poets (online video)](https://www.youtube.com/watch?v=BCQHnlnPusY&list=PLRqwX-V7Uu6ZF9C0YMKuns9sLDzK6zoiV&index=2))         | 
 
 ------------------------------------------------------------------------
 
- ## Acknowledgements and References
-
-Much of this material references or is adapted from [Douglas, A et
-al.“An Introduction to R”.](https://intro2r.com/). This free online
-book is a great resource to review if you are interested in learning
-more, or diving deeper into how R works. 
 

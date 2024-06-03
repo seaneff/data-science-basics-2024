@@ -8,14 +8,15 @@ This workshop will build literacy and basic proficiency in statistical programmi
 
 This workshop is part of the [2024 Georgetown University Health Diplomacy Training Institute](https://ghss.georgetown.edu/health-diplomacy-training-initiative/#) led by the [Center for Health Science and Security](https://ghss.georgetown.edu/). 
 
-No prior programming experience is necessary for this course, though to follow along with course materials, participants will require access to a fully charged laptop or computer. There are no required course materials or textbooks, though we will work together through select materials from the online [Intro to R](https://intro2r.com/) book developed by Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto and David Lusseau.
+No prior programming experience is necessary for this course, though to follow along with course materials, participants will require access to a fully charged laptop or computer. There are no required course materials or textbooks, though optional readings and additional resources will be provided as part of each day of the course.
 
-If you have questions, feel free to reach out at sde31@georgetown.edu. 
+If you have questions, feel free to reach out at sde31@georgetown.edu. Office hours are immediately after class.
 
 ---
 
 ### Day 1: Intro to statistical programming
 -   Introductions, logistics, and what to expect
+-   Download R and RStudio
 -   What is statistical programming, and why should I care?
 -   Getting acquainted with R Studio
 -   R Basics
@@ -53,6 +54,3 @@ If you have questions, feel free to reach out at sde31@georgetown.edu.
 -   Hands-on work designing your own data visualization
 -   Create a github repository to showcase your work
 -   Where and how to learn more
-
-
-
