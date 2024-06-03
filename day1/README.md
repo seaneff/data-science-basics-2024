@@ -51,6 +51,8 @@ Georgetown University Health Diplomacy Training Initiative
 
 -   What is GitHub?
 -   Accessing course materials
+-   Version control with GitHub
+
 
 ------------------------------------------------------------------------
 
@@ -60,6 +62,7 @@ Georgetown University Health Diplomacy Training Initiative
 |:----------------------------------------          |:--------------------------------------------------------------------------------------|
 | R Overview                                        | [R for Data Science (online book)](https://r4ds.had.co.nz/)                           | 
 | R Overview                                        | [Intro2R (online book)](https://intro2r.com/)                                         |   
+| R Overview                                        | [Intro2R (online lectures)](https://alexd106.github.io/intro2R/lectures.html)         | 
 | R Overview                                        | [Intro2R (online lectures)](https://alexd106.github.io/intro2R/lectures.html)         | 
 | Getting started with GitHub                       | [GitHub Docs, Hello World](https://docs.github.com/en/get-started/start-your-journey/hello-world)         | 
 | Getting started with GitHub                       | [Git and GitHub for Poets (online video)](https://www.youtube.com/watch?v=BCQHnlnPusY&list=PLRqwX-V7Uu6ZF9C0YMKuns9sLDzK6zoiV&index=2))         | 

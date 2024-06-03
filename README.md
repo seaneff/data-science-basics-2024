@@ -20,18 +20,16 @@ If you have questions, feel free to reach out at sde31@georgetown.edu. Office ho
 -   What is statistical programming, and why should I care?
 -   Getting acquainted with R Studio
 -   R Basics
--   Accessing course materials in github
+-   Version control with GitHub
 
 ---
 
 ### Day 2: Data management and version control
 -   Overview of data management
--   Brief overview of useful global health datasets
 -   Loading dataset(s) in R
 -   Data types and structures in R
 -   Basics of data cleaning
 -   Documenting your data, code, and results
--   Version control with github
 
 ---
 
@@ -52,5 +50,5 @@ If you have questions, feel free to reach out at sde31@georgetown.edu. Office ho
 
 ### Day 5: Build an online portfolio
 -   Hands-on work designing your own data visualization
--   Create a github repository to showcase your work
+-   Create a GitHub repository to showcase your work
 -   Where and how to learn more
