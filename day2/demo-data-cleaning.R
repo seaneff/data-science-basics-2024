@@ -126,3 +126,10 @@ countries %>%
 
 ## Read in a new dataset
 ## Either: caseload data or another dataset of your choice (e.g., an energy dataset)
+
+########################################################################################################
+### Your turn ##########################################################################################
+########################################################################################################
+
+## What are some other ways to explore a new dataset?
+## Hint: data visualization ideas?
