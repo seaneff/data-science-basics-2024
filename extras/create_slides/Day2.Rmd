@@ -9,6 +9,7 @@ date: "`r Sys.Date()`"
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
 policy <- read.delim("~/Documents/work/GT/data-science-basics-2024/course-datasets/measles_vaccine_policy.tsv")
 ```
 
@@ -42,4 +43,16 @@ policy$country_name
 
 ```{r}
 table(policy$measles_vaccine_policy)
+```
+
+## Filtering
+```{r}
+policy[which(policy$country_name == "Angola"),]
+```
+
+```{r}
+library(dplyr)
+
+policy %>%
+  filter(country_name == "Angola")
 ```

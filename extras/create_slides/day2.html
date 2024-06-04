@@ -6,7 +6,7 @@
     <meta name="generator" content="pandoc" />
 
     
-        <meta name="date" content="2024-05-03" />
+        <meta name="date" content="2024-06-04" />
     
     <title>Day 2</title>
 
@@ -899,7 +899,7 @@ margin-left: 0 !important;
         
 
       <!-- html_clean authors -->
-         <h4 class="date"><em>2024-05-03</em></h4>
+         <h4 class="date"><em>2024-06-04</em></h4>
       
       
    
@@ -908,7 +908,7 @@ margin-left: 0 !important;
 <div id="dimensions" class="section level2">
 <h2>Dimensions</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">dim</span>(policy)</span></code></pre></div>
-<pre><code>## [1] 197   3</code></pre>
+<pre><code>## [1] 199   3</code></pre>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">names</span>(policy)</span></code></pre></div>
 <pre><code>## [1] &quot;country_name&quot;           &quot;iso_code&quot;               &quot;measles_vaccine_policy&quot;</code></pre>
 </div>
@@ -1068,64 +1068,78 @@ margin-left: 0 !important;
 ## [144] &quot;Republic of Korea (South Korea)&quot;                                 
 ## [145] &quot;Republic of Moldova&quot;                                             
 ## [146] &quot;Republic of the Congo&quot;                                           
-## [147] &quot;Romania&quot;                                                         
-## [148] &quot;Russian Federation&quot;                                              
-## [149] &quot;Rwanda&quot;                                                          
-## [150] &quot;Saint Kitts and Nevis (St Kitts and Nevis)&quot;                      
-## [151] &quot;Saint Lucia (St Lucia)&quot;                                          
-## [152] &quot;Saint Vincent and the Grenadines (St Vincent and the Grenadines)&quot;
-## [153] &quot;Samoa&quot;                                                           
-## [154] &quot;San Marino&quot;                                                      
-## [155] &quot;S\x8bo Tom\x8e and Pr\x92ncipe&quot;                                  
-## [156] &quot;Saudi Arabia&quot;                                                    
-## [157] &quot;Senegal&quot;                                                         
-## [158] &quot;Serbia&quot;                                                          
-## [159] &quot;Seychelles&quot;                                                      
-## [160] &quot;Sierra Leone&quot;                                                    
-## [161] &quot;Singapore&quot;                                                       
-## [162] &quot;Slovakia&quot;                                                        
-## [163] &quot;Slovenia&quot;                                                        
-## [164] &quot;Solomon Islands&quot;                                                 
-## [165] &quot;Somalia&quot;                                                         
-## [166] &quot;South Africa&quot;                                                    
-## [167] &quot;South Sudan&quot;                                                     
-## [168] &quot;Spain&quot;                                                           
-## [169] &quot;Sri Lanka&quot;                                                       
-## [170] &quot;Sudan&quot;                                                           
-## [171] &quot;Suriname&quot;                                                        
-## [172] &quot;Sweden&quot;                                                          
-## [173] &quot;Switzerland&quot;                                                     
-## [174] &quot;Syrian Arab Republic (Syria)&quot;                                    
-## [175] &quot;Tajikistan&quot;                                                      
-## [176] &quot;Thailand&quot;                                                        
-## [177] &quot;Timor-Leste&quot;                                                     
-## [178] &quot;Togo&quot;                                                            
-## [179] &quot;Trinidad and Tobago&quot;                                             
-## [180] &quot;Tunisia&quot;                                                         
-## [181] &quot;Turkey&quot;                                                          
-## [182] &quot;Turkmenistan&quot;                                                    
-## [183] &quot;Tuvalu&quot;                                                          
-## [184] &quot;Uganda&quot;                                                          
-## [185] &quot;Ukraine&quot;                                                         
-## [186] &quot;United Arab Emirates (UAE)&quot;                                      
-## [187] &quot;United Kingdom of Great Britain and Northern Ireland (UK)&quot;       
-## [188] &quot;United Republic of Tanzania&quot;                                     
-## [189] &quot;United States of America (USA)&quot;                                  
-## [190] &quot;Uruguay&quot;                                                         
-## [191] &quot;Uzbekistan&quot;                                                      
-## [192] &quot;Vanuatu&quot;                                                         
-## [193] &quot;Venezuela (Bolivarian Republic of)&quot;                              
-## [194] &quot;Viet Nam (Vietnam)&quot;                                              
-## [195] &quot;Yemen&quot;                                                           
-## [196] &quot;Zambia&quot;                                                          
-## [197] &quot;Zimbabwe&quot;</code></pre>
+## [147] &quot;Republic of Kiribati&quot;                                            
+## [148] &quot;Romania&quot;                                                         
+## [149] &quot;Russian Federation&quot;                                              
+## [150] &quot;Rwanda&quot;                                                          
+## [151] &quot;Saint Kitts and Nevis (St Kitts and Nevis)&quot;                      
+## [152] &quot;Saint Lucia (St Lucia)&quot;                                          
+## [153] &quot;Saint Vincent and the Grenadines (St Vincent and the Grenadines)&quot;
+## [154] &quot;Samoa&quot;                                                           
+## [155] &quot;San Marino&quot;                                                      
+## [156] &quot;S\x8bo Tom\x8e and Pr\x92ncipe&quot;                                  
+## [157] &quot;Saudi Arabia&quot;                                                    
+## [158] &quot;Senegal&quot;                                                         
+## [159] &quot;Serbia&quot;                                                          
+## [160] &quot;Seychelles&quot;                                                      
+## [161] &quot;Sierra Leone&quot;                                                    
+## [162] &quot;Singapore&quot;                                                       
+## [163] &quot;Slovakia&quot;                                                        
+## [164] &quot;Slovenia&quot;                                                        
+## [165] &quot;Solomon Islands&quot;                                                 
+## [166] &quot;Somalia&quot;                                                         
+## [167] &quot;South Africa&quot;                                                    
+## [168] &quot;South Sudan&quot;                                                     
+## [169] &quot;Spain&quot;                                                           
+## [170] &quot;Sri Lanka&quot;                                                       
+## [171] &quot;Sudan&quot;                                                           
+## [172] &quot;Suriname&quot;                                                        
+## [173] &quot;Sweden&quot;                                                          
+## [174] &quot;Switzerland&quot;                                                     
+## [175] &quot;Syrian Arab Republic (Syria)&quot;                                    
+## [176] &quot;Tajikistan&quot;                                                      
+## [177] &quot;Thailand&quot;                                                        
+## [178] &quot;Timor-Leste&quot;                                                     
+## [179] &quot;Togo&quot;                                                            
+## [180] &quot;Tonga&quot;                                                           
+## [181] &quot;Trinidad and Tobago&quot;                                             
+## [182] &quot;Tunisia&quot;                                                         
+## [183] &quot;Turkey&quot;                                                          
+## [184] &quot;Turkmenistan&quot;                                                    
+## [185] &quot;Tuvalu&quot;                                                          
+## [186] &quot;Uganda&quot;                                                          
+## [187] &quot;Ukraine&quot;                                                         
+## [188] &quot;United Arab Emirates (UAE)&quot;                                      
+## [189] &quot;United Kingdom of Great Britain and Northern Ireland (UK)&quot;       
+## [190] &quot;United Republic of Tanzania&quot;                                     
+## [191] &quot;United States of America (USA)&quot;                                  
+## [192] &quot;Uruguay&quot;                                                         
+## [193] &quot;Uzbekistan&quot;                                                      
+## [194] &quot;Vanuatu&quot;                                                         
+## [195] &quot;Venezuela (Bolivarian Republic of)&quot;                              
+## [196] &quot;Viet Nam (Vietnam)&quot;                                              
+## [197] &quot;Yemen&quot;                                                           
+## [198] &quot;Zambia&quot;                                                          
+## [199] &quot;Zimbabwe&quot;</code></pre>
 </div>
 <div id="tables-1" class="section level2">
 <h2>Tables</h2>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">table</span>(policy<span class="sc">$</span>measles_vaccine_policy)</span></code></pre></div>
 <pre><code>## 
 ##      no data not required     required 
-##            2          113           82</code></pre>
+##            4          113           82</code></pre>
+</div>
+<div id="filtering" class="section level2">
+<h2>Filtering</h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>policy[<span class="fu">which</span>(policy<span class="sc">$</span>country_name <span class="sc">==</span> <span class="st">&quot;Angola&quot;</span>),]</span></code></pre></div>
+<pre><code>##   country_name iso_code measles_vaccine_policy
+## 5       Angola      AGO           not required</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>policy <span class="sc">%&gt;%</span></span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>  <span class="fu">filter</span>(country_name <span class="sc">==</span> <span class="st">&quot;Angola&quot;</span>)</span></code></pre></div>
+<pre><code>##   country_name iso_code measles_vaccine_policy
+## 1       Angola      AGO           not required</code></pre>
 </div>
 </div>
 
@@ -1140,6 +1154,7 @@ margin-left: 0 !important;
        <li><a href="#tables" id="toc-tables">Tables</a></li>
        <li><a href="#vectors" id="toc-vectors">Vectors</a></li>
        <li><a href="#tables-1" id="toc-tables-1">Tables</a></li>
+       <li><a href="#filtering" id="toc-filtering">Filtering</a></li>
        </ul>
      </div>
         </div>
