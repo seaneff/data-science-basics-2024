@@ -15,8 +15,9 @@ library(dplyr)
 #######################################################################
 
 ## this code tells R to read in a tab-delimited file as a data frame
-#cases <- read.delim("https://raw.githubusercontent.com/seaneff/data-science-basics-2024/main/course-datasets/measles_cases.tsv")
+cases <- read.delim("https://raw.githubusercontent.com/seaneff/data-science-basics-2024/main/course-datasets/measles_cases.tsv")
 policy <- read.delim("https://raw.githubusercontent.com/seaneff/data-science-basics-2024/main/course-datasets/measles_vaccine_policy.tsv")
+countries <- read.delim("https://raw.githubusercontent.com/seaneff/data-science-basics-2024/main/course-datasets/countries.tsv")
 
 #######################################################################
 ### View the datasets #################################################
@@ -47,7 +48,6 @@ dim(policy) ## this prints out both rows and columns
 ## this checks for any missing values dataset policy, overall
 anyNA(policy)
 
-
 ## this checks for any missing values in the country_name field of the policy dataset
 anyNA(policy$country_name)
 
@@ -56,7 +56,6 @@ anyNA(policy$country_name)
 ########################################################################################################
 
 ## Load in a new dataset with country-level information, name it "countries"
-## TODO ADD BITLY LINK
 ## complete the same analyses you did above with that new dataset
 
 #############################################################################################
@@ -74,6 +73,8 @@ median(countries$pct_rural, na.rm = TRUE)
 
 ## look into missing data
 table(is.na(countries$pct_rural))
+which(is.na(countries$pct_rural))
+countries[which(is.na(countries$pct_rural)),]
 
 #############################################################################################
 ### Descriptive statistics: #################################################################
