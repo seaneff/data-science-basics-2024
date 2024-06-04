@@ -151,6 +151,8 @@ coverage_export$is_latest_year <- as.logical(coverage_export$is_latest_year)
 full_energy <- energy_raw[which(complete.cases(energy_raw$iso_code) & energy_raw$iso_code != ""),]
 energy_2022 <- full_energy[which(full_energy$year == 2022),]
 
+energy_2022 <- merge(energy_2022, countries[,c(1,8,9)], by = "iso_code")
+
 #############################################
 ## Export datasets ##########################
 #############################################
@@ -196,7 +198,7 @@ write.table(energy_2022[,which(names(energy_2022) %in% c("country", "iso_code", 
                                                          "oil_elec_per_capita", "oil_electricity", "oil_share_elec", "other_renewable_electricity",
                                                          "other_renewables_elec_per_capita", "per_capita_electricity", "renewables_elec_per_capita",
                                                          "renewables_electricity", "renewables_share_elec", "solar_electricity", "solar_share_elec",
-                                                         "wind_elec_per_capita", "wind_electricity", "wind_share_elec"))],
+                                                         "wind_elec_per_capita", "wind_electricity", "wind_share_elec", "income_group", "world_bank_region"))],
             sep = "\t",
             file = "course-datasets/energy_2022.tsv", 
             na = "NA",
