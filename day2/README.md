@@ -53,9 +53,7 @@ Day 2, Data Science Basics in R Workshop
 
 |  Topic                                            |     Materials 
 |:--------------------------------------------      |:-------------------------------------------------------------------------------------|
-| R for Data Science (online book)                  | [R for Data Science Website](https://r4ds.had.co.nz/)                                | 
-| R Basics: An Introduction to R (online book)      | [Intro2R Online Book](https://intro2r.com/)                                          |   
-| R Basics: An Introduction to R (online lectures)  | [Intro2R Website](https://alexd106.github.io/intro2R/lectures.html)                  | 
+| Data Structures in R                              | [Intro2R Online Book, Chapter 3 (Data in R)](https://intro2r.com/data_r.html)        | 
  
  ------------------------------------------------------------------------
 
