@@ -2,10 +2,11 @@
 ### Load required libraries ###########################################
 #######################################################################
 
-## if you don't already have readxl downloaded, start by running:
+## if you don't already have a package downloaded, start by running:
 #install.packages("ggplot2")
 
 library(ggplot2)
+library(scales)
 library(dplyr)
 library(maps)
 
@@ -75,7 +76,7 @@ quantile(energy$low_carbon_elec_per_capita)
 table(energy$world_bank_region)
 
 ## number of countries with zero vs. non-zero country-level electricity generation from low-carbon sources
-table(energy$low_carbon_elec_per_capita  == 0) 
+table(energy$low_carbon_elec_per_capita == 0) 
 
 ## which countries have zero country-level electricity generation from low-carbon sources?
 energy[which(energy$low_carbon_elec_per_capita  == 0),]$country
@@ -143,9 +144,18 @@ boxplot(countries$mcv1_coverage,
 ### Your turn ##########################################################################################
 ########################################################################################################
 
-## change the plot above to be vertically oriented
-## (horizontal = FALSE)
-## what else do you need to change now?
+## full version of a boxplot
+boxplot(countries$mcv1_coverage,
+        ## xlab specifies the x axis label, the \n here tells R to make a line break
+        xlab = "Percent of 1-year olds who have\nreceived at least one measles vaccine",
+        ## ylab specifies the y axis label
+        ylab = "",
+        horizontal = TRUE,
+        ## main specifies the primary title, the \n here tells R to make a line break
+        main = "Distribution of country-level\nmeasles vaccination rates\nfor 1-year olds (MCV1)",
+        ## specify a fill color using a hex code 
+        col = "#77B0AA")
+
 
 ########################################################################################################
 ### Data visualization: ################################################################################
@@ -169,14 +179,15 @@ barplot(table(countries$income_group),
         main = "Number of WHO member states\nper income group",
         xlab = "",
         ylab = "Count",
-        col = "#005879")
+        col = "#005879",
+        ylim = c(0,80))
 
 ########################################################################################################
 ### Your turn ##########################################################################################
 ########################################################################################################
 
 ## add a box around the plot by uncommenting and running the command below
-# box()
+box()
 
 ########################################################################################################
 ### Data visualization: ################################################################################
@@ -226,6 +237,15 @@ plot(x = countries$pct_rural,
 ## example hex codes: https://coolors.co/palettes/trending 
 ## make sure to add the "#" before your hex code
 
+plot(x = countries$pct_rural,
+     y = countries$mcv1_coverage,
+     pch = 1,
+     xlab = "Percent of population in rural areas",
+     ylab = "Vaccination rate (MCV1)",
+     main = "Measles vaccination rates\nfor 1-year olds (MCV1)\nvs. percent of population in rural areas",
+     col = "#8B4F80")
+
+
 ########################################################################################################
 ### Data visualization: ################################################################################
 ### Histogram (ggplot2) ################################################################################
@@ -255,7 +275,7 @@ ggplot(data = countries, aes(mcv1_coverage)) +
 
 ########################################################################################################
 ### Data visualization: ################################################################################
-### Histogram (ggplot2) with faceeting #################################################################
+### Histogram (ggplot2) with faceting ##################################################################
 ########################################################################################################
 
 ## add facets to the plot (one box per income group)
@@ -301,9 +321,9 @@ ggplot(data = countries, aes(mcv1_coverage/100)) +
   ## ylab specifies the y axis label
   ylab("") + 
   ## ggtitle specifies the title
-  ggtitle("Distribution of country-level measles vaccination rates\nfor 1-year olds (MCV1)") +
+  ggtitle("Distribution of country-level measles vaccination rates\nfor 1-year olds (MCV1)") 
   ## remove numbers from the y axis
-  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
+  #theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) 
   ## scale x axis as percentage
   scale_x_continuous(labels = scales::percent_format())
 
@@ -431,7 +451,7 @@ countries %>%
   ylab("Count") +
   xlab("") +
   ggtitle("Number of WHO member states\nper income group") +
-  coord_flip() 
+  #coord_flip() 
 
 ########################################################################################################
 ### Your turn ##########################################################################################
@@ -634,3 +654,24 @@ ggplot(study, aes(x = time, y = average_score, fill = group, group = group,
   labs(caption = "Data are notional and do not reflect actual study data",
        fill = "Group") +
   scale_fill_manual(values = c("#0C356A", "#279EFF"))
+
+
+
+########################################################################################################
+### Data visualization: ################################################################################
+### Class brainstorming ################################################################################
+########################################################################################################
+
+coverage$income_group <- factor(coverage$income_group, levels = c("Low income", "Lower middle income",
+                                                                  "Upper middle income", "High income"))
+
+coverage %>%
+  filter(is_latest_year == TRUE) %>%
+  filter(complete.cases(income_group)) %>%
+  ggplot(aes(x = income_group, y = mcv1_coverage)) +
+  geom_boxplot() +
+  geom_point(position = "jitter", alpha = 0.3) +
+  coord_flip() +
+  ylab("% measles vaccination coverage") +
+  xlab("")
+
