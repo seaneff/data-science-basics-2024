@@ -17,6 +17,23 @@ library(dplyr)
 ## this code tells R to read in a tab-delimited file as a data frame
 per_capita_energy_mix <- read.delim("https://raw.githubusercontent.com/seaneff/data-science-basics-2024/main/course-datasets/per_capita_energy_mix.tsv")
 energy_consumption <- read.delim("https://raw.githubusercontent.com/seaneff/data-science-basics-2024/main/course-datasets/energy_consumption.tsv")
+energy <- read.delim("https://raw.githubusercontent.com/seaneff/data-science-basics-2024/main/course-datasets/energy_2022.tsv")
+
+#######################################################################
+### Scatterplot of GDP vs. total population ###########################
+#######################################################################
+
+energy %>%
+  filter(country %in% c("Indonesia", "Vietnam")) %>%
+  ggplot(aes(x = gdp, y = population)) +
+  ## plot points
+  geom_point(color = "#8B4F80") +
+  ## xlab specifies the x axis label
+  xlab("") +
+  ## ylab specifies the y axis label
+  ylab("") +
+  ## ggtitle specifies the main title
+  ggtitle("") 
 
 #######################################################################
 ### Top 10 countries based on per capita renewable energy use ##########
@@ -36,14 +53,5 @@ ggplot(data = top_10_data, aes(y = factor(entity), x = renewable_per_capita_kwh)
   geom_bar(stat = "identity")
 
 ## your turn -- what else can we add to this plot?
-
-#######################################################################
-### Total energy consumption by region and type #######################
-#######################################################################
-
-energy_consumption %>%
-  filter(year == 2022) %>%
-  filter(entity %in% c("Africa", "Asia", "Europe", "North America", "Oceania", "South America")) %>%
-  pivot_longer(cols = ends_with("twh"))
 
 
