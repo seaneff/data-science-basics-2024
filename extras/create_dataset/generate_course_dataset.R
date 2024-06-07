@@ -62,6 +62,9 @@ energy_renewable <- read.csv("extras/create_dataset/inputs/renewable-share-energ
 ## https://ourworldindata.org/energy-mix
 per_capita_energy_mix <- read.csv("extras/create_dataset/inputs/per_capita_energy_mix.csv")
 
+## https://ourworldindata.org/energy-mix
+energy_consumption <- read.csv("extras/create_dataset/inputs/energy-consumption-by-source-and-country.csv")
+
 #######################################################################
 ## Process World Bank population count data ###########################
 #######################################################################
@@ -170,6 +173,17 @@ names(per_capita_energy_mix) <- c("entity", "iso_code", "year",
                                   "fossil_fuel_per_capita_kwh", "nuclear_per_capita_kwh", 
                                   "renewable_per_capita_kwh")
 
+names(energy_consumption) <- c("entity", "iso_code", "year",
+                               "other_renewables_twh",
+                               "biofuels_twh",
+                               "solar_twh",
+                               "wind_twh",
+                               "hyrdo_twh",
+                               "nuclear_twh",
+                               "gas_twh",
+                               "coal_twh",
+                               "oil_twh")
+  
 #############################################
 ## Export datasets ##########################
 #############################################
@@ -228,3 +242,11 @@ write.table(per_capita_energy_mix,
             na = "NA",
             row.names = FALSE,
             fileEncoding = "Latin1")
+
+write.table(energy_consumption,
+            sep = "\t",
+            file = "course-datasets/energy_consumption.tsv", 
+            na = "NA",
+            row.names = FALSE,
+            fileEncoding = "Latin1")
+
