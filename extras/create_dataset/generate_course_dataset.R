@@ -216,6 +216,7 @@ cases_since_2022 <- measles_cases %>%
   summarize(cases_total = sum(measles_cases, na.rm = TRUE))
 
 coverage_2022 <- merge(coverage_2022, cases_since_2022, by = "iso_code", all.x = TRUE)
+coverage_2022 <- merge(coverage_2022, policies[,c(2,3)], by = "iso_code", all.x = TRUE)
 
 #############################################
 ## Export datasets ##########################

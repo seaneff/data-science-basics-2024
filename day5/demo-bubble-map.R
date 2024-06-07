@@ -19,6 +19,7 @@ library(sf)
 
 ## borrowing from UNHCR online code here: https://dataviz.unhcr.org/tools/r/r_bubble_map.htmls
 df_url <- "https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/bubble_map.csv"
+lat_long <- read.csv("https://raw.githubusercontent.com/seaneff/data-science-basics-2024/main/course-datasets/longitude-latitude.csv")
 poly_url <- "https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/world_polygons_simplified.json"
 line_url <- "https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/world_lines_simplified.json"
 countries <- read.delim("https://raw.githubusercontent.com/seaneff/data-science-basics-2024/main/course-datasets/countries.tsv")
@@ -32,8 +33,9 @@ measles_big <- read.delim("https://raw.githubusercontent.com/seaneff/data-scienc
 #######################################################################
 
 # Read and transform data
-df <- read_csv(df_url) |> 
-  st_as_sf(coords = c("lon", "lat"),
+df <- lat_long |> 
+  filter(complete.cases(Longitude)) |> 
+  st_as_sf(coords = c("Longitude", "Latitude"),
            crs = 4326)
 
 poly <- read_sf(poly_url) |> 
@@ -50,7 +52,7 @@ line <- read_sf(line_url) |>
 ### Add in data on measles to the GIS info we need to map #############
 #######################################################################
 
-bubble_data <- merge(df, measles_big, by.x = "iso3", by.y = "iso_code")
+bubble_data <- merge(df, measles_big, by.x = "ISO.ALPHA.3", by.y = "iso_code")
 
 #######################################################################
 ### Try out a plot ####################################################
@@ -66,13 +68,13 @@ ggplot() +
           color = "white",
           linewidth = .25,
           show.legend = FALSE) +
-  geom_sf(data = bubble_data,
-          aes(size = mcv1_coverage),
+  geom_sf(data = bubble_data[which(bubble_data$cases_total > 0),],
+          aes(size = cases_total, fill = ),
           shape = 21,
           # fill = unhcr_pal(n = 1, "pal_blue"),
           #  color = unhcr_pal(n = 5, "pal_blue")[5],
           alpha = 0.3) 
-scale_linetype_manual(values = c(1, 2, 3, 4)) +
+  scale_linetype_manual(values = c(1, 2, 3, 4)) +
   scale_size_area(max_size = 12,
                   labels = scales::label_number(
                     scale_cut = cut_short_scale()
