@@ -69,19 +69,19 @@ ggplot() +
           linewidth = .25,
           show.legend = FALSE) +
   geom_sf(data = bubble_data[which(bubble_data$cases_total > 0),],
-          aes(size = cases_total, fill = ),
+          aes(size = cases_total, fill = measles_vaccine_policy),
           shape = 21,
-          # fill = unhcr_pal(n = 1, "pal_blue"),
-          #  color = unhcr_pal(n = 5, "pal_blue")[5],
-          alpha = 0.3) 
+          alpha = 0.3) +
   scale_linetype_manual(values = c(1, 2, 3, 4)) +
-  scale_size_area(max_size = 12,
+  scale_size_area(max_size = 6,
                   labels = scales::label_number(
                     scale_cut = cut_short_scale()
                   ),
-                  breaks = c(1e5, 1e6, 5e6)) +
+                  breaks = c(100, 1000, 10000, 100000)) +
   labs(
     title = "Add title",
-    caption = "Add caption"
+    caption = "Add caption",
+    size = "Add size label",
+    fill = "Add fill label"
   ) +
   coord_sf(crs = st_crs('ESRI:54030')) 
