@@ -65,6 +65,9 @@ per_capita_energy_mix <- read.csv("extras/create_dataset/inputs/per_capita_energ
 ## https://ourworldindata.org/energy-mix
 energy_consumption <- read.csv("extras/create_dataset/inputs/energy-consumption-by-source-and-country.csv")
 
+## https://data.worldbank.org/indicator/NY.GDP.MKTP.CD
+gdp <- read.csv("extras/create_dataset/inputs/gdp_data.csv")
+
 #######################################################################
 ## Process World Bank population count data ###########################
 #######################################################################
@@ -183,7 +186,37 @@ names(energy_consumption) <- c("entity", "iso_code", "year",
                                "gas_twh",
                                "coal_twh",
                                "oil_twh")
-  
+
+energy_consumption %>%
+  filter(year == 2022) %>%
+  filter(entity %in% c("Africa", "Asia", "Europe", "North America", "Oceania", "South America")) %>%
+  pivot_longer(cols = ends_with("twh"))
+
+#######################################################################
+## GDP 2022 ###########################################################
+#######################################################################
+
+gdp_2022 <- gdp[,c(2,3,67)]
+names(gdp_2022) <- c("iso_code", "indicator", "gdp_2022")
+
+#######################################################################
+## Generate dataset for GDP vs. coverage for 2022 #####################
+#######################################################################
+
+coverage_2022 <- coverage_export[which(coverage_export$year == 2022),]
+coverage_2022 <- merge(coverage_2022, countries[,c(1,6,7)], by = "iso_code", all.x = TRUE)
+coverage_2022 <- merge(coverage_2022, gdp_2022, by = "iso_code", all.x = TRUE)
+
+measles_cases <- measles_long[,c(1,3,7,6,8,10,9)]
+measles_cases$measles_cases <- as.numeric(measles_cases$measles_cases)
+
+cases_since_2022 <- measles_cases %>%
+  filter(month >= as.Date("2022-01-01")) %>%
+  group_by(iso_code) %>%
+  summarize(cases_total = sum(measles_cases, na.rm = TRUE))
+
+coverage_2022 <- merge(coverage_2022, cases_since_2022, by = "iso_code", all.x = TRUE)
+
 #############################################
 ## Export datasets ##########################
 #############################################
@@ -249,4 +282,13 @@ write.table(energy_consumption,
             na = "NA",
             row.names = FALSE,
             fileEncoding = "Latin1")
+
+
+write.table(coverage_2022,
+            sep = "\t",
+            file = "course-datasets/measles_coverage_cases_gdp.tsv", 
+            na = "NA",
+            row.names = FALSE,
+            fileEncoding = "Latin1")
+
 
