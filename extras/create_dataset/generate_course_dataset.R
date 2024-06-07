@@ -55,6 +55,13 @@ coverage <- read.csv("extras/create_dataset/inputs/vaccine_coverage.csv")
 ## our world in data energy data
 energy_raw <- read.csv("extras/create_dataset/inputs/owid-energy-data.csv")
 
+## our world in energy data on renewable energy over time
+## https://ourworldindata.org/grapher/renewable-share-energy
+energy_renewable <- read.csv("extras/create_dataset/inputs/renewable-share-energy.csv")
+
+## https://ourworldindata.org/energy-mix
+per_capita_energy_mix <- read.csv("extras/create_dataset/inputs/per_capita_energy_mix.csv")
+
 #######################################################################
 ## Process World Bank population count data ###########################
 #######################################################################
@@ -145,13 +152,23 @@ coverage_export$is_latest_year[which(coverage_export$is_latest_year == "false")]
 coverage_export$is_latest_year <- as.logical(coverage_export$is_latest_year)
   
 #######################################################################
-## Process energy data ################################################
+## Process energy data: global ########################################
 #######################################################################
 
 full_energy <- energy_raw[which(complete.cases(energy_raw$iso_code) & energy_raw$iso_code != ""),]
 energy_2022 <- full_energy[which(full_energy$year == 2022),]
 
 energy_2022 <- merge(energy_2022, countries[,c(1,8,9)], by = "iso_code")
+
+#######################################################################
+## Process energy data: renewable energy and energy mix ###############
+#######################################################################
+
+names(energy_renewable) <- c("entity", "code", "year", "renewable_equivalent_primary_energy")
+
+names(per_capita_energy_mix) <- c("entity", "iso_code", "year", 
+                                  "fossil_fuel_per_capita_kwh", "nuclear_per_capita_kwh", 
+                                  "renewable_per_capita_kwh")
 
 #############################################
 ## Export datasets ##########################
@@ -205,3 +222,9 @@ write.table(energy_2022[,which(names(energy_2022) %in% c("country", "iso_code", 
             row.names = FALSE,
             fileEncoding = "Latin1")
 
+write.table(per_capita_energy_mix,
+            sep = "\t",
+            file = "course-datasets/per_capita_energy_mix.tsv", 
+            na = "NA",
+            row.names = FALSE,
+            fileEncoding = "Latin1")
