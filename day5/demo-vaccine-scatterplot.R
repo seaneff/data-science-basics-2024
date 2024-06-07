@@ -25,6 +25,7 @@ measles_gdp %>%
   geom_point(alpha = 0.5) +
   ylab("Measles Cases in 2022") +
   xlab("Vaccine Coverage") +
+  labs(color = "WHO Region") +
   scale_size_continuous(name = "Population size",
                         labels = scales::comma,
                         range = c(.01, 15),

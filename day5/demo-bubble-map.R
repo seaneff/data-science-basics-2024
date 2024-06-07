@@ -10,6 +10,7 @@
 ## within any new R session, you need to load the libraries you need
 library(dplyr)
 library(scales)
+library(forcats)
 library(sf)
 
 #######################################################################
@@ -17,6 +18,7 @@ library(sf)
 #######################################################################
 
 ## borrowing from UNHCR online code here: https://dataviz.unhcr.org/tools/r/r_bubble_map.htmls
+df_url <- "https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/bubble_map.csv"
 poly_url <- "https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/world_polygons_simplified.json"
 line_url <- "https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/world_lines_simplified.json"
 countries <- read.delim("https://raw.githubusercontent.com/seaneff/data-science-basics-2024/main/course-datasets/countries.tsv")
