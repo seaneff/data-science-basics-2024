@@ -78,10 +78,15 @@ ggplot() +
                     scale_cut = cut_short_scale()
                   ),
                   breaks = c(100, 1000, 10000, 100000)) +
+  scale_fill_manual(values = c("red", "blue")) +
   labs(
     title = "Add title",
     caption = "Add caption",
     size = "Add size label",
     fill = "Add fill label"
   ) +
-  coord_sf(crs = st_crs('ESRI:54030')) 
+  coord_sf(crs = st_crs('ESRI:54030')) +
+  theme(axis.text.x = element_blank(), 
+        axis.ticks.x = element_blank(), 
+        axis.text.y = element_blank(), 
+        axis.ticks.y = element_blank()) 
